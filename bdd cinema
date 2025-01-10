@@ -1,5 +1,4 @@
-CREATE DATABASE rmr_cinema
-USE rmr_cinema
+USE rmr_cinema;
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
@@ -47,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `films` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `fk_reservation_seance` FOREIGN KEY (`ref_seance`) REFERENCES `pays` (`id_seance`);
+  ADD CONSTRAINT `fk_reservation_seance` FOREIGN KEY (`ref_seance`) REFERENCES `seance` (`id_seance`),
   ADD CONSTRAINT `fr_reservation_utilisateur` FOREIGN KEY (ref_utilisateur) REFERENCES `utilisateur` (id_utilisateur);
 
 ALTER TABLE `seance`
@@ -55,6 +54,9 @@ ALTER TABLE `seance`
   
  ALTER TABLE `salle`
   ADD CONSTRAINT `fk_salle_seance` FOREIGN KEY (`ref_seance`) REFERENCES `seance` (`id_seance`);
+
+
+
 
 
 
