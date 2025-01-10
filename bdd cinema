@@ -1,0 +1,29 @@
+CREATE DATABASE rmr_cinema
+USE rmr_cinema
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mdp` varchar(60) NOT NULL,
+  `role` varchar(11) NOT NULL,
+  PRIMARY KEY (`id_utilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `realise` (
+  `ref_utlisateur` int(11) NOT NULL,
+  `ref_reservation` int(11) NOT NULL,
+  PRIMARY KEY (`ref_utlisateur`,`ref_reservation`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mdp` varchar(60) NOT NULL,
+  `role` varchar(11) NOT NULL,
+  PRIMARY KEY (`id_utilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
