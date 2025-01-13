@@ -1,25 +1,22 @@
 <?php
-$bdd = new PDO('mysql:host=localhost:8889;dbname=tp1;charset=utf8', 'root', 'root');
-
-$email = $_POST['email'];
-$mdp = $_POST['mdp'];
-
-$reqConnexion = $bdd->prepare('SELECT * FROM inscrit WHERE email = :email AND mdp = :mdp');
-$reqConnexion->execute(array(
-    'email' => $email,
-    'mdp' => $mdp
+session_start();
+var_dump($_POST);
+$bddconnexion = new PDO('mysql:host=localhost;dbname=tli3;charset=utf8', 'root', '');
+$reqconnexion = $bddconnexion->prepare('SELECT * FROM inscrit WHERE email = :email AND mdp = :mdp');
+$reqconnexion->execute(array(
+    'email' => $_POST['email'],
+    'mdp' => $_POST['mdp'],
 ));
 
-$resConnexion = $reqConnexion->fetch();
-
-var_dump($email, $mdp);
-
-if ($resConnexion == null) {
-    echo "Impossible de vous connecter veuillez réesayer";
-} else {
-    session_start();
-    $_SESSION['user'] = $resConnexion['email'];
-    header("Location: ../Accueil/Accueil.php");
-    exit();
+$donne = $reqconnexion->fetch();
+var_dump($donne);
+if ($donne == NULL) {
+    echo "vous n'avez pas de compte! veuillez en crée un ! ";
 }
+else {
+    $_SESSION['email'] = $donne['email'];;
+    header('Location: ../Affichage_compte/Affichage_Compte.php');
+}
+
+
 ?>
