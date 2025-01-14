@@ -1,0 +1,62 @@
+USE rmr_cinema;
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `mdp` varchar(60) NOT NULL,
+  `role` varchar(11) NOT NULL,
+  PRIMARY KEY (`id_utilisateur`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `reservation` (
+  `id_reservation` int(11) NOT NULL AUTO_INCREMENT,
+  `nb_place_reserver` varchar(50) NOT NULL,
+  `ref_seance` int(11) NOT NULL,
+  ref_utilisateur int(11) NOT NULL,
+  PRIMARY KEY (`id_reservation`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `seance` (
+  `id_seance` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `heure` time NOT NULL,
+  `nb_place_dispo` int(60) NOT NULL,
+  `ref_films` int(11) NOT NULL,
+  PRIMARY KEY (`id_seance`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `salle` (
+  `id_salle` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_salle` varchar (50)NOT NULL,
+  `place_totale` int(50) NOT NULL,
+  `ref_seance` int(11) NOT NULL,
+  PRIMARY KEY (`id_salle`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `films` (
+  `id_films` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(50) NOT NULL,
+  `description` varchar(999) NOT NULL,
+  `genre` varchar(100) NOT NULL,
+  `durée` int(10) NOT NULL,
+  `affiche` longblob NOT NULL ,
+  PRIMARY KEY (`id_films`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `fk_reservation_seance` FOREIGN KEY (`ref_seance`) REFERENCES `seance` (`id_seance`),
+  ADD CONSTRAINT `fr_reservation_utilisateur` FOREIGN KEY (ref_utilisateur) REFERENCES `utilisateur` (id_utilisateur);
+
+ALTER TABLE `seance`
+  ADD CONSTRAINT `fk_seance_films` FOREIGN KEY (`ref_films`) REFERENCES `films` (`id_films`);
+  
+ ALTER TABLE `salle`
+  ADD CONSTRAINT `fk_salle_seance` FOREIGN KEY (`ref_seance`) REFERENCES `seance` (`id_seance`);
+
+
+
+
+
+
