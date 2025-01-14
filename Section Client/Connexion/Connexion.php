@@ -1,5 +1,4 @@
 <?php
-session_start();
 var_dump($_POST);
 $bddconnexion = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
 $reqconnexion = $bddconnexion->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
