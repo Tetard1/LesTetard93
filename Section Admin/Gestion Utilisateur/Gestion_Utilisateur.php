@@ -1,8 +1,8 @@
 <?php
 var_dump($_POST);
 $bddconnexion_admin = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$reqconnexion = $bddconnexion_admin->prepare('SELECT * FROM utilisateur WHERE email = :email || mdp = :mdp AND role = :role');
-$reqconnexion->execute(array(
+$reqconnexion_admin = $bddconnexion_admin->prepare('SELECT * FROM utilisateur WHERE email = :email || mdp = :mdp AND role = :role');
+$reqconnexion_admin->execute(array(
     'email' => $_POST['email'],
     'mdp' => $_POST['mdp'],
     'role' => $_POST['role']
