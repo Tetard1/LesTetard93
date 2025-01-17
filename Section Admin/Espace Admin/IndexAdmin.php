@@ -40,23 +40,61 @@ $resultat=$req->fetch();
         <hr>
         <h1>Mon compte</h1>
         <form action="IndexAdmin.php" method="POST">
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="<?= $resultat['nom'] ?>">
-            </div>
-            <div class="mb-3">
-                <label for="prenom" class="form-label">Prenom</label>
-                <input type="text" class="form-control" id="prenom" name="prenom" value="<?= $resultat['prenom'] ?>">
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?= $resultat['email'] ?>">
-            </div>
-            <div class="mb-3">
-                <label for="mdp" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="mdp" name="mdp" value="<?= $resultat['mdp'] ?>">
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="nom" name="nom" value="<?= $resultat['nom'] ?>">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mb-3">
+                            <label for="prenom" class="form-label">Prenom</label>
+                            <input type="text" class="form-control" id="prenom" name="prenom" value="<?= $resultat['prenom'] ?>">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $resultat['email'] ?>">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="mb-3">
+                            <label for="mdp" class="form-label">Mot de passe</label>
+                            <input type="password" class="form-control" id="mdp" name="mdp" value="<?= $resultat['mdp'] ?>">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            <input class="btn btn-primary" type="submit" value="Modifier ">
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </form>
     </body>
 </html>
 
+<?php
+if (isset($_POST['nom']) && isset($_POST['prenom'])
+    && isset($_POST['email']) && isset($_POST['mdp'])) {
+    var_dump($_POST);
+    $bdd=new PDO ('mysql:host=localhost;dbname=rmr_cinema', 'root', '');
+    $req=$bdd->prepare('UPDATE utilisateur SET nom=:nom, prenom= :prenom, email = :email, mdp=:mdp WHERE id_utilisateur =:id AND role=:role');
+    $req->execute(array('nom' => $_POST["nom"],
+            'prenom' => $_POST["prenom"],
+            'email' => $_POST["email"],
+            'mdp' => $_POST["mdp"],
+            'id' => $_SESSION['id'],
+            'role' => $_SESSION['role']));
+}
