@@ -21,9 +21,9 @@ if ($donne == NULL) {
         'role' => $_POST['role'],
     ));
     echo "Votre profil a été crée ! ";
+        header('location:../Connexion/Connexion.html');
 }
 else{
     echo "vous avez déjà un compte veuillez vous connecter ! ";
-    header('location:../Connexion/Connexion.php');
+    header('location:../Connexion/Connexion.html');
 }
-?>
