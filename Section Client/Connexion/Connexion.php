@@ -15,7 +15,7 @@ if ($donne == NULL) {
 }
 else {
     $_SESSION['email'] = $donne['email'];;
-    header('location:../../Acceuil/Acceuil.php');
+    header('location:../../Accueil/Accueil.php');
     session_start();
 }
 ?>
