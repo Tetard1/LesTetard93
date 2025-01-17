@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Compte</title>
+    <style>
+        body {
+        font family : "Brush Script MT", cursive;
+            margin: 0;
+            padding: 0;
+
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        h3 {
+            font-size: 35px;
+            text-align: center
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            padding: 2rem;
+        }
+        section {
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .watchlist, .films-a-voter {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+        }
+        .item {
+            flex: 0 0 auto;
+            width: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+            background: #fafafa;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        footer a {
+            color: white;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plus2</h1>
+        <nav>
+            <a href="#">Rechercher</a>
+            <a href="#">Mon Compte</a>
+            <a href="#">Déconnexion</a>
+        </nav>
+    </header>
+
+            <h3>Bonjour [Nom_du_compte]</h3>
+
+    <div class="container">
+
+
+
+        <section id="reservations">
+            <h2>Mes Réservations</h2>
+            <button>Réserver une séance</button>
+        </section>
+
+        <section id="watchlist">
+            <h2>Ma Watchlist</h2>
+            <div class="watchlist">
+                <div class="item">Affiche<br>Film 1</div>
+                <div class="item">Affiche<br>Film 2</div>
+                <div class="item">Affiche<br>Film 3</div>
+                <div class="item">+</div>
+            </div>
+        </section>
+
+        <section id="films-a-voter">
+            <h2>Mes Films à Voter</h2>
+            <div class="films-a-voter">
+                <div class="item">Film 1<br>Note<br>Commenter</div>
+                <div class="item">Film 2<br>Note<br>Commenter</div>
+                <div class="item">Film 3<br>Note<br>Commenter</div>
+            </div>
+        </section>
+
+        <section id="profil">
+            <h2>Mon Profil</h2>
+            <form>
+                <label for="name">Nom :</label><br>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email :</label><br>
+                <input type="email" id="email" name="email"><br><br>
+                <button type="submit">Mettre à jour</button>
+            </form>
+        </section>
+
+        <section id="suppression">
+            <h2>Supprimer mon compte</h2>
+            <button style="background-color: red; color: white;">Supprimer</button>
+        </section>
+    </div>
+
+    <footer>
+        <p>Bla Bla Bla</p>
+        <a href="#">Besoin d'aide</a>
+        <a href="#">Contact</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">Cookies</a>
+        <br>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+    </footer>
+</body>
+</html>
