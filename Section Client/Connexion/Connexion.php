@@ -11,13 +11,13 @@ $donne = $reqconnexion->fetch();
 var_dump($donne);
 if ($donne == NULL) {
     echo "vous n'avez pas de compte! veuillez en crée un ! ";
-    header('location:../Inscription/Inscription.php');
+    header('location:../Inscription/Inscription.html');
 }
 else {
     session_start();
-    $_SESSION['id'] = $donne['id'];
+    $_SESSION['id'] = $donne['id_utilisateur'];
     $_SESSION['role'] = $donne['role'];
-    header('location:../../Accueil/Accueil.php');
+    header('location:../../Accueil/IndexAcceuil.php');
 
 }
-?>
+
