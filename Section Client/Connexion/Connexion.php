@@ -17,7 +17,11 @@ else {
     session_start();
     $_SESSION['id'] = $donne['id_utilisateur'];
     $_SESSION['role'] = $donne['role'];
-    header('location:../../Accueil/IndexAcceuil.php');
-
+    if ($donne['role'] == 'admin') {
+        header('location:../Admin/indexAdmin.php');
+    }
+    else {
+        header('location:../../Accueil/IndexAcceuil.php');
+    }
 }
 
