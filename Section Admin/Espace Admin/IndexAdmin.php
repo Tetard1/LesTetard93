@@ -28,19 +28,19 @@ $resultat=$req->fetch();
 
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/Section%20Admin/Espace%20Admin/IndexAdmin.php">Mon compte</a>
+            <a class="nav-link active" aria-current="page" href="../Espace%20Admin/IndexAdmin.php">Mon compte</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Section%20Admin/Gestion%20film/Gestion_Film.php">Films</a>
+            <a class="nav-link" href="../Gestion%20film/Gestion_Film.php">Films</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Section%20Admin/Gestion%20Séance/Gestion_Seance.php">Séances</a>
+            <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Section%20Admin/Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
+           <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/Section%20Admin/Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
+            <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
         </li>
     </menu>
     </header>
