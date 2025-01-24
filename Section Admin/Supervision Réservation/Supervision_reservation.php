@@ -1,7 +1,10 @@
 <?php
+
+use Bdd\BDD;
+
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM reservation');
+$bdd = new BDD();
+$req = $bdd->getBdd()->prepare('SELECT * FROM reservation');
 $req->execute();
 $reservations = $req->fetchAll();
 ?>
@@ -36,13 +39,62 @@ $reservations = $req->fetchAll();
             <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
         </li>
     </menu>
 </header>
 <hr>
+<form action="Supervision_reservation.php" method="Post">
+    <table>
+        <?php
 
+        if ($reservations != NULL) {
+            if ($_SESSION["role"] == "admin") {
+                foreach ($reservations as $reservation) {
+                    echo "
+                <thead>
+                <tr>
+                    <tr>
+                <th>nombre de place reserver</th>
+                <th>Heure</th>
+                <th>Date</th>
+                <th>Nombre de place disponible</th>
+        </tr>
+                    <th>Supprimer</th>
+                </tr>
+                </thead> 
+                <tbody><tr>
+                    <td><input type='date' name='date' value='" . $seance['date'] . "'></td>
+                    <td><input type='time' name='heure' value='" . $seance['heure'] . "'></td>
+                    <td><input type='number' name='dispo' value='" . $seance['nb_place_dispo'] . "'></td>
+                    <td><input type='checkbox' name='suppprimer'></td>
+                </tr>
+                <tr>
+                                 <td><input type='submit' value='modifier'</td>
+                                   <td><input type='submit' value='supprimer' </td>
+                                    </tr> ";
+                }
+            }
+        } else {
+            echo " <tr>
+                                <td><label for='date'>Saisir une Date :</label></td>
+                                <td><input type='date' name='date' id='date'></td>
+                                </tr>
+                                <tr>
+                                 <td><label for='heure'>Saisir une heure:</label></td>
+                                <td><input type='time' name='heure' id='heure'></td>
+                                <tr>
+                                 <td><label for='nbdispo'>Saisir le nombre de place dispoonible :</label></td>
+                                <td><input type='number' name='nbdispo' id='nbdispo'></td>
+                                </tr>
+                                <tr>
+                                <td><input type='submit' name='ajout' value='Ajouter'></td>
+                                </tr>
+                                 </tbody>
+                                ";
+        }
+        ?>
+        </tbody>
+    </table>
+</form>
 

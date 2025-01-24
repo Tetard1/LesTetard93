@@ -1,7 +1,10 @@
 <?php
+
+use Bdd\BDD;
+
 session_start();
-$bdd=new PDO ('mysql:host=localhost;dbname=rmr_cinema', 'root', '');
-$req=$bdd->prepare("SELECT * FROM utilisateur WHERE id_utilisateur =:id AND role=:role");
+$bdd=new BDD();
+$req=$bdd->getBdd()->prepare("SELECT * FROM utilisateur WHERE id_utilisateur =:id AND role=:role");
 $req->execute(array('id'=>$_SESSION['id'],
     'role'=>$_SESSION['role'])
 );
@@ -35,9 +38,6 @@ $resultat=$req->fetch();
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
-        </li>
-        <li class="nav-item">
-           <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>

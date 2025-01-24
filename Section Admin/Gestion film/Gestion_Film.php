@@ -1,10 +1,22 @@
 <?php
+
+use Bdd\BDD;
+
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM films');
+$bdd = new BDD();
+$req = $bdd->getBdd()->prepare('SELECT * FROM films');
 $req->execute();
 $films = $req->fetchAll();
+
+
+
+
+
+
+
 ?>
+<<<<<<< HEAD
+=======
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,11 +48,9 @@ $films = $req->fetchAll();
             <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
         </li>
     </menu>
 </header>
 <hr>
+>>>>>>> 3eb9af0c85bc9003761cd41aea9da25304bbaa2a
