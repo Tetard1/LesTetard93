@@ -64,9 +64,9 @@ $reservations = $req->fetchAll();
                 </tr>
                 </thead> 
                 <tbody><tr>
-                    <td><input type='date' name='date' value='" . $seance['date'] . "'></td>
-                    <td><input type='time' name='heure' value='" . $seance['heure'] . "'></td>
-                    <td><input type='number' name='dispo' value='" . $seance['nb_place_dispo'] . "'></td>
+                    <td><input type='date' name='date' value='" . $reservation['date'] . "'></td>
+                    <td><input type='time' name='heure' value='" . $reservation['heure'] . "'></td>
+                    <td><input type='number' name='dispo' value='" . $reservation['nb_place_dispo'] . "'></td>
                     <td><input type='checkbox' name='suppprimer'></td>
                 </tr>
                 <tr>
