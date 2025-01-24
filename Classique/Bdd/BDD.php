@@ -1,6 +1,5 @@
 <?php
 
-namespace Bdd;
 class BDD
 {
     private $bdd;

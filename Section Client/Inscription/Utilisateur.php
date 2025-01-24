@@ -1,5 +1,5 @@
 <?php
-use Bdd\BDD;
+require_once "../../Classique/Bdd/BDD.php";
 class Utilisateur
 {
     private $nom;
@@ -7,6 +7,8 @@ class Utilisateur
     private $email;
     private $mdp;
     private $role;
+    private $bdd;
+
 
     public function __construct($email, $mdp, $nom = NULL, $prenom = NULL, $role = NULL)
     {
@@ -15,6 +17,7 @@ class Utilisateur
         $this->setEmail($email);
         $this->setMdp($mdp);
         $this->setRole($role);
+        $this->setBDD();
     }
     /**
      * @return mixed
@@ -96,11 +99,25 @@ class Utilisateur
         $this->role = $role;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getBdd()
+    {
+        return $this->bdd;
+    }
+
+    /**
+     * @param mixed $BDD
+     */
+    public function setBDD()
+    {
+        $this->bdd = new BDD();
+    }
     public function inscription()
     {
         var_dump($_POST);
-        $bdd2 = new BDD();
-        $req2 = $bdd2->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email');
+        $req2 = $this->bdd->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email');
         $req2->execute(array(
             'email' => $this->getEmail(),
 
@@ -110,8 +127,7 @@ class Utilisateur
         $donne = $req2->fetch();
         var_dump($donne);
         if ($donne == NULL) {
-            $bdd = new BDD();
-            $req = $bdd->getBdd()->prepare('INSERT INTO utilisateur(nom,prenom,email,mdp,role) Values (:nom,:prenom,:email,:mdp,:role)');
+            $req = $this->bdd->getBdd()->prepare('INSERT INTO utilisateur(nom,prenom,email,mdp,role) Values (:nom,:prenom,:email,:mdp,:role)');
             $req->execute(array(
 
                 'nom' => $this->getNom(),
@@ -133,8 +149,7 @@ class Utilisateur
     public function connexion()
     {
         var_dump($_POST);
-        $bddconnexion = new BDD();
-        $reqconnexion = $bddconnexion->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
+        $reqconnexion = $this->bdd->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
         $reqconnexion->execute(array(
 
             'email' => $this->getEmail(),
@@ -150,7 +165,7 @@ class Utilisateur
             session_start();
             $_SESSION['id'] = $donne['id_utilisateur'];
             $_SESSION['role'] = $donne['role'];
-            if ($donne['role'] == 'admin') {
+            if ($_SESSION['role'] == 'admin') {
                 header('Location: ../../Section%20Admin/Espace%20Admin/IndexAdmin.php');
                 exit();
             } else {
