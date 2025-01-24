@@ -1,26 +1,10 @@
 <?php
-/*var_dump($_POST);
-$bdd = new PDO('mysql:host=localhost;dbname=tli3;charset=utf8', 'root', '');
-$req = $bdd->prepare('UPDATE inscrit SET mdp = :mdp WHERE email = :email');
 
-$req->execute(array(
-    'email' => $_POST['email'],
-    'mdp' => $_POST['mdp'],
-));
-echo "Votre mot de passe a été changer avec succes ! ";
+use Bdd\BDD;
 
-
-var_dump($_POST);
-$bdd = new PDO('mysql:host=localhost;dbname=tli3;charset=utf8', 'root', '');
-$req = $bdd->prepare('UPDATE inscrit SET email = :email WHERE email = :email');
-
-$req->execute(array(
-    'email' => $_POST['email'],
-));
-echo "Votre mot de passe a été changer avec succes ! ";*/
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM utilisateur');
+$bdd = new BDD();
+$req = $bdd->getBdd()->prepare('SELECT * FROM utilisateur');
 $req->execute();
 $users = $req->fetchAll();
 ?>

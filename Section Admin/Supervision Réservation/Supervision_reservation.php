@@ -1,7 +1,10 @@
 <?php
+
+use Bdd\BDD;
+
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM reservation');
+$bdd = new BDD();
+$req = $bdd->getBdd()->prepare('SELECT * FROM reservation');
 $req->execute();
 $reservations = $req->fetchAll();
 ?>
