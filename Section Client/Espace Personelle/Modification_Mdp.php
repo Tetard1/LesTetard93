@@ -1,8 +1,9 @@
 <?php
+use Bdd\BDD;
 session_start();
 var_dump($_POST);
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
+$bdd = new BDD();
+$req = $bdd->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
 $req->execute(array(
 'email' => $_POST['email'],
 'mdp' => $_POST['mdp2'],

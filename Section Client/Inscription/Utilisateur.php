@@ -1,4 +1,5 @@
 <?php
+use Bdd\BDD;
 class Utilisateur
 {
     private $nom;
@@ -112,8 +113,8 @@ class Utilisateur
         public function inscription()
     {
         var_dump($_POST);
-        $bdd2 = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-        $req2 = $bdd2->prepare('SELECT * FROM utilisateur WHERE email = :email');
+        $bdd2 = new BDD();
+        $req2 = $bdd2->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email');
         $req2->execute(array(
             'email' => $this->getEmail(),
 
@@ -122,8 +123,8 @@ class Utilisateur
         $donne = $req2->fetch();
         var_dump($donne);
         if ($donne == NULL) {
-            $bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-            $req = $bdd->prepare('INSERT INTO utilisateur(nom,prenom,email,mdp,role) Values (:nom,:prenom,:email,:mdp,:role)');
+            $bdd = new BDD();
+            $req = $bdd->getBdd()->prepare('INSERT INTO utilisateur(nom,prenom,email,mdp,role) Values (:nom,:prenom,:email,:mdp,:role)');
             $req->execute(array(
                 'nom' => $this->getNom(),
                 'prenom' => $this->getPrenom(),
@@ -143,8 +144,8 @@ class Utilisateur
     {
 
         var_dump($_POST);
-        $bddconnexion = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-        $reqconnexion = $bddconnexion->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
+        $bddconnexion = new BDD();
+        $reqconnexion = $bddconnexion->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
         $reqconnexion->execute(array(
             'email' => $this->getEmail(),
             'mdp' => $this->getMdp(),
