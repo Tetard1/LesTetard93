@@ -42,11 +42,11 @@
 							<li class="menu-item current-menu-item"><a href="index.html">Aceuill</a></li>
 							<li class="menu-item"><a href="../Template/movie_review_htmls/about.html">Notre cinéma</a></li>
 							<li class="menu-item"><a href="../Template/movie_review_htmls/review.html">Reviews de Films</a></li>
-							<li class="menu-item"><a href="../Template/movie_review_htmls/joinus.html">Nous rejoindre</a></li>
 							<li class="menu-item"><a href="../Template/movie_review_htmls/contact.html">Contact</a></li>
 							<li class="menu-item"><a href="../Section%20Client/Connexion/Connexion.html">Compte</a></li>
-
-							<li class="menu-item"><a href="../Template/movie_review_htmls/contact.html">Compte</a></li>
+							<li class="menu-item"><a href="/LesTetard93/Réservation/Reservation.html">Réservation</a></li>
+							<?php    if ($_SESSION['role']== 'admin')
+                                echo '<li class="menu-item"><a href="/LesTetard93/Section%20Admin/Espace%20Admin/IndexAdmin.php">Admin</a></li>' ?>
 						</ul> <!-- .menu -->
 
 						<form action="#" class="search-form">
