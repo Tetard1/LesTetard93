@@ -43,17 +43,53 @@ $reservations = $req->fetchAll();
 <hr>
 <form action="Supervision_reservation.php" method="Post">
     <table>
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Heure</th>
-            <th>Date</th>
-            <th>Nombre de place disponible</th>
-        </tr>
-        </thead>
-        <tbody>
         <?php
 
+        if ($reservations != NULL) {
+            if ($_SESSION["role"] == "admin") {
+                foreach ($reservations as $reservation) {
+                    echo "
+                <thead>
+                <tr>
+                    <tr>
+                <th>nombre de place reserver</th>
+                <th>Heure</th>
+                <th>Date</th>
+                <th>Nombre de place disponible</th>
+        </tr>
+                    <th>Supprimer</th>
+                </tr>
+                </thead> 
+                <tbody><tr>
+                    <td><input type='date' name='date' value='" . $seance['date'] . "'></td>
+                    <td><input type='time' name='heure' value='" . $seance['heure'] . "'></td>
+                    <td><input type='number' name='dispo' value='" . $seance['nb_place_dispo'] . "'></td>
+                    <td><input type='checkbox' name='suppprimer'></td>
+                </tr>
+                <tr>
+                                 <td><input type='submit' value='modifier'</td>
+                                   <td><input type='submit' value='supprimer' </td>
+                                    </tr> ";
+                }
+            }
+        } else {
+            echo " <tr>
+                                <td><label for='date'>Saisir une Date :</label></td>
+                                <td><input type='date' name='date' id='date'></td>
+                                </tr>
+                                <tr>
+                                 <td><label for='heure'>Saisir une heure:</label></td>
+                                <td><input type='time' name='heure' id='heure'></td>
+                                <tr>
+                                 <td><label for='nbdispo'>Saisir le nombre de place dispoonible :</label></td>
+                                <td><input type='number' name='nbdispo' id='nbdispo'></td>
+                                </tr>
+                                <tr>
+                                <td><input type='submit' name='ajout' value='Ajouter'></td>
+                                </tr>
+                                 </tbody>
+                                ";
+        }
         ?>
         </tbody>
     </table>

@@ -1,7 +1,8 @@
 <?php
 session_start();
 $bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
-$req = $bdd->prepare('SELECT * FROM seance');
+$req = $bdd->prepare('SELECT * FROM `seance`
+INNER JOIN films on ref_films=id_films INNER JOIN salles on ref_salle=id_salle;');
 $req->execute();
 $seances = $req->fetchAll();
 
@@ -42,8 +43,6 @@ $seances = $req->fetchAll();
         <hr>
         <form action="Gestion_Seance.php" method="post">
             <table>
-
-
                 <?php
                 if($seances != NULL) {
                     if ($_SESSION["role"] == "admin") {
@@ -53,8 +52,9 @@ $seances = $req->fetchAll();
                 <tr>
                     <th>Date</th>
                     <th>Heure</th>
-                    <th>Date</th>
                     <th>Nombre de place disponible</th>
+                    <th>Titre du film</th>
+                    <th>Nom de la salle</th>
                     <th>Supprimer</th>
                 </tr>
                 </thead> 
@@ -62,6 +62,8 @@ $seances = $req->fetchAll();
                     <td><input type='date' name='date' value='" . $seance['date'] . "'></td>
                     <td><input type='time' name='heure' value='" . $seance['heure'] . "'></td>
                     <td><input type='number' name='dispo' value='" . $seance['nb_place_dispo'] . "'></td>
+                    <td><input type='text' name='nomFilm' value='".$seance['titre']."'</td>
+                    <td><input type='text' name='nomSalle' value='".$seance['nom_salle']."' </td>
                     <td><input type='checkbox' name='suppprimer'></td>
                 </tr>
                 <tr>
@@ -79,16 +81,16 @@ $seances = $req->fetchAll();
                                  <td><label for='heure'>Saisir une heure:</label></td>
                                 <td><input type='time' name='heure' id='heure'></td>
                                 <tr>
-                                 <td><label for='nbdispo'>Saisir le nombre de place dispoonible :</label></td>
+                                 <td><label for='nbdispo'>Saisir le nombre de place disponible :</label></td>
                                 <td><input type='number' name='nbdispo' id='nbdispo'></td>
                                 </tr>
                                 <tr>
                                 <td><input type='submit' name='ajout' value='Ajouter'></td>
                                 </tr>
+                                 </tbody>
                                 ";
                 }
                     ?>
 
-                </tbody>
             </table>
         </form>
