@@ -7,28 +7,14 @@ class Utilisateur
     private $mdp;
     private $role;
 
-    public function __construct($email, $mdp)
+    public function __construct($email, $mdp, $nom = NULL, $prenom = NULL, $role = NULL)
     {
+        $this->setNom($nom);
+        $this->setPrenom($prenom);
         $this->setEmail($email);
         $this->setMdp($mdp);
+        $this->setRole($role);
     }
-
-
-    public function hydrate(array $donnees)
-    {
-        foreach ($donnees as $key => $value) {
-            // On récupère le nom du setter correspondant à l'attribut
-            $method = 'set' . ucfirst($key);
-
-            // Si le setter correspondant existe
-            if (method_exists($this, $method)) {
-                // On appelle le setter
-                $this->$method($value);
-            }
-        }
-    }
-
-
     /**
      * @return mixed
      */
@@ -109,66 +95,71 @@ class Utilisateur
         $this->role = $role;
     }
 
-        public function inscription()
+
+
+
+
+
+
+    public function inscription()
     {
         var_dump($_POST);
         $bdd2 = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
         $req2 = $bdd2->prepare('SELECT * FROM utilisateur WHERE email = :email');
-        $req2->execute(array(
-            'email' => $this->getEmail(),
-
-        ));
+        $req2->execute(['email' => $this->getEmail()]);
 
         $donne = $req2->fetch();
         var_dump($donne);
         if ($donne == NULL) {
             $bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
             $req = $bdd->prepare('INSERT INTO utilisateur(nom,prenom,email,mdp,role) Values (:nom,:prenom,:email,:mdp,:role)');
-            $req->execute(array(
+            $req->execute([
                 'nom' => $this->getNom(),
                 'prenom' => $this->getPrenom(),
                 'email' => $this->getEmail(),
                 'mdp' => $this->getMdp(),
                 'role' => $this->getRole(),
-            ));
-            echo "Votre profil a été crée ! ";
-            header('location:../Connexion/Connexion.html');
+            ]);
+            echo "Votre profil a été créé ! ";
+            header('Location: ../Connexion/Connexion.html');
+            exit();
         } else {
-            echo "vous avez déjà un compte veuillez vous connecter ! ";
-            header('location:../Connexion/Connexion.html');
+            echo "Vous avez déjà un compte, veuillez vous connecter ! ";
+            header('Location: ../Connexion/Connexion.html');
+            exit();
         }
     }
 
-        public function connexion()
+    public function connexion()
     {
-
         var_dump($_POST);
         $bddconnexion = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root', '');
         $reqconnexion = $bddconnexion->prepare('SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp');
-        $reqconnexion->execute(array(
+        $reqconnexion->execute([
             'email' => $this->getEmail(),
             'mdp' => $this->getMdp(),
-        ));
+        ]);
         $donne = $reqconnexion->fetch();
         var_dump($donne);
         if ($donne == NULL) {
-            echo "vous n'avez pas de compte! veuillez en crée un ! ";
-            header('location:../Inscription/Inscription.html');
+            echo "Vous n'avez pas de compte! Veuillez en créer un ! ";
+            header('Location: ../Inscription/Inscription.html');
+            exit();
         } else {
             session_start();
             $_SESSION['id'] = $donne['id_utilisateur'];
             $_SESSION['role'] = $donne['role'];
             if ($donne['role'] == 'admin') {
-                header('location:../../Section%20Admin/Espace%20Admin/IndexAdmin.php');
+                header('Location: ../../Section%20Admin/Espace%20Admin/IndexAdmin.php');
+                exit();
             } else {
-                header('location:../../Accueil/IndexAcceuil.php');
+                header('Location: ../../Accueil/IndexAcceuil.php');
+                exit();
             }
         }
-
-
     }
-
 }
+
 
 
 
