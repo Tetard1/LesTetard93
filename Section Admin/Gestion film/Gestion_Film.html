@@ -36,8 +36,69 @@
                 <a class="nav-link" href="http://localhost/LesTetard93/Section%20Admin/Gestion%20film/Ajout_film.html">Ajouter un film</a>
             </li>
     </menu>
+    <hr>
 <hr>
 </header>
 <body>
+<<<<<<< HEAD
+=======
+<div class="container mt-4">
+    <h1>Ajouter un Nouveau Film</h1>
+    <form action="ajouter_film.php" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="titre" class="form-label">Titre du film :</label>
+            <input type="text" class="form-control" id="titre" name="titre" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description :</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre :</label>
+            <input type="text" class="form-control" id="genre" name="genre" required>
+        </div>
+        <div class="mb-3">
+            <label for="duree" class="form-label">Durée (en minutes) :</label>
+            <input type="number" class="form-control" id="duree" name="duree" required>
+        </div>
+        <div class="mb-3">
+            <label for="affiche" class="form-label">Affiche du film :</label>
+            <input type="file" class="form-control" id="affiche" name="affiche" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+</body>
+</body>
+</html>
+<body>
+    <div class="container mt-4">
+        <h1>Ajouter un Nouveau Film</h1>
+        <form action="ajouter_film.php" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="titre" class="form-label">Titre du film :</label>
+                <input type="text" class="form-control" id="titre" name="titre" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description :</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre :</label>
+                <input type="text" class="form-control" id="genre" name="genre" required>
+            </div>
+            <div class="mb-3">
+                <label for="duree" class="form-label">Durée (en minutes) :</label>
+                <input type="number" class="form-control" id="duree" name="duree" required>
+            </div>
+            <div class="mb-3">
+                <label for="affiche" class="form-label">Affiche du film :</label>
+                <input type="file" class="form-control" id="affiche" name="affiche" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+    </div>
+</body>
+>>>>>>> 3eb9af0c85bc9003761cd41aea9da25304bbaa2a
 </body>
 </html>
