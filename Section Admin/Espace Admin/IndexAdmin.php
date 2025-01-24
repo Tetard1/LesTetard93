@@ -37,9 +37,6 @@ $resultat=$req->fetch();
             <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
         </li>
         <li class="nav-item">
-           <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
         </li>
     </menu>

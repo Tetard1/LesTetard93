@@ -36,13 +36,26 @@ $reservations = $req->fetchAll();
             <a class="nav-link" href="../Gestion%20Séance/Gestion_Seance.php">Séances</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../Gestion%20Utilisateur/Gestion_Utilisateur.php">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="../Supervision%20Réservation/Supervision_reservation.php">Reservations</a>
         </li>
     </menu>
 </header>
 <hr>
+<form action="Supervision_reservation.php" method="Post">
+    <table>
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Heure</th>
+            <th>Date</th>
+            <th>Nombre de place disponible</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
 
+        ?>
+        </tbody>
+    </table>
+</form>
 
