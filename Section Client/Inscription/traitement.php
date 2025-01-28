@@ -1,5 +1,6 @@
 <?php
 include "Utilisateur.php";
+require_once "../../Classique/Bdd/BDD.php";
 
 $user = new Utilisateur($_POST['email'], $_POST['mdp'], $_POST['nom'], $_POST['prenom'], $_POST['role']);
 

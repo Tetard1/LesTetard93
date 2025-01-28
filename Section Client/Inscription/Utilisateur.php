@@ -1,5 +1,4 @@
 <?php
-require_once "../../Classique/Bdd/BDD.php";
 class Utilisateur
 {
     private $nom;
