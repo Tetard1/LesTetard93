@@ -5,13 +5,6 @@ Include "../../Classique/Bdd/BDD.php";
 session_start();
 $_SESSION['id']="1";
 $_SESSION['role']="admin";
-$bdd = new BDD();
-$req = $bdd->getBdd()->prepare('SELECT * FROM `seance`
-INNER JOIN films on ref_films=id_films
-INNER JOIN salle on ref_salle=id_salle;');
-$req->execute();
-$seances = $req->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -1,11 +1,12 @@
 <?php
+require_once "src/bdd/BDD.php";
 Class Seance{
     private $date;
     private $heure;
     private $nbPlcDispo;
-    private $titre;
-    private $nomSalle;
-
+    private $prixPlc;
+    private $refFilms;
+    private $refSalle;
 
     public function __construct(array $donnees){
         $this->hydrate($donnees);
@@ -66,36 +67,53 @@ Class Seance{
     {
         $this->nbPlcDispo = $nbPlcDispo;
     }
+    /**
+     * @return mixed
+     */
+    public function getRefSalle()
+    {
+        return $this->refSalle;
+    }
+
+    /**
+     * @param mixed $refSalle
+     */
+    public function setRefSalle($refSalle)
+    {
+        $this->refSalle = $refSalle;
+    }
 
     /**
      * @return mixed
      */
-    public function getTitre()
+    public function getRefFilms()
     {
-        return $this->titre;
+        return $this->refFilms;
     }
 
     /**
-     * @param mixed $titre
+     * @param mixed $refFilms
      */
-    public function setTitre($titre)
+    public function setRefFilms($refFilms)
     {
-        $this->titre = $titre;
+        $this->refFilms = $refFilms;
     }
-
     /**
      * @return mixed
      */
-    public function getNomSalle()
+    public function getPrixPlc()
     {
-        return $this->nomSalle;
+        return $this->prixPlc;
     }
 
     /**
-     * @param mixed $nomSalle
+     * @param mixed $prixPlc
      */
-    public function setNomSalle($nomSalle)
+    public function setPrixPlc($prixPlc)
     {
-        $this->nomSalle = $nomSalle;
+        $this->prixPlc = $prixPlc;
     }
+
+
+
 }
