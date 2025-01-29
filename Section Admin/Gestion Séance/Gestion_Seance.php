@@ -1,6 +1,6 @@
 <?php
 
-require_once "../../Classique/Bdd/BDD.php";
+Include "../../Classique/Bdd/BDD.php";
 
 session_start();
 $_SESSION['id']="1";

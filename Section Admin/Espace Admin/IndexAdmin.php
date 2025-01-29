@@ -1,8 +1,10 @@
 <?php
 
-use Bdd\BDD;
+Include "../../Classique/Bdd/BDD.php";
 
 session_start();
+$_SESSION['id']="1";
+$_SESSION['role']="admin";
 $bdd=new BDD();
 $req=$bdd->getBdd()->prepare("SELECT * FROM utilisateur WHERE id_utilisateur =:id AND role=:role");
 $req->execute(array('id'=>$_SESSION['id'],

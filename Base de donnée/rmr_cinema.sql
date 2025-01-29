@@ -117,16 +117,11 @@ ALTER TABLE `reservation`
   ADD CONSTRAINT `fr_reservation_utilisateur` FOREIGN KEY (`ref_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Contraintes pour la table `salle`
---
-ALTER TABLE `salle`
-  ADD CONSTRAINT `fk_salle_seance` FOREIGN KEY (`ref_seance`) REFERENCES `seance` (`id_seance`);
-
---
 -- Contraintes pour la table `seance`
 --
 ALTER TABLE `seance`
   ADD CONSTRAINT `fk_seance_films` FOREIGN KEY (`ref_films`) REFERENCES `films` (`id_films`);
+  ADD CONSTRAINT `fk_seance_salle_` FOREIGN KEY (`ref_salle`) REFERENCES `seance` (`id_salle`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
