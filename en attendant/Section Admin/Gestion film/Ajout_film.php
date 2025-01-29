@@ -1,5 +1,5 @@
 <?php
-require_once "../../Classique/Bdd/BDD.php";
+require_once "src/Bdd/BDD.php";
 
 var_dump($_POST);
 
