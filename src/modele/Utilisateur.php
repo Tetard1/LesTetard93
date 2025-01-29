@@ -6,7 +6,6 @@ class Utilisateur
     private $email;
     private $mdp;
     private $role;
-    private $bdd;
 
 
     public function __construct(array $donnees)

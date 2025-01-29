@@ -1,9 +1,8 @@
 <?php
-include "Utilisateur.php";
-require_once "../../Classique/Bdd/BDD.php";
 
 class repository
 {
+    private $bdd;
 
     public function inscription()
     {

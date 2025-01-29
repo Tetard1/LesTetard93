@@ -1,6 +1,7 @@
 <?php
-include "Utilisateur.php";
-require_once "../../Classique/Bdd/BDD.php";
+include "../repository/repository.php";
+require_once "../bdd/BDD.php";
+require_once "../modele/Utilisateur.php";
 
 $user = new Utilisateur(array(
     'nom' => $_POST['nom'],
