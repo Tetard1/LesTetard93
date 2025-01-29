@@ -9,16 +9,22 @@ class Utilisateur
     private $bdd;
 
 
-    public function __construct($email, $mdp, $nom = NULL, $prenom = NULL, $role = NULL)
+    public function __construct(array $donnees)
     {
-        $this->setNom($nom);
-        $this->setPrenom($prenom);
-        $this->setEmail($email);
-        $this->setMdp($mdp);
-        $this->setRole($role);
-        $this->setBDD();
+        $this->hydrate($donnees);
     }
 
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $value) {
+
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+
+                $this->$method($value);
+            }
+        }
+    }
     /**
      * @return mixed
      */
