@@ -1,2 +1,4 @@
 <?php
-
+Class Seance{
+    private 
+}
