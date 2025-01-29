@@ -9,7 +9,7 @@ class BDD
         $this->bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root','' );
     }
 
-    public function getBdd(): PDO
+    public function getBdd()
     {
         return $this->bdd;
     }
