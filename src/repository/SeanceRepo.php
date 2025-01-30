@@ -2,17 +2,28 @@
 
 class SeanceRepo {
     private $bdd;
+    public function __construct()
+    {
+        $this->bdd = new BDD();
+    }
 
-    public function ajouterSeance(){
-        $ajout = $this->bdd->getBdd()->prepare('INSERT INTO `seance`(date,heure,nb_place_dispo,ref_films,ref_salle,prix) VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)');
-        $ajout->execute(array(
-            'date' => getDate(),
-            'heure' => getHeure(),
-            'nb_place_dispo' =>getNbPlcDispo(),
-            'films'=>getRefFilms(),
-            'salle'=>getRefSalle(),
-            'prix'=>getPrixPlc()
+    public function ajouterSeance(Seance $seance){
+        $req ='INSERT INTO `seance`(date,heure,nb_place_dispo,ref_films,ref_salle,prix) 
+VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
+        $ajout = $this->bdd->getBdd()->prepare($req);
+        $res=$ajout->execute(array(
+            'date' => $seance->getDate(),
+            'heure' => $seance->getHeure(),
+            'nb_place_dispo' => $seance->getNbPlcDispo(),
+            'films'=> $seance->getRefFilms(),
+            'salle'=> $seance->getRefSalle(),
+            'prix'=> $seance->getPrixPlc()
         ));
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function afficherSeance(){
         $req = $this->bdd->getBdd()->prepare('SELECT * FROM `seance`
