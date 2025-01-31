@@ -1,5 +1,4 @@
 <?php
-require_once "src/bdd/BDD.php";
 Class Seance{
     private $date;
     private $heure;

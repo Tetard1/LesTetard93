@@ -30,7 +30,7 @@ $reservations = $req->fetchAll();
 
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../Espace%20Admin/IndexAdmin.php">Mon compte</a>
+            <a class="nav-link active" aria-current="page" href="../../../vue/espaceClient.php">Mon compte</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="../Gestion%20film/Gestion_Film.php">Films</a>

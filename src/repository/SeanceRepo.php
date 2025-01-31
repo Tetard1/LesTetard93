@@ -14,7 +14,7 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
         $res=$ajout->execute(array(
             'date' => $seance->getDate(),
             'heure' => $seance->getHeure(),
-            'nb_place_dispo' => $seance->getNbPlcDispo(),
+            'nbplacedispo' => $seance->getNbPlcDispo(),
             'films'=> $seance->getRefFilms(),
             'salle'=> $seance->getRefSalle(),
             'prix'=> $seance->getPrixPlc()
@@ -31,6 +31,5 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
             INNER JOIN salle on ref_salle=id_salle;');
         $req->execute();
         $seances = $req->fetchAll();
-
     }
 }

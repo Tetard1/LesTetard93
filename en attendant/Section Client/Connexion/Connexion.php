@@ -30,7 +30,7 @@ class Utilisateur
             $_SESSION['id'] = $donne['id_utilisateur'];
             $_SESSION['role'] = $donne['role'];
             if ($donne['role'] == 'admin') {
-                header('location:../../Section%20Admin/Espace%20Admin/IndexAdmin.php');
+                header('location:../../Section%20Admin/Espace%20Admin/espaceClient.php');
             } else {
                 header('location:../../Accueil/IndexAcceuil.php');
             }
