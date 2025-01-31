@@ -21,7 +21,7 @@ else{
     $resultat = $seanceRepository->ajouterSeance($seance);
     var_dump($resultat);
     if($resultat){
-        header("Location: ../../vue/traitementAfficherSeance.php");
+        header("Location: ../../vue/afficherSeance.php");
     }else{
         header("Location: ../../vue/ajoutSeance.php");
     }
