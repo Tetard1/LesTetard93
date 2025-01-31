@@ -9,14 +9,14 @@
 
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="../Template/movie_review_htmls/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 		<!-- Loading main css file -->
-		<link rel="stylesheet" href="../Template/movie_review_htmls/style.css">
+		<link rel="stylesheet" href="/assets/style.css">
 		
 		<!--[if lt IE 9]>
-        <script src="../Template/movie_review_htmls/js/ie-support/html5.js"></script>
-        <script src="../Template/movie_review_htmls/js/ie-support/respond.js"></script>
+        <script src="assets/js/ie-support/html5.js"></script>
+        <script src="assets/js/ie-support/html5.js"></script>
         <![endif]-->
 
 	</head>
@@ -28,8 +28,8 @@
 		<div id="site-content">
 			<header class="site-header">
 				<div class="container">
-					<a href="index.html" id="branding">
-						<img src="../Template/movie_review_htmls/images/logo.png" alt="" class="logo">
+					<a href="/index.php" id="branding">
+						<img src="/assets/images/logo.png" alt="" class="logo">
 						<div class="logo-copy">
 							<h1 class="site-title">plus2</h1>
 							<small class="site-description">Cinema plus 2</small>
@@ -39,10 +39,10 @@
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Aceuill</a></li>
-							<li class="menu-item"><a href="../Template/movie_review_htmls/about.html">Notre cinéma</a></li>
-							<li class="menu-item"><a href="../Template/movie_review_htmls/review.html">Reviews de Films</a></li>
-							<li class="menu-item"><a href="../Template/movie_review_htmls/contact.html">Contact</a></li>
+							<li class="menu-item current-menu-item"><a href="/index.php">Aceuill</a></li>
+							<li class="menu-item"><a href="/vue/about.html">Notre cinéma</a></li>
+							<li class="menu-item"><a href="/vue/review.html">Reviews de Films</a></li>
+							<li class="menu-item"><a href="/vue/contact.html">Contact</a></li>
 							<li class="menu-item"><a href="../Section%20Client/Connexion/Connexion.html">Compte</a></li>
 							<li class="menu-item"><a href="/LesTetard93/Réservation/Reservation.html">Réservation</a></li>
 							<?php    if ($_SESSION['role']== 'admin')
@@ -65,9 +65,9 @@
 							<div class="col-md-9">
 								<div class="slider">
 									<ul class="slides">
-										<li><a href="#"><img src="../Template/movie_review_htmls/dummy/slide-1.jpg" alt="Slide 1"></a></li>
-										<li><a href="#"><img src="../Template/movie_review_htmls/dummy/slide-2.jpg" alt="Slide 2"></a></li>
-										<li><a href="#"><img src="../Template/movie_review_htmls/dummy/slide-3.jpg" alt="Slide 3"></a></li>
+										<li><a href="#"><img src="/assets/dummy/slide-1.jpg" alt="Slide 1"></a></li>
+										<li><a href="#"><img src="/assets/dummy/slide-2.jpg" alt="Slide 2"></a></li>
+										<li><a href="#"><img src="/assets/dummy/slide-3.jpg" alt="Slide 3"></a></li>
 									</ul>
 								</div>
 							</div>
@@ -75,12 +75,12 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-12">
 										<div class="latest-movie">
-											<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-1.jpg" alt="Movie 1"></a>
+											<a href="#"><img src="/assets/dummy/thumb-1.jpg" alt="Movie 1"></a>
 										</div>
 									</div>
 									<div class="col-sm-6 col-md-12">
 										<div class="latest-movie">
-											<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-2.jpg" alt="Movie 2"></a>
+											<a href="#"><img src="/assets/dummy/thumb-2.jpg" alt="Movie 2"></a>
 										</div>
 									</div>
 								</div>
@@ -89,22 +89,22 @@
 						<div class="row">
 							<div class="col-sm-6 col-md-3">
 								<div class="latest-movie">
-									<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-3.jpg" alt="Movie 3"></a>
+									<a href="#"><img src="/assets/dummy/thumb-3.jpg" alt="Movie 3"></a>
 								</div>
 							</div>
 							<div class="col-sm-6 col-md-3">
 								<div class="latest-movie">
-									<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-4.jpg" alt="Movie 4"></a>
+									<a href="#"><img src="/assets/dummy/thumb-4.jpg" alt="Movie 4"></a>
 								</div>
 							</div>
 							<div class="col-sm-6 col-md-3">
 								<div class="latest-movie">
-									<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-5.jpg" alt="Movie 5"></a>
+									<a href="#"><img src="/assets/dummy/thumb-5.jpg" alt="Movie 5"></a>
 								</div>
 							</div>
 							<div class="col-sm-6 col-md-3">
 								<div class="latest-movie">
-									<a href="#"><img src="../Template/movie_review_htmls/dummy/thumb-6.jpg" alt="Movie 6"></a>
+									<a href="#"><img src="/assets/dummy/thumb-6.jpg" alt="Movie 6"></a>
 								</div>
 							</div>
 						</div> <!-- .row -->
@@ -113,9 +113,9 @@
 		</div>
 		<!-- Default snippet for navigation -->
 
-		<script src="../Template/movie_review_htmls/js/jquery-1.11.1.min.js"></script>
-		<script src="../Template/movie_review_htmls/js/plugins.js"></script>
-		<script src="../Template/movie_review_htmls/js/app.js"></script>
+		<script src="/assets/js/jquery-1.11.1.min.js"></script>
+		<script src="/assets/js/plugins.js"></script>
+		<script src="/assets/js/app.js"></script>
 		
 	</body>
 
