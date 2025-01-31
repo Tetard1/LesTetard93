@@ -36,7 +36,6 @@ class repositoryUtilisateur
             } else {
                 return false;
             }
-
             echo "Votre profil a été créé ! ";
             header('Location: ../Connexion/Connexion.html');
             exit();
