@@ -1,5 +1,5 @@
 <?php
-include "../repository/repository.php";
+include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
 
@@ -22,7 +22,7 @@ if(empty($_POST["nom"]) ||
         'role' => $_POST['role'],
 
     ));
-    $repository = new repository();
+    $repository = new repositoryUtilisateur();
     $resultat = $repository->inscription($user);
 
     if($resultat == true){

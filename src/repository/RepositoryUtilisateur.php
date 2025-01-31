@@ -1,6 +1,6 @@
 <?php
 
-class repository
+class repositoryUtilisateur
 {
     private $bdd;
 

@@ -1,5 +1,5 @@
 <?php
-include "../repository/repository.php";
+include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
 
@@ -16,7 +16,7 @@ if (empty($_POST["email"]) ||
         'mdp' => $_POST['mdp'],
 
     ));
-    $repository = new repository();
+    $repository = new repositoryUtilisateur();
     $resultat = $repository->connexion($user);
 
     if ($resultat->getIdUtilisateur() != null) {
