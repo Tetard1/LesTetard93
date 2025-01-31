@@ -1,6 +1,8 @@
 <?php
 class Utilisateur
 {
+    private $idUtilisateur;
+
     private $nom;
     private $prenom;
     private $email;
@@ -103,21 +105,20 @@ class Utilisateur
     {
         $this->role = $role;
     }
-
     /**
      * @return mixed
      */
-    public function getBdd()
+    public function getIdUtilisateur()
     {
-        return $this->bdd;
+        return $this->idUtilisateur;
     }
 
     /**
-     * @param mixed $BDD
+     * @param mixed $idUtilisateur
      */
-    public function setBDD()
+    public function setIdUtilisateur($idUtilisateur)
     {
-        $this->bdd = new BDD();
+        $this->idUtilisateur = $idUtilisateur;
     }
 }
 

@@ -3,20 +3,33 @@ include "../repository/repository.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
 
-$user = new Utilisateur(array(
-    'nom' => $_POST['nom'],
-    'prenom' => $_POST['prenom'],
-    'email' => $_POST['email'],
-    'mdp' => $_POST['mdp'],
-    'role' => $_POST['role'],
+if(empty($_POST["nom"]) ||
+    empty($_POST["prenom"]) ||
+    empty($_POST["email"]) ||
+    empty($_POST["mdp"]) ||
+    empty($_POST["role"])
+){
 
-));
-if (isset($_POST['action']) && $_POST['action'] === 'inscription') {
-    var_dump($user);
-    $user->inscription();
+    echo "C'est pas bien tetard";
+    header("Location: ../../vue/Connexion.html");
+}else{
 
-} else {
-    var_dump($user);
-    $user->connexion();
+    $user = new Utilisateur(array(
+        'nom' => $_POST['nom'],
+        'prenom' => $_POST['prenom'],
+        'email' => $_POST['email'],
+        'mdp' => $_POST['mdp'],
+        'role' => $_POST['role'],
+
+    ));
+    $repository = new repository();
+    $resultat = $repository->inscription($user);
+
+    if($resultat == true){
+        header("Location: ../../vue/Connexion.html");
+    }else{
+        header("Location: ../../vue/Inscription.html");
+    }
 
 }
+
