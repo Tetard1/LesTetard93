@@ -104,11 +104,11 @@ $salles = $res->fetchAll();
                     </tr>
                     <tr>
                         <td><label for='nbdispo'>Saisir le nombre de place disponible : </label></td>
-                        <td><input type='number' name='nbPlcDispo' id='nbdispo'></td>
+                        <td><input type="number" name='nbPlcDispo' id='nbdispo'></td>
                     </tr>
                     <tr>
                         <td><label for="prix">Saisir le prix de la seance : </label></td>
-                        <td><input type="number" name="prixPlc" id="prix" > </td>
+                        <td><input type="number" name="prixPlc" id="prix">€</td>
                     </tr>
                     <tr>
                         <td><input type='submit' value="Ajouter"></td>

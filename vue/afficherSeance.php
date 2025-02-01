@@ -68,40 +68,33 @@ $seances = $req->fetchAll();
     </menu>
 </header>
 <hr>
-<form action="../src/traitement/traitementModifSeance.php" method="post">
-<table>
+<table class="table">
     <thead>
     <tr>
-        <th>Nom de la salle</th>
-        <th>Nom du film</th>
-        <th>Date</th>
-        <th>Heure</th>
-        <th>Nb de place disponibles</th>
-        <th>Prix de la seance</th>
+        <th scope="col">Nom de la Salle</th>
+        <th scope="col">Titre du Film</th>
+        <th scope="col">Date</th>
+        <th scope="col">Heure</th>
+        <th scope="col">Place Disponibles</th>
+        <th scope="col">Prix</th>
+        <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
     <?php
     foreach ($seances as $seance){
         echo "<tr>
-                <td><select name=".'refSalle'." id=".'nomSalle'.">
-                    <option value='".$seance["id_salle"]."'>".$seance["nom_salle"]."</option>
-                 </select>
-                
-                </td>
-                <td><select name=".'refFilm'." id=".'titreFilm'.">
-                   <option value='".$seance["id_films"]."'>".$seance["titre"]."></option>
-                        </select>
-                        </td>
-                <td><input type='date' name='date' value='".$seance['date']."'></td>
-                <td><input type='time' name='heure' value='".$seance['heure']."'></td>
-                <td><input type='number' name='nbPlace' value='".$seance['nb_place_dispo']."'></td>
-                <td><input type='number' name='prix' value='".$seance['prix']."'></td>
+                <td>".$seance["nom_salle"]."</td>
+                <td>".$seance["titre"]."</td>
+                <td>".$seance['date']."</td>
+                <td>".$seance['heure']."</td>
+                <td>".$seance['nb_place_dispo']."</td>
+                <td>".$seance['prix']."</td>
+                <td><a href='modifierSeance.php?id=".$seance["id_seance"]."'>Modifier</a></td>
                </tr>";
     }
     ?>
     </tbody>
 </table>
-</form>
 </body>
 </html>
