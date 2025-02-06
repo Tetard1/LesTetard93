@@ -23,7 +23,7 @@ if (empty($_POST["email"]) ||
         session_start();
         $_SESSION['userConnecte'] =$resultat;
         $_SESSION['role']=$user-> getRole();
-        header("Location: ../../vue/Film.html");
+        header("Location: ../../vue/ModificationUtilisateur.html");
     } else {
         header("Location: ../../vue/Connexion.html");
     }
