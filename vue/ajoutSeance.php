@@ -60,10 +60,10 @@ $salles = $res->fetchAll();
                         Seances
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../vue/ajoutSeance.php">Ajouter des Seances</a></li>
-                        <li><a class="dropdown-item" href="../vue/afficherSeance.php/">Liste des Seances</a></li>
+                        <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                        <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="../vue/supprimerSeance">Supprimer Des Seance</a></li>
+                        <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seance</a></li>
                     </ul>
                 </li>
             </menu>
@@ -100,9 +100,7 @@ $salles = $res->fetchAll();
                                     ";
                                 }
                                 ?>
-                            </select>
-
-                        </td>
+                            </select></td>
                     </tr>
                     <tr>
                         <td><label for='nbdispo'>Saisir le nombre de place disponible : </label></td>

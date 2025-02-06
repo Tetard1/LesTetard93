@@ -4,7 +4,7 @@ session_start();
 $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
 $bdd = new Bdd();
-$req=$bdd->getBdd()->prepare("SELECT *,nom_salle,titre FROM `seance`
+$req=$bdd->getBdd()->prepare("SELECT *,nom_salle,titre,id_films,id_salle FROM `seance`
             LEFT JOIN films  on ref_films=id_films
             Left JOIN salle  on ref_salle=id_salle");
 $req->execute();
@@ -68,7 +68,7 @@ $seances = $req->fetchAll();
     </menu>
 </header>
 <hr>
-<form action="../src/traitement/traitementAfficherSeance.php" method="post">
+<form action="../src/traitement/traitementModifSeance.php" method="post">
 <table>
     <thead>
     <tr>
@@ -84,12 +84,19 @@ $seances = $req->fetchAll();
     <?php
     foreach ($seances as $seance){
         echo "<tr>
-                <td><input type='text' name='nom' value='".$seance['nom_salle']."'></td>
-                <td><input type='text' name='nom' value='".$seance['titre']."'></td>
-                <td><input type='text' name='nom' value='".$seance['date']."'></td>
-                <td><input type='text' name='nom' value='".$seance['heure']."'></td>
-                <td><input type='text' name='nom' value='".$seance['nb_place_dispo']."'></td>
-                <td><input type='text' name='nom' value='".$seance['prix']."'></td>
+                <td><select name=".'refSalle'." id=".'nomSalle'.">
+                    <option value='".$seance["id_salle"]."'>".$seance["nom_salle"]."</option>
+                 </select>
+                
+                </td>
+                <td><select name=".'refFilm'." id=".'titreFilm'.">
+                   <option value='".$seance["id_films"]."'>".$seance["titre"]."></option>
+                        </select>
+                        </td>
+                <td><input type='date' name='date' value='".$seance['date']."'></td>
+                <td><input type='time' name='heure' value='".$seance['heure']."'></td>
+                <td><input type='number' name='nbPlace' value='".$seance['nb_place_dispo']."'></td>
+                <td><input type='number' name='prix' value='".$seance['prix']."'></td>
                </tr>";
     }
     ?>

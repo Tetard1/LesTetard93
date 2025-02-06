@@ -32,4 +32,14 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
         $req->execute();
         $seances = $req->fetchAll();
     }
+    public function modifierSeance(Seance $seance){
+        $req ='UPDATE `seance` WHERE ref_films=:idfilms and ref_salle=:idsalle';
+        $modifier = $this->bdd->getBdd()->prepare($req);
+        $res=$modifier->execute(array(
+            'idfilms' => $seance->getRefFilms(),
+            'idsalle' => $seance->getRefSalle(),
+            ''
+
+        ));
+    }
 }
