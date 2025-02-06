@@ -86,10 +86,10 @@ class repositoryUtilisateur
 
     public function suppression(Utilisateur $user)
     {
-        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :id_utilisateur';
+        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :idUtilisateur';
         $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
         $ressuppression = $reqsuppression->execute(array(
-            'id_utilisateur' => $user->getIdUtilisateur()
+            'idUtilisateur' => $user->getIdUtilisateur()
         ));
 
         return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
