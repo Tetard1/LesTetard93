@@ -66,4 +66,33 @@ class repositoryUtilisateur
         }
         return $user;
     }
+
+    public function modification(Utilisateur $user)
+    {
+        $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role = :role WHERE id_utilisateur = :id_utilisateur';
+        $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
+        $resmodification = $reqmodification->execute(array(
+            'nom' => $user->getNom(),
+            'prenom' => $user->getPrenom(),
+            'email' => $user->getEmail(),
+            'mdp' => $user->getMdp(),
+            'role' => $user->getRole(),
+            'id' => $user->getIdUtilisateur()
+        ));
+
+        return $resmodification ? "Modification réussie" : "Échec de la modification";
+    }
+
+
+    public function suppression(Utilisateur $user)
+    {
+        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :idUtilisateur';
+        $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
+        $ressuppression = $reqsuppression->execute(array(
+            'idUtilisateur' => $user->getIdUtilisateur()
+        ));
+
+        return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
+    }
 }
+

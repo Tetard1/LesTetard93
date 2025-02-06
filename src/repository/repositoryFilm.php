@@ -22,5 +22,15 @@ class repositoryFilm
         var_dump($film);
 
         echo "le film a bien été ajouter";
+        header('location:../../vue/filmAffiche.php');
+    }
+
+    public function filmAffiche()
+    {
+        $sqlFilm = 'SELECT * FROM films';
+        $reqFilm = $this->bdd->getBDD()->prepare($sqlFilm);
+        $reqFilm->execute();
+
+        return $reqFilm->fetchAll();
     }
 }
