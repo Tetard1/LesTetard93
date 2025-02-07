@@ -16,8 +16,8 @@ var_dump($_SESSION);
   <form action="../src/traitement/TraitementModifUtilisateur.php" method="post">
     <input type="hidden" name="action" value="modification">
     <div class="mb-3">
-      <label for="id_utilisateur" class="form-label">ID Utilisateur :</label>
-      <input type="number" class="form-control" id="id_utilisateur" name="id_utilisateur" required>
+      <label for="idUtilisateur" class="form-label">ID Utilisateur :</label>
+      <input type="number" class="form-control" id="idUtilisateur" name="idUtilisateur" required>
     </div>
     <div class="mb-3">
       <label for="nom" class="form-label">Nom :</label>
@@ -46,8 +46,8 @@ var_dump($_SESSION);
   <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
     <input type="hidden" name="action" value="suppression">
     <div class="mb-3">
-      <label for="id_utilisateur_supp" class="form-label">ID Utilisateur :</label>
-      <input type="number" class="form-control" id="id_utilisateur_supp" name="id_utilisateur_supp" required>
+      <label for="idUtilisateur" class="form-label">ID Utilisateur :</label>
+      <input type="number" class="form-control" id="idUtilisateur" name="idUtilisateur" required>
     </div>
     <button type="submit" class="btn btn-danger">Supprimer</button>
   </form>
