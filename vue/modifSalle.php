@@ -7,23 +7,34 @@ $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
 if(isset($_GET['id'])){
   $id=$_GET['id'];
-
 } else{
     $id=null;
     header("Location:afficherSalle.php");
 }
-$seance=new Seance([
-    'idSeance'=>$id]);
+$salle=new Salle([
+    'idSalle'=>$id
+]);
 $salleRepo=new SalleRepo();
-$resultat=$salleRepo->afficherLaSalle($salle);
-$filmSalle=$salleRepo->getSalle(); ?>
+$resultat= $salleRepo->afficherLaSalle($salle);
+
+
+/*
+$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root','' );
+
+$show="SELECT nom_salle,place_totale FROM `salle` WHERE id_salle=:idSalle";
+$req=$bdd->prepare($show);
+$req->execute([
+    'idSalle'=>$id
+]);
+$resultat=$req->fetch();*/
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <title>Gestion Des Séances</title>
+        <title>Gestion Des Salles</title>
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -72,81 +83,40 @@ $filmSalle=$salleRepo->getSalle(); ?>
                         <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seance</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Salles
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                        <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
+                        <li><a class="dropdown-item" href="suppSalle.php">Supprimer Des Salles</a></li>
+                    </ul>
+                </li>
             </menu>
         </header>
         <hr>
-        <h1>Modification de Seances</h1>
-        <form action="../src/traitement/traitementModifSeance.php" method="POST">
+        <h1>Modification des Salles</h1>
+        <form action="../src/traitement/traitementModifSalle.php" method="POST">
             <table>
                 <tr>
-                    <td><input type="hidden" name="idSeance" value="<?php echo $id; ?>"></td>
+                    <td><input type="hidden" name="idSalle" value="<?= $id ?>"></td>
                 </tr>
                 <tr>
                     <td>
                         <div class="mb-3">
                             <label for="nomSalle" class="form-label">Salle : </label>
-                            <select name="refSalle" id="nomSalle">
-                                <option value="<?= $resultat["ref_salle"]?>"><?= $resultat["nom_salle"]?></option>
-                                    <?php
-                                    foreach ($filmSalle as $salle) {
-                                        if ($salle["id_salle"] != $resultat["ref_salle"]) {
-                                            echo "<option value='" . $salle["id_salle"] . "'>" . $salle["nom_salle"] . "</option>
-                                        ";
-                                        }
-                                    }
-                                    ?>
-                                </select>
+                            <input type='text' id="nomSalle" name='nomSalle' value="<?=$resultat["nom_salle"]?>">
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="mb-3">
-                            <label for="titreFilm" class="form-label">Film : </label>
-                            <select name="refFilms" id="titreFilm">
-                                <option value="<?= $resultat["ref_films"]?>"><?= $resultat["titre"]?></option>
-                                <?php
-                                foreach ($filmSalle as $film){
-                                    if($film["id_films"]!=$resultat["ref_films"]) {
-                                        echo "<option value='" . $film["id_films"] . "'>" . $film["titre"] . "</option>
-                                    ";
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="date" class="form-label">Date : </label>
-                            <input type='date' name='date' id="date" value="<?=$resultat['date']?>">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="heure" class="form-label">Heure : </label>
-                            <input type='time' id="heure" name='heure' value="<?=$resultat['heure']?>">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="nbPlace" class="form-label">Places disponibles : </label>
-                            <input type='number' id="nbPlace" name='nbPlcDispo' value="<?=$resultat['nb_plc_dispo']?>">
-
-                    </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="mb-3">
-                            <label for="prix" class="form-label">Prix </label>
-                            <input type='number' name='prixPlc' id="prix" value="<?=$resultat['prix']?>">
+                            <label for="place_totale" class="form-label">Places disponibles : </label>
+                            <input type='number' id="placeTotale" name='placeTotale' value="<?=$resultat["place_totale"]?>">
                         </div>
                     </td>
                 </tr>

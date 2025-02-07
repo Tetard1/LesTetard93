@@ -23,34 +23,42 @@ class SalleRepo{
         public function modificationSalle (Salle $salle)  {
 
             var_dump($_POST);
-            $sqlmodification = 'UPDATE salle SET nomSalle = :nomSalle,placeTotale = :placeTotale WHERE id_salle = :id_salle';
+            $sqlmodification = 'UPDATE salle SET nom_salle = :nomSalle,place_totale =:placeTotale WHERE id_salle = :idSalle';
             $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
             $resmodification = $reqmodification->execute(array(
                 'nomSalle' => $salle->getNomSalle(),
                 'placeTotale' => $salle->getPlaceTotale(),
-                'id_salle' => $salle->getIdSalle()
+                'idSalle' => $salle->getIdSalle()
             ));
 
             return $resmodification ? "Modification réussie" : "Échec de la modification";
         }
 
 
-        public function suppression(Salle $salle)
+        public function suppressionSalle (Salle $salle)
         {
-            $sqlsuppression = 'DELETE FROM salle WHERE id_salle = :id_salle';
+            $sqlsuppression = 'DELETE FROM salle WHERE id_salle = :idSalle';
             $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
             $ressuppression = $reqsuppression->execute(array(
-                'id_salle' => $salle->getIdSalle()
+                'idSalle' => $salle->getIdSalle()
             ));
 
             return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
         }
         public function afficherSalle(){
-            $affiche="SELECT *,(nb_place_dispo) as nb_plc_dispo,nom_salle,id_salle FROM `salle` 
-            LEFT JOIN salle on id_salle=ref_salle";
+            $affiche="SELECT * FROM `salle` ";
             $req=$this->bdd->getBdd()->prepare($affiche);
-            $req->execute();
-            return $req->fetchAll();
+            $req->execute(
+            );
+            return $req->fetchall();
+    }
+    public function afficherLaSalle(Salle $salle){
+        $show="SELECT nom_salle,place_totale FROM `salle` WHERE id_salle=:idSalle";
+        $req=$this->bdd->getBdd()->prepare($show);
+        $req->execute([
+            'idSalle'=>$salle->getIdSalle()
+        ]);
+        return $req->fetch();
     }
 
 

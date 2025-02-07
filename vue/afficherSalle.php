@@ -92,8 +92,8 @@ $resultat=$salleRepo->afficherSalle();
     foreach ( $resultat as $salle) {
         echo "<tr>
                 <td>" . $salle["nom_salle"] . "</td>
-                <td>" . $salle['nb_plc_dispo'] . "</td>
-                <td><a href='modifierSalle.php?id=" . $salle["id_salle"] . "'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
+                <td>" . $salle['place_totale'] . "</td>
+                <td><a href='modifSalle.php?id=".$salle["id_salle"]."'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
                </tr>";
     }
     ?>

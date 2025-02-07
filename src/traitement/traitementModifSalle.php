@@ -3,9 +3,10 @@ include "../repository/SalleRepo.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Salle.php";
 var_dump($_POST);
+
 if(empty($_POST["nomSalle"]) ||
     empty($_POST["placeTotale"]) ||
-    empty($_POST["id_salle"]))
+    empty($_POST["idSalle"]))
 {
     echo "Erreur : Tous les champs doivent être remplis";
     return;
@@ -13,7 +14,7 @@ if(empty($_POST["nomSalle"]) ||
 
 $salle = new Salle(array(
     'nomSalle' => $_POST['nomSalle'],
-    'prenom' => $_POST['placeTotale'],
+    'placeTotale' => $_POST['placeTotale'],
     'idSalle' => $_POST['idSalle']
 ));
 
