@@ -20,7 +20,7 @@ if(isset($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["gen
     $repositoryFilm = new RepositoryFilm();
     $resultat = $repositoryFilm->ajoutFilm($film);
 }else{
-    header("Location: ../../vue/film.html");
+    header("Location: ../../vue/film.php");
     echo "erreur";
 }
 

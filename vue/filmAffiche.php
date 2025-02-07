@@ -6,6 +6,7 @@ require_once "../src/Bdd/BDD.php";
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 
+
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +83,7 @@ $listeFilm = $listeFilm->filmAffiche();
             let rows = document.querySelectorAll("tbody tr");
 
             rows.forEach(row => {
-                let title = row.cells[0].innerText.toLowerCase();
+                let title = row.cells[1].innerText.toLowerCase();
                 row.style.display = title.includes(input) ? "" : "none";
             });
         }
@@ -91,7 +92,7 @@ $listeFilm = $listeFilm->filmAffiche();
 <body>
 <div class="container">
     <div class="top-section">
-        <h2>Liste des Films <button onclick="window.location.href='film.html'">Ajouter un film</button></h2>
+        <h2>Liste des Films <button onclick="window.location.href='film.php'">Ajouter un film</button></h2>
     </div>
 
 
@@ -100,6 +101,7 @@ $listeFilm = $listeFilm->filmAffiche();
     <table>
         <thead>
         <tr>
+            <th>Id Film</th>
             <th>Titre</th>
             <th>Description</th>
             <th>Genre</th>
@@ -113,7 +115,8 @@ $listeFilm = $listeFilm->filmAffiche();
         for ($i = 0; $i < count($listeFilm); $i++) {
             ?>
             <tr>
-                <td><?= $listeFilm[$i]['titre'] ?></td>
+                <td><?= $listeFilm[$i]['id_films']?></td>
+                <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>"><?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
                 <td><?= $listeFilm[$i]['description'] ?></td>
                 <td><?= $listeFilm[$i]['genre'] ?></td>
                 <td><?= $listeFilm[$i]['durée'] ?></td>

@@ -2,7 +2,7 @@
 include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
-var_dump($_POST);
+//var_dump($_POST);
 if(empty($_POST["nom"]) ||
     empty($_POST["prenom"]) ||
     empty($_POST["email"]) ||
@@ -23,7 +23,7 @@ $user = new Utilisateur(array(
     'idUtilisateur' => $_POST['idUtilisateur']
     ));
 
-var_dump($user);
+//var_dump($user);
 $repository = new repositoryUtilisateur();
 $resultat = $repository->modification($user);
 

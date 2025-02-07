@@ -68,7 +68,7 @@ class repositoryUtilisateur
 
     public function modification(Utilisateur $user)
     {
-        var_dump($_POST);
+        //var_dump($_POST);
         $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role = :role WHERE id_utilisateur = :id_utilisateur';
         $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
         $resmodification = $reqmodification->execute(array(
@@ -79,7 +79,7 @@ class repositoryUtilisateur
             'role' => $user->getRole(),
             'id_utilisateur' => $user->getIdUtilisateur()
         ));
-
+        header("Location: ../../vue/accueil.php");
         return $resmodification ? "Modification réussie" : "Échec de la modification";
     }
 
