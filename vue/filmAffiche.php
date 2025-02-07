@@ -29,32 +29,19 @@ $listeFilm = $listeFilm->filmAffiche();
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             position: relative;
         }
-        .film {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
+        .top-section {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
         }
-        .film:last-child {
-            border-bottom: none;
-        }
-        img {
-            max-width: 100px;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .buttons {
-            display: flex;
-            gap: 10px;
-        }
-        .top-right {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .top-section button {
+            margin: 3px;
+            padding: 5px 10px;
+            font-size: 14px;
+            width: 110px;
         }
         button {
-            padding: 5px 10px;
             cursor: pointer;
             background-color: #007BFF;
             color: white;
@@ -64,44 +51,80 @@ $listeFilm = $listeFilm->filmAffiche();
         button:hover {
             background-color: #0056b3;
         }
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        td img {
+            max-width: 100px;
+            display: block;
+        }
     </style>
+    <script>
+        function filterFilms() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.querySelectorAll("tbody tr");
+
+            rows.forEach(row => {
+                let title = row.cells[0].innerText.toLowerCase();
+                row.style.display = title.includes(input) ? "" : "none";
+            });
+        }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="top-right">
-            <button onclick="window.location.href='film.html'">Ajouter un film</button>
-        </div>
-        <h2>Liste des Films</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Genre</th>
-                <th>Durée</th>
-                <th>Affice</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            for ($i = 0; $i < count($listeFilm); $i++) {
-                ?>
+<div class="container">
+    <div class="top-section">
+        <h2>Liste des Films <button onclick="window.location.href='film.html'">Ajouter un film</button></h2>
+    </div>
+
+
+    <input type="text" id="search" class="search-bar" onkeyup="filterFilms()" placeholder="Rechercher un film...">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Genre</th>
+            <th>Durée</th>
+            <th>Affiche</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        for ($i = 0; $i < count($listeFilm); $i++) {
+            ?>
             <tr>
                 <td><?= $listeFilm[$i]['titre'] ?></td>
                 <td><?= $listeFilm[$i]['description'] ?></td>
                 <td><?= $listeFilm[$i]['genre'] ?></td>
                 <td><?= $listeFilm[$i]['durée'] ?></td>
-                <td><?= $listeFilm[$i]['affiche'] ?></td>
+                <td><img src="<?= $listeFilm[$i]['affiche'] ?>"></td>
             </tr>
             <?php
+        }
+        ?>
 
-            }
-            ?>
-            </tbody>
-        </table>
-
-        </div>
-    </div>
-
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
