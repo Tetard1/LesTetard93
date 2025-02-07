@@ -68,6 +68,7 @@ class repositoryUtilisateur
 
     public function modification(Utilisateur $user)
     {
+        var_dump($_POST);
         $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role = :role WHERE id_utilisateur = :id_utilisateur';
         $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
         $resmodification = $reqmodification->execute(array(
@@ -76,7 +77,7 @@ class repositoryUtilisateur
             'email' => $user->getEmail(),
             'mdp' => $user->getMdp(),
             'role' => $user->getRole(),
-            'id' => $user->getIdUtilisateur()
+            'id_utilisateur' => $user->getIdUtilisateur()
         ));
 
         return $resmodification ? "Modification réussie" : "Échec de la modification";
@@ -85,10 +86,10 @@ class repositoryUtilisateur
 
     public function suppression(Utilisateur $user)
     {
-        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :idUtilisateur';
+        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :id_utilisateur';
         $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
         $ressuppression = $reqsuppression->execute(array(
-            'idUtilisateur' => $user->getIdUtilisateur()
+            'id_utilisateur' => $user->getIdUtilisateur()
         ));
 
         return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
