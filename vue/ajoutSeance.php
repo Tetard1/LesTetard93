@@ -1,15 +1,13 @@
 <?php
 require_once '../src/bdd/Bdd.php';
+require_once '../src/modele/Seance.php';
+require_once '../src/repository/SeanceRepo.php';
 session_start();
 $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
-$bdd = new Bdd();
-$req=$bdd->getBdd()->prepare("SELECT id_films,titre FROM `films`");
-$req->execute();
-$films = $req->fetchAll();
-$res=$bdd->getBdd()->prepare("SELECT id_salle,nom_salle FROM `salle`");
-$res->execute();
-$salles = $res->fetchAll();
+$seanceRepo=new SeanceRepo();
+$films=$seanceRepo->getFilm();
+$salles=$seanceRepo->getSalle();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -31,7 +29,7 @@ $salles = $res->fetchAll();
                     </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../Espace%20Admin/IndexAdmin.php">Mon compte</a>
+                    <a class="nav-link active" aria-current="page" href="espaceClient.php">Mon compte</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -111,7 +109,11 @@ $salles = $res->fetchAll();
                         <td><input type="number" name="prixPlc" id="prix">€</td>
                     </tr>
                     <tr>
-                        <td><input type='submit' value="Ajouter"></td>
+                        <td>
+                            <div class="col-12">
+                                <input class="btn btn-primary" type="submit" value="Ajouter ">
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

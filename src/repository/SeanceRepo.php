@@ -81,5 +81,32 @@ LEFT JOIN salle on id_salle=ref_salle";
         $res->execute();
         return $res->fetchAll();
     }
+
+    public function getFilm()
+    {
+        $get="SELECT titre,id_films FROM films";
+        $res = $this->bdd->getBdd()->prepare($get);
+        $res->execute();
+        return $res->fetchAll();
+    }
+    public function getSalle()
+    {
+        $show="SELECT id_salle,nom_salle FROM salle";
+        $res = $this->bdd->getBdd()->prepare($show);
+        $res->execute();
+        return $res->fetchAll();
+    }
+    public function supprimerSeance($seance)
+    {
+        $supprimer = "DELETE FROM `seance` WHERE id_seance=:idSeance";
+        $sup = $this->bdd->getBdd()->prepare($supprimer);
+        $sup->execute(array('idSeance' => $seance->getIdSeance()));
+        if ($sup) {
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }
 ?>
