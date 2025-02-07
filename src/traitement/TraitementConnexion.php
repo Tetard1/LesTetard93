@@ -18,14 +18,15 @@ if (empty($_POST["email"]) ||
     ));
     $repository = new repositoryUtilisateur();
     $resultat = $repository->connexion($user);
-
-    if ($resultat->getIdUtilisateur() != null) {
+    if ($resultat != null) {
         session_start();
-        $_SESSION['userConnecte'] =$resultat;
-        $_SESSION['role']=$user-> getRole();
-        header("Location: ../../vue/ModificationUtilisateur.html");
+        $_SESSION['userConnecte']=[
+            "idUtilisateur" => $resultat->getIdUtilisateur(),
+            "role" => $resultat->getRole()
+        ];
+        header("Location: ../../vue/ModificationUtilisateur.php");
     } else {
-        header("Location: ../../vue/Connexion.html");
+       header("Location: ../../vue/Connexion.html");
     }
 
 }

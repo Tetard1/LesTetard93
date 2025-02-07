@@ -1,5 +1,6 @@
 <?php
 Class Seance{
+    private $idSeance;
     private $date;
     private $heure;
     private $nbPlcDispo;
@@ -111,6 +112,22 @@ Class Seance{
     public function setPrixPlc($prixPlc)
     {
         $this->prixPlc = $prixPlc;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdSeance()
+    {
+        return $this->idSeance;
+    }
+
+    /**
+     * @param mixed $idSeance
+     */
+    public function setIdSeance($idSeance)
+    {
+        $this->idSeance = $idSeance;
     }
 
 

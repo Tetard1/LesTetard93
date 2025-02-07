@@ -1,3 +1,8 @@
+<?php
+session_start();
+var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +47,7 @@
     <input type="hidden" name="action" value="suppression">
     <div class="mb-3">
       <label for="id_utilisateur_supp" class="form-label">ID Utilisateur :</label>
-      <input type="number" class="form-control" id="id_utilisateur_supp" name="id_utilisateur" required>
+      <input type="number" class="form-control" id="id_utilisateur_supp" name="id_utilisateur_supp" required>
     </div>
     <button type="submit" class="btn btn-danger">Supprimer</button>
   </form>

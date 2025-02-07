@@ -37,11 +37,11 @@ class repositoryUtilisateur
                 return false;
             }
             echo "Votre profil a été créé ! ";
-            header('Location: ../Connexion/Connexion.html');
+            header('Location:../../vue/Connexion.html');
             exit();
         } else {
             echo "Vous avez déjà un compte, veuillez vous connecter ! ";
-            header('Location: ../Connexion/Connexion.html');
+            header('Location: ../../vue/Connexion.html');
             exit();
         }
     }
@@ -50,8 +50,7 @@ class repositoryUtilisateur
     {
         $sqlconnexion = 'SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp';
         $reqconnexion = $this->bdd->getBdd()->prepare($sqlconnexion);
-        $resconnexion = $reqconnexion->execute(array(
-
+         $reqconnexion->execute(array(
             'email' => $user->getEmail(),
             'mdp' => $user->getMdp(),
         ));
@@ -86,10 +85,10 @@ class repositoryUtilisateur
 
     public function suppression(Utilisateur $user)
     {
-        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :id_utilisateur';
+        $sqlsuppression = 'DELETE FROM utilisateur WHERE id_utilisateur = :idUtilisateur';
         $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
         $ressuppression = $reqsuppression->execute(array(
-            'id_utilisateur' => $user->getIdUtilisateur()
+            'idUtilisateur' => $user->getIdUtilisateur()
         ));
 
         return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
