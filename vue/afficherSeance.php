@@ -47,10 +47,9 @@ $resultat=$seanceRepo->afficherSeances();
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Faire une reservation</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste de mes Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -76,6 +75,7 @@ $resultat=$seanceRepo->afficherSeances();
         <th scope="col">Place Disponibles</th>
         <th scope="col">Prix</th>
         <th scope="col"></th>
+        <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -85,7 +85,7 @@ $resultat=$seanceRepo->afficherSeances();
         <td>" . $seance["nom_salle"] . "</td>
         <td>" . $seance["titre"] . "</td>
         <td>" . $seance['date'] . "</td>
-        <td>" . $seance['heure'] . "</td>
+        <td>" .$seance['heure_complete']. "</td>
         <td>";
 
         // Corrected PHP logic to check 'nb_plc_dispo'

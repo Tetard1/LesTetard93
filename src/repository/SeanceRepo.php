@@ -52,7 +52,7 @@ heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_seance=:idSeance';
 
     public function afficherSeances()
     {
-        $affiche = "SELECT *,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance`
+        $affiche = "SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance`
 LEFT JOIN films on id_films=ref_films
 LEFT JOIN salle on id_salle=ref_salle
 LEFT JOIN reservation on id_seance=ref_seance";
@@ -63,7 +63,7 @@ LEFT JOIN reservation on id_seance=ref_seance";
 
     public function afficherLaSeance(Seance $seance)
     {
-        $affiche = "SELECT *,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance`
+        $affiche = "SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance`
 LEFT JOIN films on id_films=ref_films
 LEFT JOIN salle on id_salle=ref_salle
 LEFT JOIN reservation on id_seance=ref_seance WHERE id_seance=:idSeance";
