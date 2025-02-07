@@ -25,15 +25,8 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
             return false;
         }
     }
-    public function afficherSeance(){
-        $req = $this->bdd->getBdd()->prepare('SELECT * FROM `seance`
-            INNER JOIN films on ref_films=id_films
-            INNER JOIN salle on ref_salle=id_salle;');
-        $req->execute();
-        $seances = $req->fetchAll();
-    }
     public function modifierSeance(Seance $seance){
-        $req ='UPDATE `seance` WHERE ref_films=:idfilms and ref_salle=:idsalle';
+        $req ='UPDATE `seance` WHERE id_seance=:id';
         $modifier = $this->bdd->getBdd()->prepare($req);
         $res=$modifier->execute(array(
             'idfilms' => $seance->getRefFilms(),
