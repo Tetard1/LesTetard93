@@ -1,31 +1,23 @@
 <?php
 require_once '../src/bdd/Bdd.php';
+require_once '../src/modele/Seance.php';
+require_once '../src/repository/SeanceRepo.php';
 session_start();
 $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
-$bdd = new Bdd();
 if(isset($_GET['id'])){
   $id=$_GET['id'];
 
 } else{
     $id=null;
+    header("Location:afficherSeance.php");
 }
-$tous=$bdd->getBdd()->prepare("SELECT *,nom_salle,titre,id_films,id_salle FROM `seance`
-            LEFT JOIN films  on ref_films=id_films
-            LEFT JOIN salle  on ref_salle=id_salle
-            WHERE id_seance=:id");
-$tous->execute(['id' => $id]);
-$seances = $tous->fetch();
-if (!$seances) {
-    echo "Séance introuvable.";
-    exit;
-}
-$res=$bdd->getBdd()->prepare("SELECT id_salle,nom_salle FROM `salle`");
-$res->execute();
-$salles = $res->fetchAll();
-$req=$bdd->getBdd()->prepare("SELECT id_films,titre FROM `films`");
-$req->execute();
-$films = $req->fetchAll();
+$seance=new Seance([
+    'idSeance'=>$id]);
+$seanceRepo=new SeanceRepo();
+$resultat=$seanceRepo->afficherLaSeance($seance);
+
+$filmSalle=$seanceRepo->getSalleFilm();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -89,17 +81,17 @@ $films = $req->fetchAll();
         <form action="../src/traitement/traitementModifSeance.php" method="POST">
             <table>
                 <tr>
-                    <td><input type="hidden" name="id" value="<?php echo $id; ?>"></td>
+                    <td><input type="hidden" name="idSeance" value="<?php echo $id; ?>"></td>
                 </tr>
                 <tr>
                     <td>
                         <div class="mb-3">
                             <label for="nomSalle" class="form-label">Salle : </label>
                             <select name="refSalle" id="nomSalle">
-                                <option value="<?= $seances["id_salle"]?>"><?= $seances["nom_salle"]?></option>
+                                <option value="<?= $resultat["id_salle"]?>"><?= $resultat["nom_salle"]?></option>
                                     <?php
-                                    foreach ($salles as $salle) {
-                                        if ($salle["id_salle"] != $seances["id_salle"]) {
+                                    foreach ($filmSalle as $salle) {
+                                        if ($salle["id_salle"] != $resultat["id_salle"]) {
                                             echo "<option value='" . $salle["id_salle"] . "'>" . $salle["nom_salle"] . "</option>
                                         ";
                                         }
@@ -114,10 +106,10 @@ $films = $req->fetchAll();
                         <div class="mb-3">
                             <label for="titreFilm" class="form-label">Film : </label>
                             <select name="refFilm" id="titreFilm">
-                                <option value="<?= $seances["id_films"]?>"><?= $seances["titre"]?></option>
+                                <option value="<?= $resultat["id_films"]?>"><?= $resultat["titre"]?></option>
                                 <?php
-                                foreach ($films as $film){
-                                    if($film["id_films"]!=$seances["id_films"]) {
+                                foreach ($filmSalle as $film){
+                                    if($film["id_films"]!=$resultat["id_films"]) {
                                         echo "<option value='" . $film["id_films"] . "'>" . $film["titre"] . "</option>
                                     ";
                                     }
@@ -131,7 +123,7 @@ $films = $req->fetchAll();
                     <td>
                         <div class="mb-3">
                             <label for="date" class="form-label">Date : </label>
-                            <input type='date' name='date' id="date" value="<?=$seances['date']?>">
+                            <input type='date' name='date' id="date" value="<?=$resultat['date']?>">
                         </div>
                     </td>
                 </tr>
@@ -139,7 +131,7 @@ $films = $req->fetchAll();
                     <td>
                         <div class="mb-3">
                             <label for="heure" class="form-label">Heure : </label>
-                            <input type='time' id="heure" name='heure' value="<?=$seances['heure']?>">
+                            <input type='time' id="heure" name='heure' value="<?=$resultat['heure']?>">
                         </div>
                     </td>
                 </tr>
@@ -147,7 +139,7 @@ $films = $req->fetchAll();
                     <td>
                         <div class="mb-3">
                             <label for="nbPlace" class="form-label">Places disponibles : </label>
-                            <input type='number' id="nbPlace" name='nbPlace' value="<?=$seances['nb_place_dispo']?>">
+                            <input type='number' id="nbPlace" name='nbPlace' value="<?=$resultat['nb_place_dispo']?>">
 
                     </div>
                     </td>
@@ -156,7 +148,7 @@ $films = $req->fetchAll();
                     <td>
                         <div class="mb-3">
                             <label for="prix" class="form-label">Prix </label>
-                            <input type='number' name='prix' id="prix" value="<?=$seances['prix']?>">
+                            <input type='number' name='prix' id="prix" value="<?=$resultat['prix']?>">
                         </div>
                     </td>
                 </tr>

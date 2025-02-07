@@ -1,14 +1,13 @@
 <?php
 require_once '../src/bdd/Bdd.php';
+require_once '../src/modele/Seance.php';
+require_once '../src/repository/SeanceRepo.php';
 session_start();
 $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
-$bdd = new Bdd();
-$req=$bdd->getBdd()->prepare("SELECT *,nom_salle,titre,id_films,id_salle FROM `seance`
-            LEFT JOIN films  on ref_films=id_films
-            Left JOIN salle  on ref_salle=id_salle");
-$req->execute();
-$seances = $req->fetchAll();
+$seanceRepo=new SeanceRepo();
+$resultat=$seanceRepo->afficherSeances();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -82,17 +81,17 @@ $seances = $req->fetchAll();
     </thead>
     <tbody>
     <?php
-    foreach ($seances as $seance){
-        echo "<tr>
-                <td>".$seance["nom_salle"]."</td>
-                <td>".$seance["titre"]."</td>
-                <td>".$seance['date']."</td>
-                <td>".$seance['heure']."</td>
-                <td>".$seance['nb_place_dispo']."</td>
-                <td>".$seance['prix']."</td>
-                <td><a href='modifierSeance.php?id=".$seance["id_seance"]."'>Modifier</a></td>
+        foreach ( $resultat as $seance) {
+            echo "<tr>
+                <td>" . $seance["nom_salle"] . "</td>
+                <td>" . $seance["titre"] . "</td>
+                <td>" . $seance['date'] . "</td>
+                <td>" . $seance['heure'] . "</td>
+                <td>" . $seance['nb_place_dispo'] . "</td>
+                <td>" . $seance['prix'] . "</td>
+                <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
                </tr>";
-    }
+        }
     ?>
     </tbody>
 </table>
