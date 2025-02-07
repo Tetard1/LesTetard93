@@ -55,10 +55,9 @@ $resultat=$seanceRepo->afficherLaSeance($seance);
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Faire une reservation</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste de mes Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -67,9 +66,8 @@ $resultat=$seanceRepo->afficherLaSeance($seance);
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
-                <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seance</a></li>
+                <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
             </ul>
         </li>
     </menu>
@@ -125,7 +123,7 @@ $resultat=$seanceRepo->afficherLaSeance($seance);
             </td>
             <td>
                 <div class="mb-3">
-                    <?=$resultat['heure']?>
+                    <?=$resultat['heure_complete']?>
                 </div>
             </td>
         </tr>

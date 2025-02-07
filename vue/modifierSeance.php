@@ -55,10 +55,9 @@ $filmSalle=$seanceRepo->getSalleFilm(); ?>
                         Reservations
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                        <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                        <li><a class="dropdown-item" href="ajoutReservation.php">Faire une reservation</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
+                        <li><a class="dropdown-item" href="afficherReservation.php">Liste de mes Reservations</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -67,9 +66,8 @@ $filmSalle=$seanceRepo->getSalleFilm(); ?>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
-                        <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seance</a></li>
+                        <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
                     </ul>
                 </li>
             </menu>
@@ -129,7 +127,7 @@ $filmSalle=$seanceRepo->getSalleFilm(); ?>
                     <td>
                         <div class="mb-3">
                             <label for="heure" class="form-label">Heure : </label>
-                            <input type='time' id="heure" name='heure' value="<?=$resultat['heure']?>">
+                            <input type='time' id="heure" name='heure' value="<?=$resultat['heure_complete']?>">
                         </div>
                     </td>
                 </tr>
@@ -137,7 +135,13 @@ $filmSalle=$seanceRepo->getSalleFilm(); ?>
                     <td>
                         <div class="mb-3">
                             <label for="nbPlace" class="form-label">Places disponibles : </label>
-                            <input type='number' id="nbPlace" name='nbPlcDispo' value="<?=$resultat['nb_plc_dispo']?>">
+                            <input type='number' id="nbPlace" name='nbPlcDispo' value="<?php
+                            if ($resultat['nb_plc_dispo'] == null) {
+                                echo $resultat['nb_place_dispo'];
+                            } else {
+                                echo $resultat['nb_plc_dispo'];
+                            }
+                            ?>">
 
                     </div>
                     </td>
