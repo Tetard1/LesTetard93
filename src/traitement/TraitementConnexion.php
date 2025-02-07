@@ -18,9 +18,7 @@ if (empty($_POST["email"]) ||
     ));
     $repository = new repositoryUtilisateur();
     $resultat = $repository->connexion($user);
-    var_dump($resultat);
-    if ($resultat->getIdUtilisateur() != null) {
-        var_dump($resultat);
+    if ($resultat != null) {
         session_start();
         $_SESSION['userConnecte']=[
             "idUtilisateur" => $resultat->getIdUtilisateur(),
@@ -28,7 +26,7 @@ if (empty($_POST["email"]) ||
         ];
         header("Location: ../../vue/ModificationUtilisateur.php");
     } else {
-       var_dump($resultat);
+       header("Location: ../../vue/Connexion.html");
     }
 
 }
