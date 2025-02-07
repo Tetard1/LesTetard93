@@ -79,7 +79,7 @@ class repositoryUtilisateur
             'role' => $user->getRole(),
             'id_utilisateur' => $user->getIdUtilisateur()
         ));
-
+        header("Location: ../../vue/accueil.php");
         return $resmodification ? "Modification réussie" : "Échec de la modification";
     }
 

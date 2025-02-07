@@ -19,6 +19,29 @@ class repositoryFilm
         echo "le film a bien été ajouter";
         header('location:../../vue/filmAffiche.php');
     }
+
+
+    public function detailFilm($id)
+    {
+        $sql = 'SELECT * FROM films WHERE id_films = :id';
+        $req = $this->bdd->getBDD()->prepare($sql);
+        $req->execute(array(
+            'id' => $id
+        ));
+        $film = $req->fetch(PDO::FETCH_ASSOC);
+        $filmObj = new Film(
+            [
+                "id" => $film['id_films'],
+                "titre" => $film['titre'],
+                "description" => $film['description'],
+                "genre" => $film['genre'],
+                "duree" => $film['durée'],
+                "image" => $film['affiche'],
+            ]
+        );
+        return $filmObj;
+
+    }
     public function filmAffiche()
     {
         $sqlFilm = 'SELECT * FROM films';
