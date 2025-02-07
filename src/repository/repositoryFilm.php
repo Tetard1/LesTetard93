@@ -16,15 +16,9 @@ class repositoryFilm
             'duree' => $film->getDuree(),
             'affiche' => $film->getImage(),
         ));
-
-
-        $film = $req->fetch();
-        var_dump($film);
-
         echo "le film a bien été ajouter";
         header('location:../../vue/filmAffiche.php');
     }
-
     public function filmAffiche()
     {
         $sqlFilm = 'SELECT * FROM films';

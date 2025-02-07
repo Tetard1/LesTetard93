@@ -8,7 +8,7 @@ if(empty($_POST["nom"]) ||
     empty($_POST["email"]) ||
     empty($_POST["mdp"]) ||
     empty($_POST["role"]) ||
-    empty($_POST["id_utilisateur"]))
+    empty($_POST["idUtilisateur"]))
     {
     echo "Erreur : Tous les champs doivent être remplis";
     return;

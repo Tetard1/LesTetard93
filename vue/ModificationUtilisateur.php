@@ -39,7 +39,7 @@ var_dump($_SESSION);
       <label for="role" class="form-label">Rôle :</label>
       <input type="text" class="form-control" id="role" name="role" required>
     </div>
-    <button type="submit" class="btn btn-warning">Modifier</button>
+    <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
 
   <h1 class="mt-5">Supprimer un Utilisateur</h1>
