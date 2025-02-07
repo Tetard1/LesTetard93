@@ -27,16 +27,17 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
     }
 
     public function modifierSeance(Seance $seance)  {
-        $req ='UPDATE `seance` SET ref_film=:refFilm,ref_salle=:refSalle,prix=:prix,
-                    heure=:heure,date=:date WHERE id_seance=:idSeance';
+        $req ='UPDATE `seance` SET ref_films=:refFilms,ref_salle=:refSalle,prix=:prixPlc,
+                    heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_seance=:idSeance';
         $modif=$this->bdd->getBdd()->prepare($req);
         $req=$modif->execute(array(
+            'idSeance' => $seance->getIdSeance(),
+            'refSalle' => $seance->getRefSalle(),
+            'refFilms' => $seance->getRefFilms(),
             'date' => $seance->getDate(),
             'heure' => $seance->getHeure(),
-            'nbplacedispo' => $seance->getNbPlcDispo(),
-            'films'=> $seance->getRefFilms(),
-            'salle'=> $seance->getRefSalle(),
-            'prix'=> $seance->getPrixPlc()
+            'nbPlcDispo' => $seance->getNbPlcDispo(),
+            'prixPlc' => $seance->getPrixPlc()
         ));
         if($req){
             return true;
@@ -46,18 +47,20 @@ VALUES(:date,:heure,:nbplacedispo,:films,:salle,:prix)';
         }
     }
     public function afficherSeances(){
-        $affiche="SELECT *,nom_salle,titre,id_films,id_salle FROM `seance`
-            LEFT JOIN films  on ref_films=id_films
-            Left JOIN salle  on ref_salle=id_salle";
+        $affiche="SELECT *,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance` 
+         LEFT JOIN films on id_films=ref_films 
+         LEFT JOIN salle on id_salle=ref_salle
+         LEFT JOIN reservation on id_seance=ref_seance";
         $req=$this->bdd->getBdd()->prepare($affiche);
         $req->execute();
         return $req->fetchAll();
     }
     public function afficherLaSeance(Seance $seance)
     {
-        $affiche="SELECT *,nom_salle,titre,id_films,id_salle FROM `seance` 
+        $affiche="SELECT *,(nb_place_dispo-nb_place_reserver) as nb_plc_dispo,nom_salle,titre,id_films,id_salle FROM `seance` 
          LEFT JOIN films on id_films=ref_films 
-         LEFT JOIN salle on id_salle=ref_salle WHERE id_seance=:idSeance";
+         LEFT JOIN salle on id_salle=ref_salle
+         LEFT JOIN reservation on id_seance=ref_seance WHERE id_seance=:idSeance";
         $req=$this->bdd->getBdd()->prepare($affiche);
         $req->execute(array('idSeance' => $seance->getIdSeance()));
         return $req->fetch();

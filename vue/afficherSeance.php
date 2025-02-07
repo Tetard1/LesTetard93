@@ -87,7 +87,7 @@ $resultat=$seanceRepo->afficherSeances();
                 <td>" . $seance["titre"] . "</td>
                 <td>" . $seance['date'] . "</td>
                 <td>" . $seance['heure'] . "</td>
-                <td>" . $seance['nb_place_dispo'] . "</td>
+                <td>" . $seance['nb_plc_dispo'] . "</td>
                 <td>" . $seance['prix'] . "</td>
                 <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
                </tr>";

@@ -16,9 +16,7 @@ $seance=new Seance([
     'idSeance'=>$id]);
 $seanceRepo=new SeanceRepo();
 $resultat=$seanceRepo->afficherLaSeance($seance);
-
-$filmSalle=$seanceRepo->getSalleFilm();
-?>
+$filmSalle=$seanceRepo->getSalleFilm(); ?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -88,10 +86,10 @@ $filmSalle=$seanceRepo->getSalleFilm();
                         <div class="mb-3">
                             <label for="nomSalle" class="form-label">Salle : </label>
                             <select name="refSalle" id="nomSalle">
-                                <option value="<?= $resultat["id_salle"]?>"><?= $resultat["nom_salle"]?></option>
+                                <option value="<?= $resultat["ref_salle"]?>"><?= $resultat["nom_salle"]?></option>
                                     <?php
                                     foreach ($filmSalle as $salle) {
-                                        if ($salle["id_salle"] != $resultat["id_salle"]) {
+                                        if ($salle["id_salle"] != $resultat["ref_salle"]) {
                                             echo "<option value='" . $salle["id_salle"] . "'>" . $salle["nom_salle"] . "</option>
                                         ";
                                         }
@@ -105,11 +103,11 @@ $filmSalle=$seanceRepo->getSalleFilm();
                     <td>
                         <div class="mb-3">
                             <label for="titreFilm" class="form-label">Film : </label>
-                            <select name="refFilm" id="titreFilm">
-                                <option value="<?= $resultat["id_films"]?>"><?= $resultat["titre"]?></option>
+                            <select name="refFilms" id="titreFilm">
+                                <option value="<?= $resultat["ref_films"]?>"><?= $resultat["titre"]?></option>
                                 <?php
                                 foreach ($filmSalle as $film){
-                                    if($film["id_films"]!=$resultat["id_films"]) {
+                                    if($film["id_films"]!=$resultat["ref_films"]) {
                                         echo "<option value='" . $film["id_films"] . "'>" . $film["titre"] . "</option>
                                     ";
                                     }
@@ -139,7 +137,7 @@ $filmSalle=$seanceRepo->getSalleFilm();
                     <td>
                         <div class="mb-3">
                             <label for="nbPlace" class="form-label">Places disponibles : </label>
-                            <input type='number' id="nbPlace" name='nbPlace' value="<?=$resultat['nb_place_dispo']?>">
+                            <input type='number' id="nbPlace" name='nbPlcDispo' value="<?=$resultat['nb_plc_dispo']?>">
 
                     </div>
                     </td>
@@ -148,7 +146,7 @@ $filmSalle=$seanceRepo->getSalleFilm();
                     <td>
                         <div class="mb-3">
                             <label for="prix" class="form-label">Prix </label>
-                            <input type='number' name='prix' id="prix" value="<?=$resultat['prix']?>">
+                            <input type='number' name='prixPlc' id="prix" value="<?=$resultat['prix']?>">
                         </div>
                     </td>
                 </tr>
