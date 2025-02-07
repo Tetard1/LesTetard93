@@ -3,7 +3,9 @@ class Reservation
 {
     private $idReservation;
     private $nbPlaceReserver;
+    private $date_reservation;
     private $refSeance;
+    private $refUtilisateur;
 
     public function __construct(array $donnee){
         $this->hydrate($donnee);
@@ -67,6 +69,22 @@ class Reservation
     public function setRefSeance($ref_seance)
     {
         $this->refSeance = $ref_seance;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateReservation()
+    {
+        return $this->date_reservation;
+    }
+
+    /**
+     * @param mixed $date_reservation
+     */
+    public function setDateReservation($date_reservation)
+    {
+        $this->date_reservation = $date_reservation;
     }
 
 

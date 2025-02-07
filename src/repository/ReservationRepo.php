@@ -19,5 +19,13 @@ class ReservationRepo {
             return false;
         }
     }
+    public function afficherReservationsPasse(){
+        $reservations = $this->bdd->getBdd()->query("SELECT * FROM reservation
+    LEFT JOIN utilisateur on id_films=ref_films
+    LEFT JOIN seance on id_seance=ref_seance
+    LEFT JOIN films on id_films=ref_films WHERE ref_utilisateur=:refUtilisateur");"     
+    ORDER BY date_reservation");
+
+    }
 
 }
