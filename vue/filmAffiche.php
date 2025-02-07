@@ -77,19 +77,21 @@ $listeFilm = $listeFilm->filmAffiche();
             <tr>
                 <th>Titre</th>
                 <th>Description</th>
-                <th>Affiche</th>
-                <th>Actions</th>
+                <th>Genre</th>
+                <th>Durée</th>
+                <th>Affice</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            for ($i = 1; $i < count($listeFilm); $i++) {
+            for ($i = 0; $i < count($listeFilm); $i++) {
                 ?>
             <tr>
                 <td><?= $listeFilm[$i]['titre'] ?></td>
-                <td><?= $listeFilm[$i]['titre'] ?></td>
-                <td><?= $listeFilm[$i]['titre'] ?></td>
-                <td><?= $listeFilm[$i]['titre'] ?></td>
+                <td><?= $listeFilm[$i]['description'] ?></td>
+                <td><?= $listeFilm[$i]['genre'] ?></td>
+                <td><?= $listeFilm[$i]['durée'] ?></td>
+                <td><?= $listeFilm[$i]['affiche'] ?></td>
             </tr>
             <?php
 
