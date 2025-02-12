@@ -2,7 +2,7 @@
 include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
-
+var_dump($_POST);
 if (empty($_POST["email"]) ||
     empty($_POST["mdp"]) )
 {
@@ -16,8 +16,10 @@ if (empty($_POST["email"]) ||
         'mdp' => $_POST['mdp'],
 
     ));
+    var_dump($user);
     $repository = new repositoryUtilisateur();
     $resultat = $repository->connexion($user);
+    var_dump($resultat);
     if ($resultat != null) {
         session_start();
         $_SESSION['userConnecte']=[

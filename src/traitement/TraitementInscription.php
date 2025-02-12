@@ -18,7 +18,7 @@ if(empty($_POST["nom"]) ||
         'nom' => $_POST['nom'],
         'prenom' => $_POST['prenom'],
         'email' => $_POST['email'],
-        'mdp' => $_POST['mdp'],
+        'mdp' => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
         'role' => $_POST['role'],
 
     ));

@@ -48,22 +48,26 @@ class repositoryUtilisateur
 
     public function connexion(Utilisateur $user)
     {
-        $sqlconnexion = 'SELECT * FROM utilisateur WHERE email = :email AND mdp = :mdp';
+        $sqlconnexion = 'SELECT * FROM utilisateur WHERE email = :email';
         $reqconnexion = $this->bdd->getBdd()->prepare($sqlconnexion);
          $reqconnexion->execute(array(
             'email' => $user->getEmail(),
-            'mdp' => $user->getMdp(),
         ));
         $donne = $reqconnexion->fetch();
-        if($donne != NULL){
+        if($donne && password_verify($user->getMdp(), $donne['mdp'])) {
             $user->setNom($donne['nom']);
             $user->setPrenom($donne['prenom']);
             $user->setEmail($donne['email']);
             $user->setRole($donne['role']);
             $user->setMdp($donne['mdp']);
             $user->setIdUtilisateur($donne['id_utilisateur']);
+
+            return $user;
         }
-        return $user;
+        else {
+            return null;
+        }
+
     }
 
     public function modification(Utilisateur $user)
