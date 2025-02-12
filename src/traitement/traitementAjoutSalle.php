@@ -14,9 +14,9 @@ header(" ../../vue/ajoutSalle.html");
     $salleRepo = new SalleRepo($salle);
     $resultat= $salleRepo->ajouterSalle($salle);
     if($resultat){
-        header("Location: ../../afficherSalle.php");
+        header("Location: ../../vue/afficherSalle.php");
     }else{
-        header("Location: ../../vue/ajoutSalle.html");
+        header("Location: ../../vue/ajoutSalle.php");
     }
 
 }

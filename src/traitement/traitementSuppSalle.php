@@ -17,3 +17,6 @@ $salle = new Salle(array(
 ));
 $repository = new SalleRepo();
 $resultat = $repository->suppressionSalle($salle);
+if($resultat){
+    header("Location: ../../vue/afficherSalle.php");
+}

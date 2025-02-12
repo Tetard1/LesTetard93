@@ -7,7 +7,6 @@ $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
 $salleRepo=new SalleRepo();
 $resultat=$salleRepo->afficherSalle();
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -85,6 +84,7 @@ $resultat=$salleRepo->afficherSalle();
         <th scope="col">Nom de la Salle</th>
         <th scope="col">Place Disponibles</th>
         <th scope="col"></th>
+        <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -94,6 +94,7 @@ $resultat=$salleRepo->afficherSalle();
                 <td>" . $salle["nom_salle"] . "</td>
                 <td>" . $salle['place_totale'] . "</td>
                 <td><a href='modifSalle.php?id=".$salle["id_salle"]."'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
+                <td><a href='suppSalle.php?id=". $salle["id_salle"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
                </tr>";
     }
     ?>
