@@ -6,6 +6,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Cinéma plus 2</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/loginText.css"
 		<!-- Favicon Icon -->
 		<link rel="icon" type="image/png" href="assets/img/favcion.png" />
 		<!-- Bootstrap CSS -->
@@ -41,8 +42,6 @@
 						<form action="#">
 							<select>
 								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
 							</select>
 							<input type="text"/>
 							<button><i class="icofont icofont-search"></i></button>
@@ -60,10 +59,6 @@
                                 <li><a href="vue/movies.html">Movies</a></li>
                                 <li><a href="vue/blog.html">News</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-									<ul>
-										<li><a href="vue/blog-details.html">Blog Details</a></li>
-										<li><a href="vue/movie-details.html">Movie Details</a></li>
-									</ul>
 								</li>
                                 <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
                             </ul>
@@ -76,17 +71,17 @@
 			<div class="login-box">
 				<a href="#"><i class="icofont icofont-close"></i></a>
 				<h2>LOGIN</h2>
-				<form action="#">
-					<h6>USERNAME OR EMAIL ADDRESS</h6>
-					<input type="text" />
-					<h6>PASSWORD</h6>
-					<input type="text" />
-					<div class="login-remember">
+                <form method="POST" action="src/traitement/TraitementConnexion.php">
+                    <h6>EMAIL ADDRESS</h6>
+                    <input type="email" name="email" style="color:black;"/>
+                    <h6>PASSWORD</h6>
+                    <input type="password" name="mdp" style="color:black;"/>
+                    <div class="login-remember">
 						<input type="checkbox" />
 						<span>Remember Me</span>
 					</div>
 					<div class="login-signup">
-						<span>SIGNUP</span>
+                        <span><a href="vue/Inscription.html">SIGNUP</a></span>
 					</div>
 					<a href="#" class="theme-btn">LOG IN</a>
 					<span>Or Via Social</span>
