@@ -1,5 +1,4 @@
 <?php
-
 class repositoryUtilisateur
 {
     private $bdd;
@@ -11,7 +10,6 @@ class repositoryUtilisateur
 
     public function inscription(Utilisateur $user)
     {
-        var_dump($_POST);
         $req2 = $this->bdd->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email');
         $req2->execute(array(
             'email' => $user->getEmail(),
@@ -83,7 +81,7 @@ class repositoryUtilisateur
             'role' => $user->getRole(),
             'id_utilisateur' => $user->getIdUtilisateur()
         ));
-        header("Location: ../../vue/accueil.php");
+        header("Location: ../../vue/ModificationUtilisateur.php");
         return $resmodification ? "Modification réussie" : "Échec de la modification";
     }
 
@@ -97,6 +95,14 @@ class repositoryUtilisateur
         ));
 
         return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
+    }
+    public function afficherUtilisateur(Utilisateur $user)
+    {
+        $affiche = "SELECT * FROM utilisateur WHERE id_utilisateur=:idUtilisateur";
+        $req = $this->bdd->getBdd()->prepare($affiche);
+        $req->execute(array(
+            'idUtilisateur' => $user->getIdUtilisateur()));
+        return $req->fetch();
     }
 }
 

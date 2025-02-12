@@ -1,6 +1,14 @@
 <?php
+require_once "../src/bdd/BDD.php";
+require_once '../src/modele/Utilisateur.php';
+require_once '../src/repository/RepositoryUtilisateur.php';
 session_start();
-var_dump($_SESSION);
+//var_dump($_SESSION);
+$user=new Utilisateur([
+        'idUtilisateur'=>$_SESSION['userConnecte']['idUtilisateur'],
+]);
+$repository=new RepositoryUtilisateur();
+$result=$repository->afficherUtilisateur($user);
 ?>
 
 <!DOCTYPE html>
@@ -16,28 +24,27 @@ var_dump($_SESSION);
   <form action="../src/traitement/TraitementModifUtilisateur.php" method="post">
     <input type="hidden" name="action" value="modification">
     <div class="mb-3">
-      <label for="idUtilisateur" class="form-label">ID Utilisateur :</label>
-      <input type="number" class="form-control" id="idUtilisateur" name="idUtilisateur" required>
+        <input type="hidden" class="form-control" id="idUtilisateur" name="idUtilisateur" value="<?=$_SESSION["userConnecte"]['idUtilisateur']?>">
     </div>
     <div class="mb-3">
       <label for="nom" class="form-label">Nom :</label>
-      <input type="text" class="form-control" id="nom" name="nom" required>
+      <input type="text" class="form-control" id="nom" name="nom" value="<?=$result["nom"]?>">
     </div>
     <div class="mb-3">
       <label for="prenom" class="form-label">Prénom :</label>
-      <input type="text" class="form-control" id="prenom" name="prenom" required>
+      <input type="text" class="form-control" id="prenom" name="prenom" value="<?=$result["prenom"]?>">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email :</label>
-      <input type="email" class="form-control" id="email" name="email" required>
+      <input type="email" class="form-control" id="email" name="email" value="<?=$result["email"]?>">
     </div>
     <div class="mb-3">
       <label for="mdp" class="form-label">Mot de passe :</label>
-      <input type="password" class="form-control" id="mdp" name="mdp" required>
+      <input type="password" class="form-control" id="mdp" name="mdp" value="<?=$result["mdp"]?>">
     </div>
     <div class="mb-3">
       <label for="role" class="form-label">Rôle :</label>
-      <input type="text" class="form-control" id="role" name="role" required>
+      <input type="text" class="form-control" id="role" name="role" value="<?=$result["role"]?>">
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
@@ -46,8 +53,7 @@ var_dump($_SESSION);
   <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
     <input type="hidden" name="action" value="suppression">
     <div class="mb-3">
-      <label for="idUtilisateur" class="form-label">ID Utilisateur :</label>
-      <input type="number" class="form-control" id="idUtilisateur" name="idUtilisateur" required>
+      <input type="hidden" class="form-control" id="idUtilisateur" name="idUtilisateur" value="<?=$_SESSION["userConnecte"]['idUtilisateur']?>">
     </div>
     <button type="submit" class="btn btn-danger">Supprimer</button>
   </form>
