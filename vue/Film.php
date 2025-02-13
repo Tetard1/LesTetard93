@@ -74,7 +74,20 @@
             </div>
             <div class="mb-3">
                 <label for="genre" class="form-label">Genre :</label>
-                <input type="text" class="form-control" id="genre" name="genre">
+                <select class="form-control" id="genre" name="genre">
+                    <option value="">-- Sélectionner un genre --</option>
+                    <option value="Action">Action</option>
+                    <option value="Aventure">Aventure</option>
+                    <option value="Comédie">Comédie</option>
+                    <option value="Drame">Drame</option>
+                    <option value="Fantastique">Fantastique</option>
+                    <option value="Horreur">Horreur</option>
+                    <option value="Science-fiction">Science-fiction</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Documentaire">Documentaire</option>
+                    <option value="Policier">Policier</option>
+                    <option value="Romance">Romance</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="duree" class="form-label">Durée (en minutes) :</label>
