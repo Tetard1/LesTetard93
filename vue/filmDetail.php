@@ -34,15 +34,18 @@ $film = $liste->detailFilm($_GET['id']);
             border-radius: 10px;
         }
         .film-title {
+            text-align: left;
+            vertical-align:
+                    text-top;
             font-size: 65px;
             font-weight: bold;
             margin-bottom: 10px;
         }
         .film-info p {
-            word-wrap: break-word; /* Permet de couper les mots longs */
-            overflow-wrap: break-word; /* Alternative pour plus de compatibilité */
-            white-space: normal; /* Empêche le texte de rester sur une seule ligne */
-            max-width: 100%; /* S'assure que le texte reste dans la colonne */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
         }
         @media (max-width: 768px) {
             .film-info {
