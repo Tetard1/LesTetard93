@@ -58,12 +58,15 @@ session_start();
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="index-2.html">Home</a></li>
-                                <li><a href="vue/movies.html">Movies</a></li>
-                                <li><a href="vue/blog.html">News</a></li>
+                                <li><a class="active" href="#">Home</a></li>
+                                <?php if (isset($_SESSION["username"&&['role'=>'admin']])) {?>
+                                    <li><a href="/vue/Film.php">Gestion FIlm</a></li>
+                                <?php
+                                }
+                                ?>
+
+
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-								</li>
-                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
                             </ul>
 					    </div>
 					</div>
@@ -107,232 +110,6 @@ session_start();
 
 			</div>
 		</div>
-		<div class="buy-ticket">
-			<div class="container">
-				<div class="buy-ticket-area">
-					<a href="#"><i class="icofont icofont-close"></i></a>
-					<div class="row">
-						<div class="col-lg-8">
-							<div class="buy-ticket-box">
-								<h4>Buy Tickets</h4>
-								<h5>Seat</h5>
-								<h6>Screen</h6>
-								<div class="ticket-box-table">
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>5</td>
-										</tr>
-									</table>
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-											<td class="active">1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-									<table>
-										<tr>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>2</td>
-										</tr>
-										<tr>
-											<td>3</td>
-										</tr>
-										<tr>
-											<td>4</td>
-										</tr>
-										<tr>
-											<td>5</td>
-										</tr>
-									</table>
-									<table class="ticket-table-seat">
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-											<td>1</td>
-										</tr>
-									</table>
-								</div>
-								<div class="ticket-box-available">
-									<input type="checkbox" />
-									<span>Available</span>
-									<input type="checkbox" checked />
-									<span>Unavailable</span>
-									<input type="checkbox" />
-									<span>Selected</span>
-								</div>
-								<a href="#" class="theme-btn">previous</a>
-								<a href="#" class="theme-btn">Next</a>
-							</div>
-						</div>
-						<div class="col-lg-3 offset-lg-1">
-							<div class="buy-ticket-box mtr-30">
-								<h4>Your Information</h4>
-								<ul>
-									<li>
-										<p>Location</p>
-										<span>HB Cinema Box Corner</span>
-									</li>
-									<li>
-										<p>TIME</p>
-										<span>2018.07.09   20:40</span>
-									</li>
-									<li>
-										<p>Movie name</p>
-										<span>Home Alone</span>
-									</li>
-									<li>
-										<p>Ticket number</p>
-										<span>2 Adults, 2 Children, 2 Seniors</span>
-									</li>
-									<li>
-										<p>Price</p>
-										<span>89$</span>
-									</li>
-								</ul>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -444,7 +221,6 @@ session_start();
 								</div>
 								<div class="slide-trailor">
 									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
 								</div>
 							</div>
 						</div>
@@ -632,9 +408,9 @@ session_start();
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
 							<ul>
-								<li data-filter="*" class="active">Latest</li>
-								<li data-filter=".soon">Comming Soon</li>
-								<li data-filter=".top">Top Rated</li>
+								<li data-filter="*" class="active">A l'affiche</li>
+								<li data-filter=".soon">Bientôt</li>
+								<li data-filter=".top">Les mieux nôté</li>
 								<li data-filter=".released">Recently Released</li>
 							</ul>
 						</div>
