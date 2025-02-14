@@ -51,7 +51,16 @@ session_start();
 						</form>
 						<ul>
 							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+                            <?php if (isset($_SESSION["userConnecte"&&['role'=>'admin']]))
+                            {
+                                echo"test";
+                            }
+                            else{  ?>
+                                <li><a class="login-popup" href="#">Login</a></li>
+                            <?php
+                            }
+                            ?>
+
 							<li><a  href="src/traitement/DecoTraitement.php">Deconnexion</a></li>
 						</ul>
 					</div>
@@ -60,7 +69,7 @@ session_start();
 					    <div class="mainmenu">
                             <ul id="primary-menu">
                                 <li><a class="active" href="#">Home</a></li>
-                                <?php if (isset($_SESSION["username"&&['role'=>'admin']])) {?>
+                                <?php if (isset($_SESSION["userConnecte"&&['role'=>'admin']])) {?>
                                     <li><a href="/vue/Film.php">Gestion FIlm</a></li>
                                 <?php
                                 }
@@ -75,7 +84,7 @@ session_start();
 			</div>
 		</header>
         <?php if(isset($_SESSION["userConnecte"])){
-            echo"<h1>test";
+
             }
             else{
 					?>
