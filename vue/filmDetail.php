@@ -67,8 +67,8 @@ $film = $liste->detailFilm($_GET['id']);
 
             <!-- Boutons Modifier et Supprimer -->
             <div class="btn-container">
-                <button onclick="window.location.href='film.php'" class="btn btn-warning">Modifier</button>
-                <button onclick="window.location.href='film.php'" class="btn btn-danger">Supprimer</button>
+                <a href="traitementModificationFilm.php?id=<?= $film['id_films'] ?>"><button type='button' class='btn btn-warning'>Modifier</button></a>
+                <a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a>
 
             </div>
         </div>
