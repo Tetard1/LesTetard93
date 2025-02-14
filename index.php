@@ -67,22 +67,31 @@
 				</div>
 			</div>
 		</header>
-		<div class="login-area">
-			<div class="login-box">
-				<a href="#"><i class="icofont icofont-close"></i></a>
-				<h2>LOGIN</h2>
+        <?php if($_SESSION){
+            echo"<h1>test";
+            }
+            else{
+					?>
+        <div class="login-area">
+            <div class="login-box">
+                <a href="#"><i class="icofont icofont-close"></i></a>
+
+                <h2>LOGIN</h2>
                 <form method="POST" action="src/traitement/TraitementConnexion.php">
                     <h6>EMAIL ADDRESS</h6>
                     <input type="email" name="email" style="color:black;"/>
                     <h6>PASSWORD</h6>
                     <input type="password" name="mdp" style="color:black;"/>
                     <div class="login-remember">
-						<input type="checkbox" />
-						<span>Remember Me</span>
-					</div>
-					<div class="login-signup">
+                        <input type="checkbox" />
+                        <span>Remember Me</span>
+                    </div>
+                    <div class="login-signup">
                         <span><a href="vue/Inscription.html">SIGNUP</a></span>
-					</div>
+                    </div>
+                    <?php
+                    }
+                    ?>
 					<input class="theme-btn" style="color: black" type="submit" value="LOG IN">
 					<div class="login-social">
 						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
