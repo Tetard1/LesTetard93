@@ -108,7 +108,7 @@ $resultat=$seanceRepo->afficherSeances();
 
         echo "</td>
         <td>" . $seance['prix'] . "</td>
-        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
+        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
         <td><a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
     </tr>";
     }
