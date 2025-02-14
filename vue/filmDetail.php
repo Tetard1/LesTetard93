@@ -64,6 +64,13 @@ $film = $liste->detailFilm($_GET['id']);
             <p class="text-muted"><?=$film->getDescription()?></p>
             <p><strong>Durée : </strong> <?=$film->getDuree()?> min </p>
             <p><strong>Genre : </strong> <?=$film->getGenre()?></p>
+
+            <!-- Boutons Modifier et Supprimer -->
+            <div class="btn-container">
+                <button onclick="window.location.href='film.php'" class="btn btn-warning">Modifier</button>
+                <button onclick="window.location.href='film.php'" class="btn btn-danger">Supprimer</button>
+
+            </div>
         </div>
         <!-- Colonne de droite (Affiche) -->
         <div class="col-md-5">

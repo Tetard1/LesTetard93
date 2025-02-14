@@ -26,9 +26,9 @@ if(empty($_POST["nom"]) ||
     $resultat = $repository->inscription($user);
 
     if($resultat == true){
-        header("Location: ../../../index.php");
+        header("Location: ../../index.php");
     }else{
-        header("Location: ../../../index.php");
+        header("Location: ../../index.php");
     }
 
 }
