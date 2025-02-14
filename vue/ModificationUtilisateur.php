@@ -100,10 +100,6 @@ $result=$repository->afficherUtilisateur($user);
       <label for="mdp" class="form-label">Mot de passe :</label>
       <input type="password" class="form-control" id="mdp" name="mdp" value="<?=$result["mdp"]?>">
     </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">Rôle :</label>
-      <input type="text" class="form-control" id="role" name="role" value="<?=$result["role"]?>">
-    </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
 

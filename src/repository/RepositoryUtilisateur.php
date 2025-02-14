@@ -19,15 +19,14 @@ class repositoryUtilisateur
         $donne = $req2->fetch();
         var_dump($donne);
         if ($donne == NULL) {
-            $sql = 'INSERT INTO utilisateur(nom,prenom,email,mdp,role) 
-                Values (:nom,:prenom,:email,:mdp,:role)';
+            $sql = 'INSERT INTO utilisateur(nom,prenom,email,mdp) 
+                Values (:nom,:prenom,:email,:mdp)';
             $req = $this->bdd->getBdd()->prepare($sql);
             $res = $req->execute(array(
                 'nom' => $user->getNom(),
                 'prenom' => $user->getPrenom(),
                 'email' => $user->getEmail(),
                 'mdp' => $user->getMdp(),
-                'role' => $user->getRole(),
             ));
             if ($res) {
                 return true;
@@ -56,7 +55,6 @@ class repositoryUtilisateur
             $user->setNom($donne['nom']);
             $user->setPrenom($donne['prenom']);
             $user->setEmail($donne['email']);
-            $user->setRole($donne['role']);
             $user->setMdp($donne['mdp']);
             $user->setIdUtilisateur($donne['id_utilisateur']);
 
@@ -71,14 +69,13 @@ class repositoryUtilisateur
     public function modification(Utilisateur $user)
     {
         //var_dump($_POST);
-        $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role = :role WHERE id_utilisateur = :id_utilisateur';
+        $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp WHERE id_utilisateur = :id_utilisateur';
         $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
         $resmodification = $reqmodification->execute(array(
             'nom' => $user->getNom(),
             'prenom' => $user->getPrenom(),
             'email' => $user->getEmail(),
             'mdp' => $user->getMdp(),
-            'role' => $user->getRole(),
             'id_utilisateur' => $user->getIdUtilisateur()
         ));
         header("Location: ../../vue/ModificationUtilisateur.php");
