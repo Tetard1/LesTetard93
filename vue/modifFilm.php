@@ -83,7 +83,7 @@ $film = $filmRepository->detailFilm($_GET["id"]);
         <div class="mb-3">
             <label for="genre" class="form-label">Genre :</label>
             <select class="form-control" id="genre" name="genre" value="<?=$film->getGenre()?>">
-                <option value="">-- Sélectionner un genre --</option>
+                <option value=""><-- Sélectionner un genre --></option>
                 <option value="Action">Action</option>
                 <option value="Aventure">Aventure</option>
                 <option value="Comédie">Comédie</option>
@@ -106,9 +106,8 @@ $film = $filmRepository->detailFilm($_GET["id"]);
             <input type="text" class="form-control" id="affiche" name="affiche" value="<?=$film->getImage()?>">
         </div>
         <input type="hidden" name="idFilm" value="<?=$film->getId()?>">
-        <input type="submit" value="liste" class="btn btn-primary" formaction="filmAffiche.php">
-        <input type="submit" value="Envoyer" class="btn btn-primary" >
-        <input type="reset" value="Annuler" class="btn btn-primary" formaction="./">
+        <input type="submit" value="Modifier" class="btn btn-primary" >
+        <input type="reset" value="Supprimer" class="btn btn-primary" formaction="./">
     </form>
 
 

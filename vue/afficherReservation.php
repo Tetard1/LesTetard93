@@ -32,8 +32,8 @@ session_start();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
+                <li><a class="dropdown-item" href="film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
             </ul>

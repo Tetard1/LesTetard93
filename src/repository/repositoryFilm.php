@@ -23,21 +23,12 @@ class repositoryFilm
         header('location:../../vue/filmAffiche.php');
     }
 
-
-    public function modifFilm(Film $film)
+    public function suppressionFilm(Film $film)
     {
-        $sql = 'UPDATE film SET titre = :titre, description = :description, genre = :genre, duree = :duree, affiche = :affiche';
-        $reqmodif = this->bdd->getBDD()->prepare($sql);
-        $resmodif = $reqmodif->execute(array(
-            'titre' => $film->getTitre(),
-            'description' => $film->getDescription(),
-            'genre' => $film->getGenre(),
-            'duree' => $film->getDuree(),
-            'affiche' => $film->getImage()
-        ));
-            return $resmodif ? "Modification réussie" : "Échec de la modification";
-        }
-
+        $sql = 'DELETE FROM films WHERE id = :id';
+        $req = $this->bdd->getBDD()->prepare($sql);
+        $req->execute(array('id' => $film->getId()));
+    }
 
         public
         function detailFilm($id)
@@ -71,4 +62,4 @@ class repositoryFilm
 
             return $reqFilm->fetchAll();
         }
-    }
+}
