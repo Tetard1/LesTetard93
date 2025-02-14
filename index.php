@@ -83,7 +83,7 @@
 					<div class="login-signup">
                         <span><a href="vue/Inscription.html">SIGNUP</a></span>
 					</div>
-					<input class="theme-btn" type="submit" value="LOG IN">
+					<input class="theme-btn" style="color: black" type="submit" value="LOG IN">
 					<div class="login-social">
 						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
 						<a href="#"><i class="icofont icofont-social-twitter"></i></a>
