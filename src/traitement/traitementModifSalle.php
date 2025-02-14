@@ -21,4 +21,7 @@ $salle = new Salle(array(
 var_dump($salle);
 $repository = new SalleRepo();
 $resultat = $repository->modificationSalle($salle);
+if($resultat){
+    header("Location: ../../vue/afficherSalle.php");
+}
 
