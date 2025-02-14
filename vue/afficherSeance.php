@@ -71,7 +71,6 @@ $resultat=$seanceRepo->afficherSeances();
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
-                <li><a class="dropdown-item" href="suppSalle.php">Supprimer Des Salles</a></li>
             </ul>
         </li>
     </menu>
