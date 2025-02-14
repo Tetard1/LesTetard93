@@ -58,12 +58,15 @@ session_start();
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="index-2.html">Home</a></li>
-                                <li><a href="vue/movies.html">Movies</a></li>
-                                <li><a href="vue/blog.html">News</a></li>
+                                <li><a class="active" href="#">Home</a></li>
+                                <?php if (isset($_SESSION["username"&&['role'=>'admin']])) {?>
+                                    <li><a href="/vue/Film.php">Gestion FIlm</a></li>
+                                <?php
+                                }
+                                ?>
+
+
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-								</li>
-                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
                             </ul>
 					    </div>
 					</div>
