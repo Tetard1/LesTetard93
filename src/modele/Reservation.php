@@ -16,7 +16,7 @@ class Reservation
         {
             $methode = 'set'.ucfirst($key);
 
-            if (method_exists(array($this, $methode)))
+            if (method_exists($this, $methode))
             {
                 $this->$methode($valeur);
             }
@@ -85,6 +85,22 @@ class Reservation
     public function setDateReservation($date_reservation)
     {
         $this->date_reservation = $date_reservation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRefUtilisateur()
+    {
+        return $this->refUtilisateur;
+    }
+
+    /**
+     * @param mixed $refUtilisateur
+     */
+    public function setRefUtilisateur($refUtilisateur)
+    {
+        $this->refUtilisateur = $refUtilisateur;
     }
 
 
