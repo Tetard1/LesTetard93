@@ -92,7 +92,7 @@ $resultat=$salleRepo->afficherSalle();
         echo "<tr>
                 <td>" . $salle["nom_salle"] . "</td>
                 <td>" . $salle['place_totale'] . "</td>
-                <td><a href='modifSalle.php?id=".$salle["id_salle"]."'><button type='button' class='btn btn-primary'>Modifier</button></a></td>
+                <td><a href='modifSalle.php?id=".$salle["id_salle"]."'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
                 <td><a href='suppSalle.php?id=". $salle["id_salle"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
                </tr>";
     }
