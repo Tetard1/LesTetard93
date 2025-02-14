@@ -52,6 +52,7 @@ session_start();
 						<ul>
 							<li><a href="#">Welcome Guest!</a></li>
 							<li><a class="login-popup" href="#">Login</a></li>
+							<li><a  href="src/traitement/DecoTraitement.php">Deconnexion</a></li>
 						</ul>
 					</div>
 					<div class="menu-area">
@@ -99,12 +100,6 @@ session_start();
                     }
                     ?>
 					<input class="theme-btn" style="color: black" type="submit" value="LOG IN">
-					<div class="login-social">
-						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
-						<a href="#"><i class="icofont icofont-social-twitter"></i></a>
-						<a href="#"><i class="icofont icofont-social-linkedin"></i></a>
-						<a href="#"><i class="icofont icofont-social-google-plus"></i></a>
-						<a href="#"><i class="icofont icofont-camera"></i></a>
 					</div>
 				</form>
 
