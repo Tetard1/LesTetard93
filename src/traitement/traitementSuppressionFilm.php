@@ -1,29 +1,22 @@
 <?php
-include "../repository/repositoryFilm.php";
-require_once "../bdd/BDD.php";
+
+require_once "../Bdd/BDD.php";
 require_once "../modele/film.php";
+require_once "../repository/repositoryFilm.php";
+
 var_dump($_POST);
+//exit();
+if(isset($_POST['idFilm'])) {
+    $id = $_POST['idFilm'];
+    $film = new Film(['id' => $id]);
 
-if(empty($_POST["titre"]) ||
-    empty($_POST["description"]) ||
-    empty($_POST["duree"]) ||
-    empty($_POST["genre"]))
-{
-    echo "Erreur : Tous les champs doivent être remplis";
-    return;
+    $repositoryFilm = new RepositoryFilm();
+    $suppression = $repositoryFilm->suppressionFilm($film);
+    if ($suppression) {
+        header('Location:../../vue/filmAffiche.php');
+    } else {
+        echo "erreur";
+    }
+}else{
+    header('Location: ../../vue/filmAffiche.php');
 }
-
-$film = new Film(array(
-    'titre' => $_POST['titre'],
-    'description' => $_POST['description'],
-    'duree' => $_POST['duree'],
-    'genre' => $_POST['genre']
-));
-
-var_dump($film);
-$repository = new repositoryFilm();
-$resultat = $repository->modifFilm($film);
-if($resultat){
-    header("Location: ../../vue/filmAffiche.php");
-}
-

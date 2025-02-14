@@ -78,7 +78,7 @@ $film = $filmRepository->detailFilm($_GET["id"]);
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description :</label>
-            <textarea class="form-control" id="description" name="description" value="<?=$film->getDescription()?>"></textarea>
+            <textarea class="form-control" id="description" name="description" ><?=$film->getDescription()?></textarea>
         </div>
         <div class="mb-3">
             <label for="genre" class="form-label">Genre :</label>
@@ -88,7 +88,7 @@ $film = $filmRepository->detailFilm($_GET["id"]);
                 <option value="Aventure">Aventure</option>
                 <option value="Comédie">Comédie</option>
                 <option value="Drame">Drame</option>
-                <option value="Fantastique">Fantastique</option>
+                <option value="Fantastique" >Fantastique</option>
                 <option value="Horreur">Horreur</option>
                 <option value="Science-fiction">Science-fiction</option>
                 <option value="Animation">Animation</option>

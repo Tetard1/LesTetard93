@@ -4,7 +4,6 @@ require_once "../modele/film.php";
 require_once "../repository/repositoryFilm.php";
 require_once "../Bdd/BDD.php";
 
-var_dump($_POST);
 if(isset($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["genre"]) && !empty($_POST["duree"]) && !empty($_POST["affiche"])) {
 
     $film = new Film(array(

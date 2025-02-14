@@ -17,7 +17,9 @@ $film = new Film(array(
     'titre' => $_POST['titre'],
     'description' => $_POST['description'],
     'duree' => $_POST['duree'],
-    'genre' => $_POST['genre']
+    'genre' => $_POST['genre'],
+    'id' => $_POST['idFilm'],
+    'image' => $_POST['affiche']
 ));
 
 var_dump($film);

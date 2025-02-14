@@ -22,12 +22,26 @@ class repositoryFilm
         echo "le film a bien été ajouter";
         header('location:../../vue/filmAffiche.php');
     }
-
+    public function modifFilm(Film $film)
+    {
+        $sql = 'UPDATE `films` SET `titre`=:titre,`description`=:description,`genre`=:genre,`durée`=:duree,`affiche`=:affiche WHERE id_films = :id';
+        $req = $this->bdd->getBDD()->prepare($sql);
+        $req->execute(array(
+            'titre' => $film->getTitre(),
+            'description' => $film->getDescription(),
+            'genre' => $film->getGenre(),
+            'duree' => $film->getDuree(),
+            'affiche' => $film->getImage(),
+            'id' => $film->getId()
+        ));
+        header('location:../../vue/filmAffiche.php');
+    }
     public function suppressionFilm(Film $film)
     {
-        $sql = 'DELETE FROM films WHERE id = :id';
+        $sql = 'DELETE FROM films WHERE id_films = :id';
         $req = $this->bdd->getBDD()->prepare($sql);
-        $req->execute(array('id' => $film->getId()));
+        return $req->execute(array(
+            'id' => $film->getId()));
     }
 
         public
