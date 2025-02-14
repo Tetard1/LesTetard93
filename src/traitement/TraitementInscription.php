@@ -6,8 +6,7 @@ require_once "../modele/Utilisateur.php";
 if(empty($_POST["nom"]) ||
     empty($_POST["prenom"]) ||
     empty($_POST["email"]) ||
-    empty($_POST["mdp"]) ||
-    empty($_POST["role"])
+    empty($_POST["mdp"])
 ){
 
     echo "C'est pas bien tetard";
@@ -19,7 +18,6 @@ if(empty($_POST["nom"]) ||
         'prenom' => $_POST['prenom'],
         'email' => $_POST['email'],
         'mdp' => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
-        'role' => $_POST['role'],
 
     ));
     $repository = new repositoryUtilisateur();

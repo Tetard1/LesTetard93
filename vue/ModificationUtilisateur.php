@@ -31,13 +31,13 @@ $result=$repository->afficherUtilisateur($user);
             </button>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
+            <a class="nav-link active" aria-current="page" href="/vue/ModificationUtilisateur.php">Mon compte</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu">  
                 <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
                 <li><a class="dropdown-item" href="#">Liste des Films</a></li>
                 <li><hr class="dropdown-divider"></li>
