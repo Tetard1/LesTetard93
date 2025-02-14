@@ -1,4 +1,5 @@
 <?php
+require_once "../src/bdd/BDD.php";
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 $filmRepository = new repositoryFilm();
@@ -69,7 +70,7 @@ $film = $filmRepository->detailFilm($_GET["id"]);
 </header>
 <body>
 <div class="container mt-4">
-    <h1>Ajouter un Nouveau Film</h1>
+    <h1>Modifier un Film</h1>
     <form action="../src/traitement/traitementModificationFilm.php" method="post">
         <div class="mb-3">
             <label for="titre" class="form-label">Titre du film :</label>
@@ -77,11 +78,11 @@ $film = $filmRepository->detailFilm($_GET["id"]);
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description :</label>
-            <textarea class="form-control" id="description" name="description"></textarea>
+            <textarea class="form-control" id="description" name="description" value="<?=$film->getDescription()?>"></textarea>
         </div>
         <div class="mb-3">
             <label for="genre" class="form-label">Genre :</label>
-            <select class="form-control" id="genre" name="genre">
+            <select class="form-control" id="genre" name="genre" value="<?=$film->getGenre()?>">
                 <option value="">-- Sélectionner un genre --</option>
                 <option value="Action">Action</option>
                 <option value="Aventure">Aventure</option>
@@ -98,11 +99,11 @@ $film = $filmRepository->detailFilm($_GET["id"]);
         </div>
         <div class="mb-3">
             <label for="duree" class="form-label">Durée (en minutes) :</label>
-            <input type="number" class="form-control" id="duree" name="duree">
+            <input type="number" class="form-control" id="duree" name="duree" value="<?=$film->getDuree()?>">
         </div>
         <div class="mb-3">
             <label for="affiche" class="form-label">Affiche du film (URL) :</label>
-            <input type="text" class="form-control" id="affiche" name="affiche">
+            <input type="text" class="form-control" id="affiche" name="affiche" value="<?=$film->getImage()?>">
         </div>
         <input type="hidden" name="idFilm" value="<?=$film->getId()?>">
         <input type="submit" value="liste" class="btn btn-primary" formaction="filmAffiche.php">

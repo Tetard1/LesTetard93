@@ -2,9 +2,12 @@
 class repositoryFilm
 {
     private $bdd;
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->bdd = new BDD();
     }
+
     public function ajoutFilm(Film $film)
     {
         $sql = 'INSERT INTO films(titre,description,genre,durée,affiche) VALUES (:titre,:description,:genre,:duree,:affiche)';
@@ -21,33 +24,51 @@ class repositoryFilm
     }
 
 
-    public function detailFilm($id)
+    public function modifFilm(Film $film)
     {
-        $sql = 'SELECT * FROM films WHERE id_films = :id';
-        $req = $this->bdd->getBDD()->prepare($sql);
-        $req->execute(array(
-            'id' => $id
+        $sql = 'UPDATE film SET titre = :titre, description = :description, genre = :genre, duree = :duree, affiche = :affiche';
+        $reqmodif = this->bdd->getBDD()->prepare($sql);
+        $resmodif = $reqmodif->execute(array(
+            'titre' => $film->getTitre(),
+            'description' => $film->getDescription(),
+            'genre' => $film->getGenre(),
+            'duree' => $film->getDuree(),
+            'affiche' => $film->getImage()
         ));
-        $film = $req->fetch(PDO::FETCH_ASSOC);
-        $filmObj = new Film(
-            [
-                "id" => $film['id_films'],
-                "titre" => $film['titre'],
-                "description" => $film['description'],
-                "genre" => $film['genre'],
-                "duree" => $film['durée'],
-                "image" => $film['affiche'],
-            ]
-        );
-        return $filmObj;
+            return $resmodif ? "Modification réussie" : "Échec de la modification";
+        }
 
-    }
-    public function filmAffiche()
-    {
-        $sqlFilm = 'SELECT * FROM films';
-        $reqFilm = $this->bdd->getBDD()->prepare($sqlFilm);
-        $reqFilm->execute();
 
-        return $reqFilm->fetchAll();
+        public
+        function detailFilm($id)
+        {
+            $sql = 'SELECT * FROM films WHERE id_films = :id';
+            $req = $this->bdd->getBDD()->prepare($sql);
+            $req->execute(array(
+                'id' => $id
+            ));
+            $film = $req->fetch(PDO::FETCH_ASSOC);
+            $filmObj = new Film(
+                [
+                    "id" => $film['id_films'],
+                    "titre" => $film['titre'],
+                    "description" => $film['description'],
+                    "genre" => $film['genre'],
+                    "duree" => $film['durée'],
+                    "image" => $film['affiche'],
+                ]
+            );
+            return $filmObj;
+
+        }
+
+        public
+        function filmAffiche()
+        {
+            $sqlFilm = 'SELECT * FROM films';
+            $reqFilm = $this->bdd->getBDD()->prepare($sqlFilm);
+            $reqFilm->execute();
+
+            return $reqFilm->fetchAll();
+        }
     }
-}

@@ -5,8 +5,6 @@ require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
-
-
 ?>
 
 <!DOCTYPE html>
