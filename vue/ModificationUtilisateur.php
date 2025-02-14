@@ -31,13 +31,13 @@ $result=$repository->afficherUtilisateur($user);
             </button>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
+            <a class="nav-link active" aria-current="page" href="/vue/ModificationUtilisateur.php">Mon compte</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu">  
                 <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
                 <li><a class="dropdown-item" href="#">Liste des Films</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -99,6 +99,10 @@ $result=$repository->afficherUtilisateur($user);
     <div class="mb-3">
       <label for="mdp" class="form-label">Mot de passe :</label>
       <input type="password" class="form-control" id="mdp" name="mdp" value="<?=$result["mdp"]?>">
+    </div>
+    <div class="mb-3">
+      <label for="role" class="form-label">Rôle :</label>
+      <input type="text" class="form-control" id="role" name="role" value="<?=$result["role"]?>">
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
