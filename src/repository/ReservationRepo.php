@@ -43,7 +43,17 @@ class ReservationRepo {
         }
     }
     public function modifierReservation(Reservation $reservation){
-        
+        $req = 'UPDATE `reservation` SET ref_seance=:refSeance,ref_salle=:refSalle,
+heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_reservation=:idReservation';
+        $modif = $this->bdd->getBdd()->prepare($req);
+        $req = $modif->execute(array(
+            'idSeance' => $seance->getIdSeance(),
+            'refSalle' => $seance->getRefSalle(),
+            'refFilms' => $seance->getRefFilms(),
+            'date' => $seance->getDate(),
+            'heure' => $seance->getHeure(),
+            'nbPlcDispo' => $seance->getNbPlcDispo(),
+            'prixPlc' => $seance->getPrixPlc()
     }
 
 }
