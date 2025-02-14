@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="zxx">
 
@@ -67,7 +70,7 @@
 				</div>
 			</div>
 		</header>
-        <?php if($_SESSION){
+        <?php if(isset($_SESSION["userConnecte"])){
             echo"<h1>test";
             }
             else{
