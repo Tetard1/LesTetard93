@@ -8,7 +8,7 @@ if (empty($_POST["email"]) ||
 {
 
     echo "C'est pas bien tetard";
-    header("Location: ../../vue/Inscription.html");
+    header("Location: ../../index.php");
 } else {
 
     $user = new Utilisateur(array(
@@ -26,9 +26,9 @@ if (empty($_POST["email"]) ||
             "idUtilisateur" => $resultat->getIdUtilisateur(),
             "role" => $resultat->getRole()
         ];
-        header("Location: ../../vue/ModificationUtilisateur.php");
+        header("Location: ../../index.php");
     } else {
-       header("Location: ../../vue/Connexion.html");
+       header("Location: ../../index.php");
     }
 
 }

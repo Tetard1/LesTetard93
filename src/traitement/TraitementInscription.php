@@ -11,7 +11,7 @@ if(empty($_POST["nom"]) ||
 ){
 
     echo "C'est pas bien tetard";
-    header("Location: ../../vue/Connexion.html");
+    header("Location: ../../index.php");
 }else{
 
     $user = new Utilisateur(array(
