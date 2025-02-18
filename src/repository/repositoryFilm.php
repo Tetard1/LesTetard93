@@ -19,7 +19,6 @@ class repositoryFilm
             'duree' => $film->getDuree(),
             'affiche' => $film->getImage(),
         ));
-        echo "le film a bien été ajouter";
         header('location:../../vue/filmAffiche.php');
     }
     public function modifFilm(Film $film)

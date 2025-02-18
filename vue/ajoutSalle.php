@@ -25,7 +25,7 @@ $salles = $res->fetchAll();
         <header>
             <menu class="nav">
                 <li>
-                    <a class="navbar-brand" href="#">Navbar</a>
+                    <a class="navbar-brand" href="accueil.php">Navbar</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -38,10 +38,8 @@ $salles = $res->fetchAll();
                         Films
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                        <li><a class="dropdown-item" href="#">Liste des Films</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+                        <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                        <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -49,8 +47,8 @@ $salles = $res->fetchAll();
                         Reservations
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                        <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                        <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                        <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
                     </ul>
@@ -67,15 +65,15 @@ $salles = $res->fetchAll();
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Salles
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
-                    <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
-                </ul>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Salles
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                        <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
+                    </ul>
                 </li>
             </menu>
         </header>

@@ -12,6 +12,7 @@ $listeFilm = $listeFilm->filmAffiche();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Liste des Films</title>
     <style>
         body {
@@ -75,7 +76,9 @@ $listeFilm = $listeFilm->filmAffiche();
             display: block;
         }
     </style>
-    <script>
+</head>
+<body>
+<script>
         function filterFilms() {
             let input = document.getElementById("search").value.toLowerCase();
             let rows = document.querySelectorAll("tbody tr");
@@ -83,15 +86,27 @@ $listeFilm = $listeFilm->filmAffiche();
             rows.forEach(row => {
                 let title = row.cells[1].innerText.toLowerCase();
                 row.style.display = title.includes(input) ? "" : "none";
-            });
-        }
-    </script>
-    
-</head>
+                });
+            }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+            new bootstrap.Dropdown(dropdown);
+        });
+    });
+</script>
+
+<hr>
 <header>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="accueil.php">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -104,10 +119,8 @@ $listeFilm = $listeFilm->filmAffiche();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -115,8 +128,8 @@ $listeFilm = $listeFilm->filmAffiche();
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
@@ -133,10 +146,10 @@ $listeFilm = $listeFilm->filmAffiche();
             </ul>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Salles
             </a>
-            <ul class="dropdown-menu">
+        <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -144,8 +157,8 @@ $listeFilm = $listeFilm->filmAffiche();
             </ul>
         </li>
     </menu>
+    <hr>
 </header>
-<body>
 <div class="container">
     <div class="top-section">
         <h2>Liste des Films <button onclick="window.location.href='film.php'">Ajouter un film</button></h2>

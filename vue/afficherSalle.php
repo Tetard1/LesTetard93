@@ -17,12 +17,14 @@ $resultat=$salleRepo->afficherSalle();
     <title>Gestion Des Salles</title>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 <hr>
 <header>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="accueil.php">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,10 +37,8 @@ $resultat=$salleRepo->afficherSalle();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -46,8 +46,8 @@ $resultat=$salleRepo->afficherSalle();
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
