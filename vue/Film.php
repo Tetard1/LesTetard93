@@ -98,9 +98,9 @@
                 <input type="text" class="form-control" id="affiche" name="affiche">
             </div>
 
-            <input type="submit" value="liste" class="btn btn-primary" formaction="filmAffiche.php">
-            <input type="submit" value="Envoyer" class="btn btn-primary" >
-            <input type="reset" value="Annuler" class="btn btn-primary" formaction="./">
+            <a href="filmAffiche.php"><button type='button' class='btn btn-primary'">retour</button></a>
+            <a><input type="submit" value="ajouter" class="btn btn-primary"></a>
+            <input type="reset" value="reset" class="btn btn-primary">
         </form>
 
 

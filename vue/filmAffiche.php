@@ -35,6 +35,10 @@ $listeFilm = $listeFilm->filmAffiche();
             align-items: flex-start;
             margin-bottom: 15px;
         }
+        .top-section h2 {
+            text-align: center;
+            width: 100%;
+        }
         .top-section button {
             margin: 3px;
             padding: 5px 10px;
@@ -84,7 +88,7 @@ $listeFilm = $listeFilm->filmAffiche();
             let rows = document.querySelectorAll("tbody tr");
 
             rows.forEach(row => {
-                let title = row.cells[1].innerText.toLowerCase();
+                let title = row.cells[0].innerText.toLowerCase();
                 row.style.display = title.includes(input) ? "" : "none";
                 });
             }
@@ -160,9 +164,9 @@ $listeFilm = $listeFilm->filmAffiche();
     <hr>
 </header>
 <div class="container">
-    <div class="top-section">
-        <h2>Liste des Films <button onclick="window.location.href='film.php'">Ajouter un film</button></h2>
-    </div>
+        <div class="top-section">
+            <h2>Liste des Films</h2>
+        </div>
 
 
     <input type="text" id="search" class="search-bar" onkeyup="filterFilms()" placeholder="Rechercher un film...">
