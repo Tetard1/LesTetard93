@@ -86,7 +86,65 @@ $listeFilm = $listeFilm->filmAffiche();
             });
         }
     </script>
+    
 </head>
+<header>
+    <menu class="nav">
+        <li>
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Films
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Reservations
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Seances
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salles
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
+            </ul>
+        </li>
+    </menu>
+</header>
 <body>
 <div class="container">
     <div class="top-section">
@@ -99,7 +157,6 @@ $listeFilm = $listeFilm->filmAffiche();
     <table>
         <thead>
         <tr>
-            <th>Id Film</th>
             <th>Titre</th>
             <th>Description</th>
             <th>Genre</th>
@@ -113,7 +170,6 @@ $listeFilm = $listeFilm->filmAffiche();
         for ($i = 0; $i < count($listeFilm); $i++) {
             ?>
             <tr>
-                <td><?= $listeFilm[$i]['id_films']?></td>
                 <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>"><?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
                 <td><?= $listeFilm[$i]['description'] ?></td>
                 <td><?= $listeFilm[$i]['genre'] ?></td>
