@@ -99,8 +99,8 @@
             </div>
 
             <a href="filmAffiche.php"><button type='button' class='btn btn-primary'">retour</button></a>
-            <a><input type="submit" value="ajouter" class="btn btn-primary"></a>
-            <input type="reset" value="reset" class="btn btn-primary">
+            <a><input type="submit" value="ajouter" class="btn btn-warning"></a>
+            <input type="reset" value="reset" class="btn btn-danger">
         </form>
 
 
