@@ -1,7 +1,7 @@
 <?php
 require_once '../src/bdd/Bdd.php';
-require_once '../src/modele/Seance.php';
-require_once '../src/repository/SeanceRepo.php';
+require_once '../src/modele/Reservation.php';
+require_once '../src/repository/ReservationRepo.php';
 session_start();
 
 ?>
@@ -79,3 +79,44 @@ session_start();
     </menu>
 </header>
 <hr>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Nom de la Salle</th>
+        <th scope="col">Titre du Film</th>
+        <th scope="col">Date</th>
+        <th scope="col">Heure</th>
+        <th scope="col">Place Disponibles</th>
+        <th scope="col">Prix</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($resultat as $seance) {
+        echo "<tr>
+        <td>" . $seance["nom_salle"] . "</td>
+        <td>" . $seance["titre"] . "</td>
+        <td>" . $seance['date'] . "</td>
+        <td>" .$seance['heure_complete']. "</td>
+        <td>";
+
+        // Corrected PHP logic to check 'nb_plc_dispo'
+        if ($seance['nb_plc_dispo'] == null) {
+            echo $seance['nb_place_dispo'];
+        } else {
+            echo $seance['nb_plc_dispo'];
+        }
+
+        echo "</td>
+        <td>" . $seance['prix'] . "</td>
+        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
+        <td><a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
+    </tr>";
+    }
+    ?>
+    </tbody>
+</table>
+</body>
+</html>

@@ -11,10 +11,9 @@ class ReservationRepo {
         $req=$this->bdd->getBdd()->prepare($sql);
         $res=$req->execute(array(
             'idReservation' => $reservation->getIdReservation(),
-            'nbPlaceReserver' => $reservation->getRefSalle(),
-            'refSeance' => $reservation->getRefFilms(),
-            'refUtilisateur' => $reservation->getDate(),
-            'dateReservation' => $reservation->getHeure()
+            'nbPlaceReserver' => $reservation->getNbPlaceReserver(),
+            'refSeance' => $reservation->getRefSeance(),
+            'refUtilisateur' => $reservation->getRefUtilisateur(),
         ));
         if($res){
             return true;
@@ -56,11 +55,19 @@ heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_reservation=:idRese
         ));
     }
     public function getSeances($id){
-        $date="SELECT * FROM seance WHERE ref_films=:films";
-        $reservation = $this->bdd->getBdd()->query($date);
-        $reservation->execute(array(
+        $date="SELECT id_seance, date, prix FROM seance WHERE ref_films=:films";
+        $seance = $this->bdd->getBdd()->prepare($date);
+        $seance->execute(array(
             'films'=>$id
         ));
-        return $reservation->fetchAll();
+        return $seance->fetchAll();
+    }
+    public function afficherFilms($id){
+        $film="SELECT * FROM films WHERE id_films=:films";
+        $films = $this->bdd->getBdd()->prepare($film);
+        $films->execute(array(
+            'films'=>$id
+        ));
+        return $films->fetch();
     }
 }
