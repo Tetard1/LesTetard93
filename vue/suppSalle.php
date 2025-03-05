@@ -27,11 +27,11 @@ var_dump($resultat);
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<hr>
 <header>
+    <hr>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,15 +39,13 @@ var_dump($resultat);
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
         </li>
-        <  <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -55,8 +53,8 @@ var_dump($resultat);
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="#">Liste des Reservations</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
@@ -68,8 +66,6 @@ var_dump($resultat);
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
                 <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seances</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -91,8 +87,8 @@ var_dump($resultat);
             </ul>
         </li>
     </menu>
+    <hr>
 </header>
-<hr>
 <h1>Suppression des Salles</h1>
 <form action="../src/traitement/traitementSuppSalle.php" method="POST">
     <table>

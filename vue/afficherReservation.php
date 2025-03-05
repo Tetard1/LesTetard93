@@ -15,11 +15,11 @@ session_start();
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<hr>
 <header>
+    <hr>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="accueil.php">Navbar</a>
+            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,8 +54,6 @@ session_start();
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
                 <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seances</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -77,8 +75,8 @@ session_start();
             </ul>
         </li>
     </menu>
+    <hr>
 </header>
-<hr>
 <table class="table">
     <thead>
     <tr>
