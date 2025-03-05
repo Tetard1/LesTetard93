@@ -112,7 +112,7 @@ $listeFilm = $listeFilm->filmAffiche();
     <menu class="nav">
         <li>
             <a class="navbar-brand" href="accueil.php">
-            <img src="LesTetard93/asset/img/logo.png" style="height: 15px;"></a>
+            <img src="LesTetard93/asset/img/logo site V2.png" alt="logo" style="height: 15px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
