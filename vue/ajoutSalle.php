@@ -1,8 +1,6 @@
 <?php
 require_once '../src/bdd/Bdd.php';
 session_start();
-$_SESSION["id"]=1;
-$_SESSION["role"]="admin";
 $bdd = new Bdd();
 $req=$bdd->getBdd()->prepare("SELECT id_films,titre FROM `films`");
 $req->execute();

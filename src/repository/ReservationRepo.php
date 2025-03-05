@@ -10,7 +10,6 @@ class ReservationRepo {
         $sql= "INSERT INTO reservation (nb_place_reserver,ref_seance,ref_utilisateur) VALUES(:nbPlaceReserver,:refSeance,:refUtilisateur)";
         $req=$this->bdd->getBdd()->prepare($sql);
         $res=$req->execute(array(
-            'idReservation' => $reservation->getIdReservation(),
             'nbPlaceReserver' => $reservation->getNbPlaceReserver(),
             'refSeance' => $reservation->getRefSeance(),
             'refUtilisateur' => $reservation->getRefUtilisateur(),
