@@ -91,7 +91,7 @@ LEFT JOIN salle on id_salle=ref_salle";
     }
     public function getSalle()
     {
-        $show="SELECT id_salle,nom_salle FROM salle";
+        $show="SELECT id_salle,nom_salle,place_totale FROM salle";
         $res = $this->bdd->getBdd()->prepare($show);
         $res->execute();
         return $res->fetchAll();

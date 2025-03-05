@@ -3,8 +3,7 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
-$_SESSION["id"]=1;
-$_SESSION["role"]="admin";
+
 $seanceRepo=new SeanceRepo();
 $films=$seanceRepo->getFilm();
 $salles=$seanceRepo->getSalle();
@@ -108,15 +107,15 @@ $salles=$seanceRepo->getSalle();
                         <td><select name="refSalle" id="nomSalle">
                                 <?php
                                 foreach ($salles as $salle){
-                                    echo"<option value='".$salle["id_salle"]."'>".$salle["nom_salle"]."</option>
+                                    echo"<option value='".$salle["id_salle"]."'>".$salle["nom_salle"]." : ".$salle["place_totale"]." place"."</option>
                                     ";
                                 }
                                 ?>
                             </select></td>
                     </tr>
                     <tr>
-                        <td><label for='nbdispo'>Saisir le nombre de place disponible : </label></td>
-                        <td><input type="number" name='nbPlcDispo' id='nbdispo'></td>
+                        <td>Nombre de place disponible : </label></td>
+                        <td><?=$salles["place_totale"]?></td>
                     </tr>
                     <tr>
                         <td><label for="prix">Saisir le prix de la seance : </label></td>
