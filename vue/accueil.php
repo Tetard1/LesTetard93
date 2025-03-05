@@ -44,7 +44,7 @@ $listeFilm = $listeFilm->filmAffiche();
         .banner {
             background: url('https://source.unsplash.com/1600x600/?cinema,movie') no-repeat center;
             background-size: cover;
-            color: white;
+            color: black;
             padding: 80px 20px;
         }
 
@@ -94,7 +94,6 @@ $listeFilm = $listeFilm->filmAffiche();
             margin-top: 10px;
             font-size: 1.2em;
         }
-
         footer {
             background: #f1f1f1;
             padding: 15px;
@@ -183,7 +182,8 @@ $listeFilm = $listeFilm->filmAffiche();
 
 <!-- Bannière principale -->
 <section class="banner">
-    <h1>Bienvenue au Cinéma</h1>
+    <h1>Bonjour [nom user]</h1>
+    <p>Bienvenue dans ton cinéma préféré Plus 2</p>
     <p>Découvrez les meilleurs films du moment.</p>
 </section>
 
