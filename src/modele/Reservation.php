@@ -74,19 +74,6 @@ class Reservation
     /**
      * @return mixed
      */
-    public function getDateReservation()
-    {
-        return $this->date_reservation;
-    }
-
-    /**
-     * @param mixed $date_reservation
-     */
-    public function setDateReservation($date_reservation)
-    {
-        $this->date_reservation = $date_reservation;
-    }
-
     /**
      * @return mixed
      */
