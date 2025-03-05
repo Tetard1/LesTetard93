@@ -37,7 +37,7 @@ $result=$repository->afficherUtilisateur($user);
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
-            <ul class="dropdown-menu">  
+            <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
                 <li><a class="dropdown-item" href="#">Liste des Films</a></li>
                 <li><hr class="dropdown-divider"></li>
