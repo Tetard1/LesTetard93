@@ -1,6 +1,16 @@
 <?php
+require_once "../src/bdd/BDD.php";
+require_once "../src/repository/ReservationRepo.php";
+require_once "../src/modele/Reservation.php";
 session_start();
 var_dump($_SESSION);
+if(!isset($_GET["id"])){
+    header("Location: filmAffiche.php");
+}
+    $id=$_GET["id"];
+$reservationRepo=new ReservationRepo();
+$seances=$reservationRepo->getSeances($id);
+$films=$reservationRepo->afficherFilms($id);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -76,40 +86,37 @@ var_dump($_SESSION);
     </menu>
 </header>
 <hr>
+<h2>Reservation pour <?=$films["titre"]?></h2>
+<img src="<?=$films["affiche"]?>">
+<h2></h2>
 <form action="../src/traitement/traitementAjoutReservation.php" method="post">
-
     <table>
         <tbody>
         <tr>
             <td><input type="hidden" value="<?=$id?>"></td>
         </tr>
         <tr>
-            <td><label for='date'>Saisir une Date : </label></td>
-            <td><input type='date' name='date' id='date'></td>
+            <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>
         </tr>
         <tr>
             <td><label for="dateSeance">Veuillez choisir la seance : </label></td>
             <td><select name="refSeance" id="dateSeance">
                     <?php
-                    foreach ($seance as $seances){
-                        echo"<option value='".$seances["id_seance"]."'>".$seances["date"]."</option>
+                    foreach ($seances as $seance){
+                        echo"<option value='".$seance["id_seance"]."'>".$seance["date"]."</option>
                                     ";
                     }
                     ?>
                 </select></td>
         </tr>
         <tr>
-            <td><label for='plceReserver'>Saisir le nombre de place a reserver : </label></td>
-            <td><input type="number" name='plceReserver' id='plceReserver'></td>
-        </tr>
-        <tr>
-            <td><label for="prix">Saisir le prix de la seance : </label></td>
-            <td><input type="number" name="prixPlc" id="prix">€</td>
+            <td><label for='nbPlaceReserver'>Saisir le nombre de place a reserver : </label></td>
+            <td><input type="number" name='nbPlaceReserver' id='nbPlaceReserver'></td>
         </tr>
         <tr>
             <td>
                 <div class="col-12">
-                    <input class="btn btn-primary" type="submit" value="Ajouter ">
+                    <input class="btn btn-primary" type="submit" value="Reserver ">
                 </div>
             </td>
         </tr>

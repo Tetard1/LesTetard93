@@ -10,6 +10,7 @@ if(empty($_POST["nbPlaceReserver"])){
     $reservation = new reservation([
         'nbPlaceReserver' => $_POST["nbPlaceReserver"],
         'refSeance' => $_POST["refSeance"],
+        'refUtilisateur' => $_POST["refUtilisateur"],
     ]);
     $ReservationRepo = new ReservationRepo();
     $resultat = $ReservationRepo->ajouterReservation($reservation);
