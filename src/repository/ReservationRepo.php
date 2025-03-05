@@ -10,9 +10,11 @@ class ReservationRepo {
         $sql= "INSERT INTO reservation (nb_place_reserver,ref_seance,ref_utilisateur) VALUES(:nbPlaceReserver,:refSeance,:refUtilisateur)";
         $req=$this->bdd->getBdd()->prepare($sql);
         $res=$req->execute(array(
-            'nbPlaceReserver'=>$reservation->getNbPlaceReserver(),
-            'refSeance'=>$reservation->getRefSeance(),
-            'refUtilisateur'=>$reservation->getRefUtilisateur()
+            'idReservation' => $reservation->getIdReservation(),
+            'nbPlaceReserver' => $reservation->getRefSalle(),
+            'refSeance' => $reservation->getRefFilms(),
+            'refUtilisateur' => $reservation->getDate(),
+            'dateReservation' => $reservation->getHeure()
         ));
         if($res){
             return true;
@@ -47,13 +49,18 @@ class ReservationRepo {
 heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_reservation=:idReservation';
         $modif = $this->bdd->getBdd()->prepare($req);
         $req = $modif->execute(array(
-            'idSeance' => $seance->getIdSeance(),
-            'refSalle' => $seance->getRefSalle(),
-            'refFilms' => $seance->getRefFilms(),
-            'date' => $seance->getDate(),
-            'heure' => $seance->getHeure(),
-            'nbPlcDispo' => $seance->getNbPlcDispo(),
-            'prixPlc' => $seance->getPrixPlc()
+            'idReservation' => $reservation->getIdReservation(),
+            'nbPlaceReserver' => $reservation->getRefSalle(),
+            'refSeance' => $reservation->getRefFilms(),
+            'refUtilisateur' => $reservation->getDate()
+        ));
     }
-
+    public function getSeances($id){
+        $date="SELECT * FROM seance WHERE ref_films=:films";
+        $reservation = $this->bdd->getBdd()->query($date);
+        $reservation->execute(array(
+            'films'=>$id
+        ));
+        return $reservation->fetchAll();
+    }
 }

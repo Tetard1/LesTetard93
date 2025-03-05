@@ -63,10 +63,49 @@ var_dump($_SESSION);
                 <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
             </ul>
         </li>
     </menu>
 </header>
 <hr>
+<form action="../src/traitement/traitementAjoutReservation.php" method="post">
+
+    <table>
+        <tbody>
+        <tr>
+            <td><input type="hidden" value="<?=$id?>"></td>
+        </tr>
+        <tr>
+            <td><label for='date'>Saisir une Date : </label></td>
+            <td><input type='date' name='date' id='date'></td>
+        </tr>
+        <tr>
+            <td><label for="dateSeance">Veuillez choisir la seance : </label></td>
+            <td><select name="refSeance" id="dateSeance">
+                    <?php
+                    foreach ($seance as $seances){
+                        echo"<option value='".$seances["id_seance"]."'>".$seances["date"]."</option>
+                                    ";
+                    }
+                    ?>
+                </select></td>
+        </tr>
+        <tr>
+            <td><label for='plceReserver'>Saisir le nombre de place a reserver : </label></td>
+            <td><input type="number" name='plceReserver' id='plceReserver'></td>
+        </tr>
+        <tr>
+            <td><label for="prix">Saisir le prix de la seance : </label></td>
+            <td><input type="number" name="prixPlc" id="prix">€</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" value="Ajouter ">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
 
