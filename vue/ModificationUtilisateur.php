@@ -25,23 +25,21 @@ $result=$repository->afficherUtilisateur($user);
 <header>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="accueil.php">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/vue/ModificationUtilisateur.php">Mon compte</a>
+            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Ajout de Films </a></li>
-                <li><a class="dropdown-item" href="#">Liste des Films</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Films</a></li>
+                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -49,9 +47,10 @@ $result=$repository->afficherUtilisateur($user);
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="ajoutReservation.php">Faire une reservation</a></li>
+                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="afficherReservation.php">Liste de mes Reservations</a></li>
+                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -60,8 +59,9 @@ $result=$repository->afficherUtilisateur($user);
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
-                <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="supprimerSeance.php">Supprimer Des Seances</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -83,6 +83,7 @@ $result=$repository->afficherUtilisateur($user);
             </ul>
         </li>
     </menu>
+    <hr>
 </header>
 <div class="container mt-4">
   <h1>Modifier un Utilisateur</h1>
@@ -106,10 +107,6 @@ $result=$repository->afficherUtilisateur($user);
     <div class="mb-3">
       <label for="mdp" class="form-label">Mot de passe :</label>
       <input type="password" class="form-control" id="mdp" name="mdp" value="<?=$result["mdp"]?>">
-    </div>
-    <div class="mb-3">
-      <label for="role" class="form-label">Rôle :</label>
-      <input type="text" class="form-control" id="role" name="role" value="<?=$result["role"]?>">
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
