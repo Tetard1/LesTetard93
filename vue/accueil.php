@@ -1,7 +1,12 @@
 <?php
 
-
+require_once "../src/modele/film.php";
+require_once "../src/repository/repositoryFilm.php";
+require_once "../src/Bdd/BDD.php";
+$listeFilm = new RepositoryFilm();
+$listeFilm = $listeFilm->filmAffiche();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,6 +14,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Gestion Des Salles</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* Fond blanc */
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #e50914; /* Rouge Netflix pour un petit effet ciné */
+        }
+
+        .banner {
+            background: url('https://source.unsplash.com/1600x600/?cinema,movie') no-repeat center;
+            background-size: cover;
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .banner h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 1.2em;
+        }
+
+        /* Section des films */
+        h2 {
+            margin-top: 40px;
+            font-size: 2em;
+        }
+
+        .film-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .film-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .film-card:hover {
+            transform: scale(1.05);
+        }
+
+        .film-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .film-card h3 {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        footer {
+            background: #f1f1f1;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
 <script
@@ -73,4 +166,61 @@
 </header>
 
 
-<?php echo "Page d'accueil"; ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinéStar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Bannière principale -->
+<section class="banner">
+    <h1>Bienvenue au Cinéma</h1>
+    <p>Découvrez les meilleurs films du moment.</p>
+</section>
+
+<?php
+// Connexion à la base de données
+$host = 'localhost';
+$dbname = 'rmr_cinema';
+$username = 'root';
+$password = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+
+// Requête SQL pour récupérer 3 films au hasard (ou les premiers 3 films)
+$sql = "SELECT id_films, titre, affiche FROM films ORDER BY RAND() LIMIT 5";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$listeFilm = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<main>
+    <h2>À l'affiche</h2>
+    <div class="film-grid">
+        <?php foreach ($listeFilm as $film) : ?>
+            <div class="film-card">
+                <a href="filmDetail.php?id=<?= urlencode($film['id_films']) ?>">
+                    <img src="<?= htmlspecialchars($film['affiche']); ?>" alt="<?= htmlspecialchars($film['titre']); ?>">
+                    <h3><?= htmlspecialchars($film['titre']); ?></h3>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</main>
+
+<!-- Pied de page -->
+<footer>
+    <p>© 2025 CinéStar - Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>

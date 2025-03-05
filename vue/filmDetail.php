@@ -67,7 +67,7 @@ $film = $liste->detailFilm($_GET['id']);
 
             <!-- Boutons Modifier et Supprimer -->
             <div class="btn-container">
-                <a href="filmAffiche.php"><button type='button' class='btn btn-primary'">Retour</button></a>
+                <a href="accueil.php"><button type='button' class='btn btn-primary'">Retour</button></a>
                 <a href="modifFilm.php?id=<?=$film->getId()?>"><button type='button' class='btn btn-warning'>Modifier</button></a>
                <button type='button' class='btn btn-danger' onclick="document.getElementById('form_suppr').submit()">Suppprimer</button>
 

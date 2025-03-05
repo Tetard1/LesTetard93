@@ -187,7 +187,8 @@ $listeFilm = $listeFilm->filmAffiche();
         for ($i = 0; $i < count($listeFilm); $i++) {
             ?>
             <tr>
-                <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>"><?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
+                <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>">
+                        <?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
                 <td><?= $listeFilm[$i]['description'] ?></td>
                 <td><?= $listeFilm[$i]['genre'] ?></td>
                 <td><?= $listeFilm[$i]['durée'] ?></td>
