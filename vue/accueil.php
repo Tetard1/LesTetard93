@@ -68,6 +68,15 @@
                 <li><a class="dropdown-item" href="modifSalle.php">Modification Des Salles</a></li>
             </ul>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Inscription/Connexion
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
+            </ul>
+        </li>
     </menu>
     <hr>
 </header>
