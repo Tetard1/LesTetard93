@@ -6,9 +6,8 @@ var_dump($_POST);
 if (empty($_POST["email"]) ||
     empty($_POST["mdp"]) )
 {
-
     echo "C'est pas bien tetard";
-    header("Location: ../../index.php");
+    header("Location: ../../acceuil.php");
 } else {
 
     $user = new Utilisateur(array(
@@ -26,9 +25,9 @@ if (empty($_POST["email"]) ||
             "idUtilisateur" => $resultat->getIdUtilisateur(),
             "role" => $resultat->getRole()
         ];
-        header("Location: ../../index.php");
+        header("Location: ../../acceuil.php");
     } else {
-       header("Location: ../../index.php");
+       header("Location: ../../acceuil.php");
     }
 
 }
