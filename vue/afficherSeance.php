@@ -19,6 +19,25 @@ $resultat=$seanceRepo->afficherSeances();
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    function filterSeance() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(row => {
+            let title = row.cells[0].innerText.toLowerCase();
+            row.style.display = title.includes(input) ? "" : "none";
+        });
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+            new bootstrap.Dropdown(dropdown);
+        });
+    });
+</script>
 <header>
     <hr>
     <menu class="nav">
@@ -85,15 +104,16 @@ $resultat=$seanceRepo->afficherSeances();
     </menu>
     <hr>
 </header>
+<input type="text" id="search" class="search-bar" onkeyup="filterSeance()" placeholder="Rechercher un film...">
 <table class="table">
     <thead>
     <tr>
         <th scope="col">Nom de la Salle</th>
         <th scope="col">Titre du Film</th>
-        <th scope="col">Date</th>
-        <th scope="col">Heure</th>
-        <th scope="col">Place Disponibles</th>
-        <th scope="col">Prix</th>
+        <th scope="col">Date de la seance</th>
+        <th scope="col">Heure de la seance </th>
+        <th scope="col">Place reserver</th>
+        <th scope="col">Prix payer</th>
         <th scope="col"></th>
         <th scope="col"></th>
         </tr>

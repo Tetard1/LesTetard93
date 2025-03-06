@@ -3,6 +3,8 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
+$reservationRepo=new ReservationRepo();
+$resultat=$reservationRepo->afficherReservations();
 
 ?>
 <!DOCTYPE html>
@@ -100,15 +102,14 @@ session_start();
     </menu>
     <hr>
 </header>
-<input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher un film...">
+<input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une reservation...">
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Nom de la Salle</th>
         <th scope="col">Titre du Film</th>
         <th scope="col">Date</th>
         <th scope="col">Heure</th>
-        <th scope="col">Place Disponibles</th>
+        <th scope="col">Nombre de Place Reservées</th>
         <th scope="col">Prix</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -116,43 +117,23 @@ session_start();
     </thead>
     <tbody>
     <?php
-    for ($i = 0; $i < count($listeFilm); $i++) {
+    for ($i = 1; $i < count($resultat); $i++) {
         ?>
         <tr>
-            <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>">
-                    <?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
-            <td><?= $listeFilm[$i]['description'] ?></td>
-            <td><?= $listeFilm[$i]['genre'] ?></td>
-            <td><?= $listeFilm[$i]['durée'] ?></td>
-            <td><img src="<?= $listeFilm[$i]['affiche'] ?>"></td>
+            <td><?= htmlspecialchars($resultat[$i]['titre']) ?></td>
+            <td><?= $resultat[$i]['date'] ?></td>
+            <td><?= $resultat[$i]['heure_complete'] ?></td>
+            <td><?= $resultat[$i]['nb_place_reserver'] ?></td>
+            <td><?= $resultat[$i]['prix'] ?></td>
+            <td><a href='modifReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
+            <td><a href='suppReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
+
         </tr>
         <?php
     }
     ?>
 
-    <?php
-    foreach ($resultat as $seance) {
-        echo "<tr>
-        <td>" . $seance["nom_salle"] . "</td>
-        <td>" . $seance["titre"] . "</td>
-        <td>" . $seance['date'] . "</td>
-        <td>" .$seance['heure_complete']. "</td>
-        <td>";
 
-        // Corrected PHP logic to check 'nb_plc_dispo'
-        if ($seance['nb_plc_dispo'] == null) {
-            echo $seance['nb_place_dispo'];
-        } else {
-            echo $seance['nb_plc_dispo'];
-        }
-
-        echo "</td>
-        <td>" . $seance['prix'] . "</td>
-        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-        <td><a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-    </tr>";
-    }
-    ?>
     </tbody>
 </table>
 </body>
