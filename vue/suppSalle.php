@@ -10,6 +10,7 @@ if(isset($_GET['id'])){
 
 } else{
     $id=null;
+    header("Location:afficherSalle.php");
 }
 $salle=new Salle([
     'idSalle'=>$id]);
@@ -115,10 +116,7 @@ var_dump($resultat);
             </td>
             <td>
                 <div class="mb-3">
-                    <?php
-                    echo $resultat['place_totale'];
-
-                    ?>
+                    <?=$resultat['place_totale']?>
                 </div>
             </td>
         </tr>

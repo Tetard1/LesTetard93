@@ -182,7 +182,7 @@ $listeFilm = $listeFilm->filmAffiche();
 
 <!-- Bannière principale -->
 <section class="banner">
-    <h1>Bonjour [nom user]</h1>
+    <h1>Hey l'ami</h1>
     <p>Bienvenue dans ton cinéma préféré Plus 2</p>
     <p>Découvrez les meilleurs films du moment.</p>
 </section>
