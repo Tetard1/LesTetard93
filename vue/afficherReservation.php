@@ -117,7 +117,7 @@ $resultat=$reservationRepo->afficherReservations();
     </thead>
     <tbody>
     <?php
-    for ($i = 1; $i < count($resultat); $i++) {
+    for ($i = 0; $i < count($resultat); $i++) {
         ?>
         <tr>
             <td><?= htmlspecialchars($resultat[$i]['titre']) ?></td>
