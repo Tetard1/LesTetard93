@@ -20,6 +20,25 @@ $resultat=$salleRepo->afficherSalle();
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 </script>
+<script>
+    function filterSalle() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(row => {
+            let title = row.cells[0].innerText.toLowerCase();
+            row.style.display = title.includes(input) ? "" : "none";
+        });
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+            new bootstrap.Dropdown(dropdown);
+        });
+    });
+</script>
 <header>
     <hr>
     <menu class="nav">
@@ -83,6 +102,8 @@ $resultat=$salleRepo->afficherSalle();
     <hr>
 </header>
 <table class="table">
+    <input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
+
     <thead>
     <tr>
         <th scope="col">Nom de la Salle</th>
@@ -93,14 +114,17 @@ $resultat=$salleRepo->afficherSalle();
     </thead>
     <tbody>
     <?php
-    foreach ( $resultat as $salle) {
-        echo "<tr>
-                <td>" . $salle["nom_salle"] . "</td>
-                <td>" . $salle['place_totale'] . "</td>
-                <td><a href='modifSalle.php?id=".$salle["id_salle"]."'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-                <td><a href='suppSalle.php?id=". $salle["id_salle"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-               </tr>";
-    }
+    for ($i = 0; $i < count($resultat); $i++) {
+    ?>
+    <tr>
+        <td><a href="filmDetail.php?id=<?= urlencode($resultat[$i]['id_salle']) ?>">
+                <?= htmlspecialchars($resultat[$i]['nom_salle']) ?></a></td>
+        <td><?= $resultat[$i]["place_totale"] ?></td>
+        <td><a href='modifSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
+        <td><a href='suppSalle.php?id="<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
+    </tr>
+    <?php
+        }
     ?>
     </tbody>
 </table>

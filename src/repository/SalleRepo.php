@@ -46,14 +46,15 @@ class SalleRepo{
             return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
         }
         public function afficherSalle(){
-            $affiche="SELECT * FROM `salle` ";
+            $affiche="SELECT * FROM `salle` ORDER BY nom_salle ASC";
             $req=$this->bdd->getBdd()->prepare($affiche);
             $req->execute(
             );
             return $req->fetchall();
         }
         public function afficherLaSalle(Salle $salle){
-            $show="SELECT nom_salle,place_totale FROM `salle` WHERE id_salle=:idSalle";
+            $show="SELECT nom_salle,place_totale FROM `salle` WHERE id_salle=:idSalle 
+            ORDER BY nom_salle ASC";
             $req=$this->bdd->getBdd()->prepare($show);
             $req->execute([
             'idSalle'=>$salle->getIdSalle()

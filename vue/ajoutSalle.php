@@ -1,13 +1,8 @@
 <?php
 require_once '../src/bdd/Bdd.php';
+require_once '../src/modele/Salle.php';
+require_once '../src/repository/SalleRepo.php';
 session_start();
-$bdd = new Bdd();
-$req=$bdd->getBdd()->prepare("SELECT id_films,titre FROM `films`");
-$req->execute();
-$films = $req->fetchAll();
-$res=$bdd->getBdd()->prepare("SELECT id_salle,nom_salle FROM `salle`");
-$res->execute();
-$salles = $res->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
