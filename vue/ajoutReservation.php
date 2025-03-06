@@ -87,7 +87,7 @@ $films=$reservationRepo->afficherFilms($id);
 <h2>Reservation pour <?=$films["titre"]?></h2>
 <img src="<?=$films["affiche"]?>">
 <h2></h2>
-<form action="../src/traitement/traitementAjoutReservation.php" method="post">
+<form action="../src/traitement/traimentGestionReservation.php" method="post">
     <table>
         <tbody>
         <tr>
@@ -114,7 +114,7 @@ $films=$reservationRepo->afficherFilms($id);
         <tr>
             <td>
                 <div class="col-12">
-                    <input class="btn btn-primary" type="submit" value="Reserver ">
+                    <input class="btn btn-primary" type="submit" name="reserver" value="Reserver ">
                 </div>
             </td>
         </tr>

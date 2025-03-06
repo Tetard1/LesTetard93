@@ -15,6 +15,25 @@ session_start();
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    function filterReservation() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(row => {
+            let title = row.cells[0].innerText.toLowerCase();
+            row.style.display = title.includes(input) ? "" : "none";
+        });
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+            new bootstrap.Dropdown(dropdown);
+        });
+    });
+</script>
 <header>
     <hr>
     <menu class="nav">
@@ -24,8 +43,12 @@ session_start();
                 <span class="navbar-toggler-icon"></span>
             </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../vue/ModificationUtilisateur.php">Mon profil </a></li>
+                <li><a class="dropdown-item" href="../vue/reservationClient.php">Mes reservation </a></li>
+            </ul>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -77,6 +100,7 @@ session_start();
     </menu>
     <hr>
 </header>
+<input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher un film...">
 <table class="table">
     <thead>
     <tr>
@@ -91,6 +115,21 @@ session_start();
     </tr>
     </thead>
     <tbody>
+    <?php
+    for ($i = 0; $i < count($listeFilm); $i++) {
+        ?>
+        <tr>
+            <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>">
+                    <?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
+            <td><?= $listeFilm[$i]['description'] ?></td>
+            <td><?= $listeFilm[$i]['genre'] ?></td>
+            <td><?= $listeFilm[$i]['durée'] ?></td>
+            <td><img src="<?= $listeFilm[$i]['affiche'] ?>"></td>
+        </tr>
+        <?php
+    }
+    ?>
+
     <?php
     foreach ($resultat as $seance) {
         echo "<tr>

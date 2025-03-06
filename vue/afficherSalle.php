@@ -101,9 +101,9 @@ $resultat=$salleRepo->afficherSalle();
     </menu>
     <hr>
 </header>
-<table class="table">
-    <input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
+<input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
 
+<table class="table">
     <thead>
     <tr>
         <th scope="col">Nom de la Salle</th>
