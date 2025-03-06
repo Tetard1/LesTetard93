@@ -16,7 +16,6 @@ $salle=new Salle([
     'idSalle'=>$id]);
 $salleRepo=new SalleRepo();
 $resultat=$salleRepo->afficherLaSalle($salle);
-var_dump($resultat);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
