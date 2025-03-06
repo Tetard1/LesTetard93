@@ -107,15 +107,23 @@ $salles=$seanceRepo->getSalle();
                         <td><select name="refSalle" id="nomSalle">
                                 <?php
                                 foreach ($salles as $salle){
-                                    echo"<option value='".$salle["id_salle"]."'>".$salle["nom_salle"]." : ".$salle["place_totale"]." place"."</option>
+                                    echo"<option value='".$salle["id_salle"]."'>".$salle["nom_salle"]."</option>
+                                    ";
+                                }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for='nbdispo'>Place disponible : </label></td>
+                        <td><select name="nbPlcDispo" id="nbdispo">
+                                <?php
+                                foreach ($salles as $salle){
+                                    echo"<option value='".$salle["place_totale"]."'>".$salle["nom_salle"]." : ".$salle["place_totale"]." place"."</option>
                                     ";
                                 }
                                 ?>
                             </select></td>
-                    </tr>
-                    <tr>
-                        <td>Nombre de place disponible : </label></td>
-                        <td><?=$salles["place_totale"]?></td>
                     </tr>
                     <tr>
                         <td><label for="prix">Saisir le prix de la seance : </label></td>
