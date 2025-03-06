@@ -2,8 +2,6 @@
 require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
-$_SESSION["id"]=1;
-$_SESSION["role"]="admin";
 if(isset($_GET['id'])){
   $id=$_GET['id'];
 

@@ -20,13 +20,13 @@ class ReservationRepo {
             return false;
         }
     }
-    public function afficherReservationsPasse(){
+    public function afficherReservationsPasse($reservation){
         $afficherReservations="SELECT * FROM reservation
     LEFT JOIN seance on id_seance=ref_seance
     LEFT JOIN films on id_films=ref_films WHERE ref_utilisateur=:refUtilisateur   ";
-        $reservations = $this->bdd->getBdd()->query($afficherReservations);
+        $reservations = $this->bdd->getBdd()->prepare($afficherReservations);
         $reservations->execute(array(
-            'refUtilisateur' =>$_SESSION['userConnecte']
+            'refUtilisateur' =>$reservation->getRefUtilisateur(),
         ));
             return $reservations->fetchAll();
     }

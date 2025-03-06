@@ -1,11 +1,19 @@
 <?php
-require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
-$reservationRepo=new ReservationRepo();
-$resultat=$reservationRepo->afficherReservations();
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
 
+} else{
+    $id=null;
+    header("Location:afficherReservation.php");
+}
+$reservation=new Seance([
+    'idReservation'=>$id]);
+$reservationRepo=new ReservationRepo();
+$resultat=$reservationRepo->afficherLaSeance($reservation);
+$filmSalle=$seanceRepo->getSalleFilm();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,25 +24,8 @@ $resultat=$reservationRepo->afficherReservations();
     <title>Plus 2</title>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-    function filterReservation() {
-        let input = document.getElementById("search").value.toLowerCase();
-        let rows = document.querySelectorAll("tbody tr");
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 
-        rows.forEach(row => {
-            let title = row.cells[0].innerText.toLowerCase();
-            row.style.display = title.includes(input) ? "" : "none";
-        });
-    }
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var dropdowns = document.querySelectorAll('.dropdown-toggle');
-        dropdowns.forEach(dropdown => {
-            new bootstrap.Dropdown(dropdown);
-        });
-    });
 </script>
 <header>
     <hr>
@@ -68,8 +59,6 @@ $resultat=$reservationRepo->afficherReservations();
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -102,40 +91,7 @@ $resultat=$reservationRepo->afficherReservations();
     </menu>
     <hr>
 </header>
-<h2>Afficher Les Reservation</h2>
-<input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une reservation...">
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Titre du Film</th>
-        <th scope="col">Date</th>
-        <th scope="col">Heure</th>
-        <th scope="col">Nombre de Place Reservées</th>
-        <th scope="col">Prix</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    for ($i = 0; $i < count($resultat); $i++) {
-        ?>
-        <tr>
-            <td><?= htmlspecialchars($resultat[$i]['titre']) ?></td>
-            <td><?= $resultat[$i]['date'] ?></td>
-            <td><?= $resultat[$i]['heure_complete'] ?></td>
-            <td><?= $resultat[$i]['nb_place_reserver'] ?></td>
-            <td><?= $resultat[$i]['prix'] ?></td>
-            <td><a href='modifReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-            <td><a href='suppReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
+<h2>Modifier une Reservation</h2>
 
-        </tr>
-        <?php
-    }
-    ?>
-
-
-    </tbody>
-</table>
 </body>
 </html>
