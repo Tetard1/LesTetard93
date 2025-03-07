@@ -5,7 +5,6 @@ require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
 
-var_dump($_SESSION["userConnecte"]);
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 ?>
