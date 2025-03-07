@@ -210,7 +210,7 @@ try {
 $sql = "SELECT id_films, titre, affiche FROM films ORDER BY RAND() LIMIT 5";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$listeFilm = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$listeFilm = $stmt->fetchAll();
 ?>
 
 <main>
