@@ -3,7 +3,7 @@
 require_once "src/modele/film.php";
 require_once "src/repository/repositoryFilm.php";
 require_once "src/Bdd/BDD.php";
-
+session_unset();
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 ?>
@@ -127,35 +127,7 @@ $listeFilm = $listeFilm->filmAffiche();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="vue/Film.php">Ajout de Films </a></li>
                 <li><a class="dropdown-item" href="vue/filmAffiche.php">Liste des Films</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Reservations
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="vue/ajoutReservation.php">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="vue/afficherReservation.php">Liste des Reservations</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Seances
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="vue/ajoutSeance.php">Ajouter des Seances</a></li>
-                <li><a class="dropdown-item" href="vue/afficherSeance.php">Liste des Seances</a></li>
-            </ul>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Salles
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="vue/ajoutSalle.php">Ajouter des Salles</a></li>
-                <li><a class="dropdown-item" href="vue/afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
     </menu>

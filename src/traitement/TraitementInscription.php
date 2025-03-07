@@ -2,13 +2,13 @@
 include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
+var_dump($_POST);
 
 if(empty($_POST["nom"]) ||
     empty($_POST["prenom"]) ||
     empty($_POST["email"]) ||
     empty($_POST["mdp"])
 ){
-
     echo "C'est pas bien tetard";
     header("Location: ../../vue/Connexion.html");
 }else{
@@ -20,13 +20,14 @@ if(empty($_POST["nom"]) ||
         'mdp' => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
 
     ));
+    var_dump($user);
     $repository = new repositoryUtilisateur();
     $resultat = $repository->inscription($user);
-
+var_dump($resultat);
     if($resultat == true){
         header("Location: ../../vue/Connexion.html");
     }else{
-        header("Location: ../../vue/Connexion.html");
+        header("Location: ../../accueil.php");
     }
 
 }

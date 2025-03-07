@@ -4,6 +4,10 @@ require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
+if($_SESSION==NULL){
+    session_destroy();
+    header('Location:../accueil.php');
+}
 
 $userPrenom = $_SESSION["userConnecte"]["userPrenom"] ?? "Invité";
 $listeFilm = new RepositoryFilm();
@@ -137,33 +141,56 @@ $listeFilm = $listeFilm->filmAffiche();
                 <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
+
+
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Reservations
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
-                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
+                    <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                    <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
             </ul>
         </li>
+                    <?php
+                }?>
+
+
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Seances
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                    <?php
+                }?>
                 <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
             </ul>
         </li>
+
+
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Salles
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
-                <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                    <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                    <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
+                    <?php
+                }?>
+
 
     </menu>
     <hr>
