@@ -3,7 +3,6 @@ require_once "../src/bdd/BDD.php";
 require_once "../src/repository/ReservationRepo.php";
 require_once "../src/modele/Reservation.php";
 session_start();
-var_dump($_SESSION);
 if(!isset($_GET["id"])){
     header("Location: filmAffiche.php");
 }
@@ -93,6 +92,9 @@ $films=$reservationRepo->afficherFilms($id);
         <tr>
             <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>
         </tr>
+        <?php
+        if($seances!=null){
+        ?>
         <tr>
             <td><label for="dateSeance">Veuillez choisir la seance : </label></td>
             <td><select name="refSeance" id="dateSeance">
@@ -115,6 +117,16 @@ $films=$reservationRepo->afficherFilms($id);
                 </div>
             </td>
         </tr>
+        <?php
+        }
+        else{
+        ?>
+        <tr>
+            <td><h3>Il n'y a pas de seance disponible pour ce film : </h3></td>
+            <td><button class="btn btn-primary" href="../vue/accueil.php">Retour a l'accueil</button></td>
+        </tr>
+        <?php
+        }?>
         </tbody>
     </table>
 </form>

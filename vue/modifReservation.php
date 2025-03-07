@@ -115,8 +115,10 @@ $seances=$reservationRepo->getSeances($resultat["id_films"]);
         <tr>
             <td>
                 <div class="col-12">
-                    <input class="btn btn-primary" type="submit" name="modifierReservation" value="Modifier ">
+                    <input class="btn btn-primary" type="submit" value="Modifier ">
                 </div>
             </td>
+                </table>
+    </form>
 </body>
 </html>

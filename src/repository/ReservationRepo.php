@@ -60,15 +60,13 @@ nb_place_reserver=:nbPlaceReserver WHERE id_reservation=:idReservation';
             'idReservation' => $reservation->getIdReservation(),
             'nbPlaceReserver' => $reservation->getNbPlaceReserver(),
             'refSeance' => $reservation->getRefSeance(),
-            'refUtilisateur' => $reservation->getRefUtilisateur(),
         ));
     }
     public function getSeances($id){
-        $date="SELECT id_seance, date, prix FROM seance WHERE ref_films=:films OR id_seance=:seance";
+        $date="SELECT id_seance, date, prix FROM seance WHERE ref_films=:films ";
         $seance = $this->bdd->getBdd()->prepare($date);
         $seance->execute(array(
             'films'=>$id,
-            'seance'=>$id,
         ));
         return $seance->fetchAll();
     }

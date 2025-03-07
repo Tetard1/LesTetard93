@@ -17,7 +17,8 @@ require_once '../Repository/ReservationRepo.php';
         $resultat = $ReservationRepo->ajouterReservation($reservation);
 
         if ($resultat) {
-            header("Location: ../../vue/afficherReservation.php");
+
+            header("Location: ../../vue/reservationClient.php");
         } else {
             header("Location: ../../vue/ajoutReservation.php");
         }
