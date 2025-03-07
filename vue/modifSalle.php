@@ -3,6 +3,10 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Salle.php';
 require_once '../src/repository/SalleRepo.php';
 session_start();
+if(!isset($_SESSION["userConnecte"])){
+    header('Location:../accueil.php');
+    session_destroy();
+}
 $_SESSION["id"]=1;
 $_SESSION["role"]="admin";
 if(isset($_GET['id'])){

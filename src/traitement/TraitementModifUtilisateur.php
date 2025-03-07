@@ -24,5 +24,5 @@ $user = new Utilisateur(array(
 //var_dump($user);
 $repository = new repositoryUtilisateur();
 $resultat = $repository->modification($user);
-header("Location:../../vue/accueil.php");
+header("Location:../../vue/modificationUtilisateur.php");
 

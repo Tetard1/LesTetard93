@@ -2,6 +2,11 @@
 require_once "../src/bdd/BDD.php";
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
+session_start();
+if(!isset($_SESSION["userConnecte"])){
+    header('Location:../accueil.php');
+    session_destroy();
+}
 $liste = new repositoryFilm();
 $film = $liste->detailFilm($_GET['id']);
 ?>

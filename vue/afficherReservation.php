@@ -3,16 +3,17 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
-$reservationRepo = new ReservationRepo();
-$resultat = $reservationRepo->afficherReservations();
+$reservationRepo=new ReservationRepo();
+$resultat=$reservationRepo->afficherReservations();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Plus 2</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,8 +30,30 @@ $resultat = $reservationRepo->afficherReservations();
             position: relative;
         }
         .top-section {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             margin-bottom: 15px;
+        }
+        .top-section h2 {
+            text-align: center;
+            width: 100%;
+        }
+        .top-section button {
+            margin: 3px;
+            padding: 5px 10px;
+            font-size: 14px;
+            width: 110px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         .search-bar {
             width: 100%;
@@ -52,11 +75,14 @@ $resultat = $reservationRepo->afficherReservations();
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        td img {
+            max-width: 100px;
+            display: block;
+        }
     </style>
 </head>
 <body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     function filterReservation() {
         let input = document.getElementById("search").value.toLowerCase();
@@ -67,14 +93,15 @@ $resultat = $reservationRepo->afficherReservations();
             row.style.display = title.includes(input) ? "" : "none";
         });
     }
-
-    function confirmDelete(id) {
-        document.getElementById("confirmDeleteForm").action = "../src/traitement/traitementSuppReservation.php?id=" + id;
-        var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
-        confirmModal.show();
-    }
 </script>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+            new bootstrap.Dropdown(dropdown);
+        });
+    });
+</script>
 <header>
     <hr>
     <menu class="nav">
@@ -129,75 +156,46 @@ $resultat = $reservationRepo->afficherReservations();
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
-
     </menu>
     <hr>
 </header>
-
 <div class="container">
     <div class="top-section">
-        <h2>Liste des Réservations</h2>
+        <h2>Liste des Reservation</h2>
     </div>
-
-    <input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une réservation...">
-
-    <table class="table">
-        <thead>
+<input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une reservation...">
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Titre du Film</th>
+        <th scope="col">Date</th>
+        <th scope="col">Heure</th>
+        <th scope="col">Nombre de Place Reservées</th>
+        <th scope="col">Prix</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    for ($i = 0; $i < count($resultat); $i++) {
+        ?>
         <tr>
-            <th scope="col">Titre du Film</th>
-            <th scope="col">Date</th>
-            <th scope="col">Heure</th>
-            <th scope="col">Places Réservées</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Modifier</th>
-            <th scope="col">Supprimer</th>
+            <td><?= htmlspecialchars($resultat[$i]['titre']) ?></td>
+            <td><?= $resultat[$i]['date'] ?></td>
+            <td><?= $resultat[$i]['heure_complete'] ?></td>
+            <td><?= $resultat[$i]['nb_place_reserver'] ?></td>
+            <td><?= $resultat[$i]['prix'] ?></td>
+            <td><a href='modifReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
+            <td><a href='suppReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
+
         </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($resultat as $reservation): ?>
-            <tr>
-                <td><?= htmlspecialchars($reservation['titre']) ?></td>
-                <td><?= $reservation['date'] ?></td>
-                <td><?= $reservation['heure_complete'] ?></td>
-                <td><?= $reservation['nb_place_reserver'] ?></td>
-                <td><?= $reservation['prix'] ?></td>
-                <td>
-                    <a href='modifReservation.php?id=<?= $reservation["id_reservation"] ?>'>
-                        <button type='button' class='btn btn-warning'>Modifier</button>
-                    </a>
-                </td>
-                <td>
-                    <button type='button' class='btn btn-danger' onclick="confirmDelete(<?= $reservation['id_reservation'] ?>)">
-                        Supprimer
-                    </button>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+        <?php
+    }
+    ?>
 
-<!-- Modale de confirmation Bootstrap -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmModalLabel">Confirmation de suppression</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Êtes-vous sûr de vouloir supprimer cette réservation ? Cette action est irréversible.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <form id="confirmDeleteForm" method="post">
-                    <button type="submit" class="btn btn-danger">Confirmer</button>
-                </form>
 
-            </div>
-        </div>
-    </div>
-</div>
-
+    </tbody>
+</table>
 </body>
 </html>

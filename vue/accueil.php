@@ -128,7 +128,12 @@ $listeFilm = $listeFilm->filmAffiche();
                 Films
             </a>
             <ul class="dropdown-menu">
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                ?>
                 <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <?php
+                }?>
                 <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
