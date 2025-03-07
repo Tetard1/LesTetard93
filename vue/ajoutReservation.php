@@ -20,6 +20,72 @@ $films=$reservationRepo->afficherFilms($id);
     <title>Plus 2</title>
 
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    .top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    .top-section h2 {
+        text-align: center;
+        width: 100%;
+    }
+    .top-section button {
+        margin: 3px;
+        padding: 5px 10px;
+        font-size: 14px;
+        width: 110px;
+    }
+    button {
+        cursor: pointer;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .search-bar {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    td img {
+        max-width: 100px;
+        display: block;
+    }
+</style>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <header>
@@ -80,18 +146,21 @@ $films=$reservationRepo->afficherFilms($id);
     </menu>
     <hr>
 </header>
-<h2>Reservation pour <?=$films["titre"]?></h2>
-<img src="<?=$films["affiche"]?>">
-<h2></h2>
-<form action="../src/traitement/traimentGestionReservation.php" method="post">
+</body>
+<body>
+<div class="container mt-4">
+<h1>Reservation pour <?=$films["titre"]?></h1>
+    <form action="../src/traitement/traimentGestionReservation.php" method="post">
+    <div class="mb-3">
+        <div class="row align-items-center">
+
+        <img src="<?=$films["affiche"]?>">
+    </div>
+
     <table>
-        <tbody>
-        <tr>
-            <td><input type="hidden" value="<?=$id?>"></td>
-        </tr>
-        <tr>
-            <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>
-        </tr>
+        <div>
+            <input type="hidden" value="<?=$id?>">
+            <input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur">
         <?php
         if($seances!=null){
         ?>
@@ -110,13 +179,11 @@ $films=$reservationRepo->afficherFilms($id);
             <td><label for='nbPlaceReserver'>Saisir le nombre de place a reserver : </label></td>
             <td><input type="number" name='nbPlaceReserver' id='nbPlaceReserver'></td>
         </tr>
-        <tr>
             <td>
                 <div class="col-12">
                     <input class="btn btn-primary" type="submit" name="reserver" value="Reserver ">
                 </div>
             </td>
-        </tr>
         <?php
         }
         else{
@@ -127,7 +194,9 @@ $films=$reservationRepo->afficherFilms($id);
         </tr>
         <?php
         }?>
+        </div>
         </tbody>
     </table>
 </form>
+</body>
 

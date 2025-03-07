@@ -94,6 +94,9 @@ $result=$repository->afficherUtilisateur($user);
     <hr>
     <menu class="nav">
         <li>
+<<<<<<< HEAD
+            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
+=======
             <?php
             if($_SESSION!=null){
                 ?>
@@ -112,6 +115,7 @@ $result=$repository->afficherUtilisateur($user);
                 <?php
             }
             ?>
+>>>>>>> cdbaf6ce4188411d7846d410439f7a132aa7362d
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -191,11 +195,35 @@ $result=$repository->afficherUtilisateur($user);
     <form action="../src/traitement/DecoTraitement.php" method="post">
         <input type="submit" class="btn btn-primary" value="Deconnexion" name="deconnexion">
     </form>
-  <h1 class="mt-5">Suppression du compte</h1>
-  <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
-    <input type="hidden" name="action" value="suppression">
-    <div class="mb-3">
-      <input type="hidden" class="form-control" id="idUtilisateur" name="idUtilisateur" value="<?=$_SESSION["userConnecte"]['idUtilisateur']?>">
+
+    <h1 class="mt-5">Suppression du compte</h1>
+
+    <!-- Bouton pour ouvrir la modale -->
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
+        Supprimer
+    </button>
+
+    <!-- Modale Bootstrap -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Confirmation de suppression</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
+                        <input type="hidden" name="action" value="suppression">
+                        <input type="hidden" name="idUtilisateur" value="<?= $_SESSION["userConnecte"]['idUtilisateur'] ?>">
+                        <button type="submit" class="btn btn-danger">Confirmer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <button type="submit" class="btn btn-danger">Supprimer</button>
   </form>

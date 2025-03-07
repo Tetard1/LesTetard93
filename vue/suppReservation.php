@@ -117,7 +117,7 @@ $resultat=$reservationRepo->afficherLaReservation($id); ?>
     <table>
         <tbody>
         <tr>
-            <td><input type="hidden" value="<?=$id?>"></td>
+            <td><input type="hidden" value="<?=$id?>" name="idReservation"></td>
         </tr>
         <tr>
             <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>

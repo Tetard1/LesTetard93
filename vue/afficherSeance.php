@@ -3,109 +3,83 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
-if(!isset($_SESSION["userConnecte"])){
+if (!isset($_SESSION["userConnecte"])) {
     header('Location:../accueil.php');
     session_destroy();
 }
-$seanceRepo=new SeanceRepo();
-$resultat=$seanceRepo->afficherSeances();
-
+$seanceRepo = new SeanceRepo();
+$resultat = $seanceRepo->afficherSeances();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Plus 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        td img {
+            max-width: 100px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function filterSeance() {
         let input = document.getElementById("search").value.toLowerCase();
         let rows = document.querySelectorAll("tbody tr");
 
         rows.forEach(row => {
-            let title = row.cells[0].innerText.toLowerCase();
+            let title = row.cells[1].innerText.toLowerCase();
             row.style.display = title.includes(input) ? "" : "none";
         });
     }
+
+    function confirmDelete(id) {
+        document.getElementById("confirmDeleteForm").action = "../src/traitement/traitementSuppressionSeance.php?id=" + id;
+        var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+        confirmModal.show();
+    }
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var dropdowns = document.querySelectorAll('.dropdown-toggle');
-        dropdowns.forEach(dropdown => {
-            new bootstrap.Dropdown(dropdown);
-        });
-    });
-</script>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        background-color: #f4f4f4;
-    }
-    .container {
-        max-width: 1100px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-    .top-section {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 15px;
-    }
-    .top-section h2 {
-        text-align: center;
-        width: 100%;
-    }
-    .top-section button {
-        margin: 3px;
-        padding: 5px 10px;
-        font-size: 14px;
-        width: 110px;
-    }
-    button {
-        cursor: pointer;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 5px;
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    .search-bar {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-    td img {
-        max-width: 100px;
-        display: block;
-    }
-</style>
+
 <header>
     <hr>
     <menu class="nav">
@@ -129,7 +103,12 @@ $resultat=$seanceRepo->afficherSeances();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                    <?php
+                }?>
                 <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
@@ -164,49 +143,72 @@ $resultat=$seanceRepo->afficherSeances();
     </menu>
     <hr>
 </header>
+
 <div class="container">
     <div class="top-section">
-        <h2>Liste des Séance</h2>
+        <h2>Liste des Séances</h2>
     </div>
-<input type="text" id="search" class="search-bar" onkeyup="filterSeance()" placeholder="Rechercher un film...">
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Nom de la Salle</th>
-        <th scope="col">Titre du Film</th>
-        <th scope="col">Date de la seance</th>
-        <th scope="col">Heure de la seance </th>
-        <th scope="col">Place disponible</th>
-        <th scope="col">Prix payer</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+
+    <input type="text" id="search" class="search-bar" onkeyup="filterSeance()" placeholder="Rechercher un film...">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom de la Salle</th>
+            <th>Titre du Film</th>
+            <th>Date de la séance</th>
+            <th>Heure de la séance</th>
+            <th>Places disponibles</th>
+            <th>Prix</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
         </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach ($resultat as $seance) {
-        echo "<tr>
-        <td>" . $seance["nom_salle"] . "</td>
-        <td>" . $seance["titre"] . "</td>
-        <td>" . $seance['date'] . "</td>
-        <td>" .$seance['heure_complete']. "</td>
-        <td>";
+        </thead>
+        <tbody>
+        <?php foreach ($resultat as $seance): ?>
+            <tr>
+                <td><?= htmlspecialchars($seance["nom_salle"]) ?></td>
+                <td><?= htmlspecialchars($seance["titre"]) ?></td>
+                <td><?= htmlspecialchars($seance['date']) ?></td>
+                <td><?= htmlspecialchars($seance['heure_complete']) ?></td>
+                <td><?= $seance['nb_plc_dispo'] ?? $seance['nb_place_dispo'] ?></td>
+                <td><?= htmlspecialchars($seance['prix']) ?></td>
+                <td>
+                    <a href='modifierSeance.php?id=<?= $seance["id_seance"] ?>'>
+                        <button type='button' class='btn btn-warning'>Modifier</button>
+                    </a>
+                </td>
+                <td>
+                    <button type='button' class='btn btn-danger' onclick="confirmDelete(<?= $seance['id_seance'] ?>)">
+                        Supprimer
+                    </button>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-        // Corrected PHP logic to check 'nb_plc_dispo'
-        if ($seance['nb_plc_dispo'] == null) {
-            echo $seance['nb_place_dispo'];
-        } else {
-            echo $seance['nb_plc_dispo'];
-        }
+<!-- Modale de confirmation Bootstrap -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette séance ? Cette action est irréversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form id="confirmDeleteForm" method="post">
+                    <button type="submit" class="btn btn-danger">Confirmer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-        echo "</td>
-        <td>" . $seance['prix'] . "</td>
-        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-        <td><a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-    </tr>";
-    }
-    ?>
-    </tbody>
-</table>
 </body>
 </html>
