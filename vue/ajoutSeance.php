@@ -3,6 +3,10 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
+if($_SESSION["userConnecte"]["userPrenom"]==null||$_SESSION["userConnecte"]["idUtilisateur"]==null){
+    header('Location:../accueil.php');
+    session_destroy();
+}
 
 $seanceRepo = new SeanceRepo();
 $films = $seanceRepo->getFilm();

@@ -3,6 +3,10 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
+if(!isset($_SESSION["userConnecte"])){
+    header('Location:../accueil.php');
+    session_destroy();
+}
 $reservationRepo=new ReservationRepo();
 $resultat=$reservationRepo->afficherReservations();
 

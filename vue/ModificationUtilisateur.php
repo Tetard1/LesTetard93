@@ -3,7 +3,10 @@ require_once "../src/bdd/BDD.php";
 require_once '../src/modele/Utilisateur.php';
 require_once '../src/repository/RepositoryUtilisateur.php';
 session_start();
-//var_dump($_SESSION);
+if(!isset($_SESSION["userConnecte"])){
+    header('Location:../accueil.php');
+    session_destroy();
+}
 $user=new Utilisateur([
         'idUtilisateur'=>$_SESSION['userConnecte']['idUtilisateur'],
 ]);
