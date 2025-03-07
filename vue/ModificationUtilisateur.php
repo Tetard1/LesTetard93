@@ -235,7 +235,6 @@ $result=$repository->afficherUtilisateur($user);
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-danger">Supprimer</button>
   </form>
 </div>
 </body>
