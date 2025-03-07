@@ -156,7 +156,6 @@ $resultat=$reservationRepo->afficherReservations();
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
-
     </menu>
     <hr>
 </header>

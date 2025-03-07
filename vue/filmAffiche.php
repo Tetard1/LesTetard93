@@ -166,9 +166,7 @@ $listeFilm = $listeFilm->filmAffiche();
         <div class="top-section">
             <h2>Liste des Films</h2>
         </div>
-
-
-    <input type="text" id="search" class="search-bar" onkeyup="filterFilms()" placeholder="Rechercher un film...">
+        <input type="text" id="search" class="search-bar" onkeyup="filterFilms()" placeholder="Rechercher un film...">
 
     <table>
         <thead>

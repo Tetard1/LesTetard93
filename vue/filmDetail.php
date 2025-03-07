@@ -65,8 +65,8 @@ $film = $liste->detailFilm($_GET['id']);
             <div class="btn-container">
                 <a href="accueil.php"><button type='button' class='btn btn-primary'">Retour</button></a>
                 <a href="modifFilm.php?id=<?=$film->getId()?>"><button type='button' class='btn btn-warning'>Modifier</button></a>
-                <a href="ajoutReservation.php?id=<?=$film->getId()?>"><button type='button' class='btn btn-primary'>Reserver</button></a>
-               <button type='button' class='btn btn-danger' onclick="document.getElementById('form_suppr').submit()">Suppprimer</button>
+                <button type='button' class='btn btn-danger' onclick="document.getElementById('form_suppr').submit()">Suppprimer</button>
+                <a href="ajoutReservation.php?id=<?=$film->getId()?>"><button type='button' class='btn btn-dark'>Reserver</button></a>
 
                 <form id="form_suppr" method="post" action="../src/traitement/traitementSuppressionFilm.php">
                     <input type="hidden" name = "idFilm" value="<?=$film->getId()?>">
