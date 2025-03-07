@@ -16,17 +16,6 @@ $salle=new Salle([
 ]);
 $salleRepo=new SalleRepo();
 $resultat= $salleRepo->afficherLaSalle($salle);
-
-
-/*
-$bdd = new PDO('mysql:host=localhost;dbname=rmr_cinema;charset=utf8', 'root','' );
-
-$show="SELECT nom_salle,place_totale FROM `salle` WHERE id_salle=:idSalle";
-$req=$bdd->prepare($show);
-$req->execute([
-    'idSalle'=>$id
-]);
-$resultat=$req->fetch();*/
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,6 +24,72 @@ $resultat=$req->fetch();*/
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <title>Plus 2</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f4f4f4;
+            }
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+            .top-section {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 15px;
+            }
+            .top-section h2 {
+                text-align: center;
+                width: 100%;
+            }
+            .top-section button {
+                margin: 3px;
+                padding: 5px 10px;
+                font-size: 14px;
+                width: 110px;
+            }
+            button {
+                cursor: pointer;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .search-bar {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+                max-width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            td img {
+                max-width: 100px;
+                display: block;
+            }
+        </style>
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -100,35 +155,35 @@ $resultat=$req->fetch();*/
             </menu>
             <hr>
         </header>
-        <h1>Modification des Salles</h1>
+        <div class="container">
+            <div class="top-section">
+                <h2>Modifications de la salle</h2>
+            </div>
         <form action="../src/traitement/traitementModifSalle.php" method="POST">
             <table>
+                <thead>
                 <tr>
-                    <td><input type="hidden" name="idSalle" value="<?= $id ?>"></td>
+                    <th>nom de la salle</th>
+                    <th>nombre de places</th>
+                    <th>modifier</th>
+                    <input type="hidden" name="idSalle" value="<?= $id ?>">
                 </tr>
+                </thead>
+                <tbody>
                 <tr>
                     <td>
-                        <div class="mb-3">
-                            <label for="nomSalle" class="form-label">Salle : </label>
+                            <label for="nomSalle" class="form-label"></label>
                             <input type='text' id="nomSalle" name='nomSalle' value="<?=$resultat["nom_salle"]?>">
-                        </div>
                     </td>
-                </tr>
-                <tr>
                     <td>
-                        <div class="mb-3">
-                            <label for="place_totale" class="form-label">Places disponibles : </label>
+                            <label for="place_totale" class="form-label"></label>
                             <input type='number' id="placeTotale" name='placeTotale' value="<?=$resultat["place_totale"]?>">
-                        </div>
                     </td>
-                </tr>
-                <tr>
                     <td>
-                        <div class="col-12">
                             <input class="btn btn-primary" type="submit" value="Modifier ">
-                        </div>
                     </td>
                 </tr>
+                </tbody>
             </table>
         </form>
     </body>

@@ -55,8 +55,6 @@ $resultat=$salleRepo->afficherLaSalle($salle);
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -79,11 +77,11 @@ $resultat=$salleRepo->afficherLaSalle($salle);
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Inscription/Connexion
+                Connexion
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
             </ul>
         </li>
     </menu>

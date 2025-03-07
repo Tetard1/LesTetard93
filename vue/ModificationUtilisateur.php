@@ -18,6 +18,72 @@ $result=$repository->afficherUtilisateur($user);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <title>Plus 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .top-section h2 {
+            text-align: center;
+            width: 100%;
+        }
+        .top-section button {
+            margin: 3px;
+            padding: 5px 10px;
+            font-size: 14px;
+            width: 110px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        td img {
+            max-width: 100px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -49,8 +115,6 @@ $result=$repository->afficherUtilisateur($user);
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -73,17 +137,17 @@ $result=$repository->afficherUtilisateur($user);
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Inscription/Connexion
+                Connexion
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
             </ul>
         </li>
     </menu>
     <hr>
 </header>
-<div class="container mt-4">
+<div class="container">
   <h1>Modifier un Utilisateur</h1>
   <form action="../src/traitement/TraitementModifUtilisateur.php" method="post">
     <input type="hidden" name="action" value="modification">
@@ -108,7 +172,6 @@ $result=$repository->afficherUtilisateur($user);
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
-
   <h1 class="mt-5">Supprimer un Utilisateur</h1>
   <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
     <input type="hidden" name="action" value="suppression">
