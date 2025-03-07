@@ -15,12 +15,7 @@ class repositoryUtilisateur
             'email' => $user->getEmail(),
         ));
         $donne = $req2->fetch();
-        if ($donne == NULL) {
-<<<<<<< HEAD
-
-=======
-            var_dump($donne);
->>>>>>> cdbaf6ce4188411d7846d410439f7a132aa7362d
+        if ($donne == NULL){
             $sql = 'INSERT INTO utilisateur(nom,prenom,email,mdp) 
                 Values (:nom,:prenom,:email,:mdp)';
             $req = $this->bdd->getBdd()->prepare($sql);
