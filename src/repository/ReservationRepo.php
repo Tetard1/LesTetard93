@@ -39,10 +39,11 @@ class ReservationRepo {
         return $reservations->fetchAll();
     }
     public function supprimerReservation(Reservation $reservation){
-        $sql= "DELETE FROM reservation WHERE id_reservation=:idReservation";
+        $sql= "DELETE FROM reservation WHERE id_reservation=:idReservation AND ref_utilisateur=:refUtilisateur";
         $req=$this->bdd->getBdd()->prepare($sql);
         $res=$req->execute(array(
-            'idReservation'=>$reservation->getIdReservation()
+            'idReservation'=>$reservation->getIdReservation(),
+            'refUtilisateur' =>$reservation->getRefUtilisateur(),
         ));
         if($res){
             return true;
@@ -52,21 +53,22 @@ class ReservationRepo {
         }
     }
     public function modifierReservation(Reservation $reservation){
-        $req = 'UPDATE `reservation` SET ref_seance=:refSeance,ref_salle=:refSalle,
-heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_reservation=:idReservation';
+        $req = 'UPDATE `reservation` SET ref_seance=:refSeance,
+nb_place_reserver=:nbPlaceReserver WHERE id_reservation=:idReservation';
         $modif = $this->bdd->getBdd()->prepare($req);
         $req = $modif->execute(array(
             'idReservation' => $reservation->getIdReservation(),
-            'nbPlaceReserver' => $reservation->getRefSalle(),
-            'refSeance' => $reservation->getRefFilms(),
-            'refUtilisateur' => $reservation->getDate()
+            'nbPlaceReserver' => $reservation->getNbPlaceReserver(),
+            'refSeance' => $reservation->getRefSeance(),
+            'refUtilisateur' => $reservation->getRefUtilisateur(),
         ));
     }
     public function getSeances($id){
-        $date="SELECT id_seance, date, prix FROM seance WHERE ref_films=:films";
+        $date="SELECT id_seance, date, prix FROM seance WHERE ref_films=:films OR id_seance=:seance";
         $seance = $this->bdd->getBdd()->prepare($date);
         $seance->execute(array(
-            'films'=>$id
+            'films'=>$id,
+            'seance'=>$id,
         ));
         return $seance->fetchAll();
     }
@@ -77,5 +79,16 @@ heure=:heure,date=:date, nb_place_dispo=:nbPlcDispo WHERE id_reservation=:idRese
             'films'=>$id
         ));
         return $films->fetch();
+    }
+    public function afficherLaReservation($id){
+        $show="SELECT *,titre,id_films,date FROM reservation
+LEFT JOIN seance on id_seance=ref_seance
+    LEFT JOIN films on id_films=ref_films
+     WHERE id_reservation=:idReservation";
+        $reservations = $this->bdd->getBdd()->prepare($show);
+        $reservations->execute(array(
+            'idReservation'=>$id
+        ));
+        return $reservations->fetch();
     }
 }

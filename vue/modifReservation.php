@@ -1,4 +1,5 @@
 <?php
+require_once "../src/bdd/BDD.php";
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
@@ -9,11 +10,9 @@ if(isset($_GET['id'])){
     $id=null;
     header("Location:afficherReservation.php");
 }
-$reservation=new Seance([
-    'idReservation'=>$id]);
 $reservationRepo=new ReservationRepo();
-$resultat=$reservationRepo->afficherLaSeance($reservation);
-$filmSalle=$seanceRepo->getSalleFilm();
+$resultat=$reservationRepo->afficherLaReservation($id);
+$seances=$reservationRepo->getSeances($resultat["id_films"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -86,6 +85,38 @@ $filmSalle=$seanceRepo->getSalleFilm();
     <hr>
 </header>
 <h2>Modifier une Reservation</h2>
-
+<form action="../src/traitement/traitementModifReservation.php" method="post">
+    <table>
+        <tbody>
+        <tr>
+            <td><input type="hidden"  name="idReservation" value="<?=$id?>"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>
+        </tr>
+        <tr>
+            <td><label for="dateSeance">Veuillez choisir la seance : </label></td>
+            <td><select name="refSeance" id="dateSeance">
+                    <option value="<?= $resultat["ref_seance"]?>"><?= $resultat["date"]?></option>
+                    <?php
+                    foreach ($seances as $seance){
+                        if($seance["id_seance"] != $resultat["ref_seance"]){
+                            echo"<option value='".$seance["id_seance"]."'>".$seance["date"]."</option>
+                                    ";
+                        }
+                    }
+                    ?>
+                </select></td>
+        </tr>
+        <tr>
+            <td><label for='nbPlaceReserver'>Saisir le nombre de place a reserver : </label></td>
+            <td><input type="number" name='nbPlaceReserver' id='nbPlaceReserver' value="<?=$resultat["nb_place_reserver"]?>"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" name="modifierReservation" value="Modifier ">
+                </div>
+            </td>
 </body>
 </html>

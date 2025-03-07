@@ -1,4 +1,5 @@
 <?php
+require_once "../src/bdd/BDD.php";
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
@@ -9,11 +10,8 @@ if(isset($_GET['id'])){
     $id=null;
     header("Location:afficherReservation.php");
 }
-$seance=new Seance([
-    'idSeance'=>$id]);
-$seanceRepo=new SeanceRepo();
-$resultat=$seanceRepo->afficherLaSeance($seance);
-$filmSalle=$seanceRepo->getSalleFilm(); ?>
+$reservationRepo=new ReservationRepo();
+$resultat=$reservationRepo->afficherLaReservation($id); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -82,4 +80,29 @@ $filmSalle=$seanceRepo->getSalleFilm(); ?>
     </menu>
     <hr>
 </header>
-
+<h2>Supprimer une Reservation</h2>
+<form action="../src/traitement/traitementSuppReservation.php" method="post">
+    <table>
+        <tbody>
+        <tr>
+            <td><input type="hidden" value="<?=$id?>"></td>
+        </tr>
+        <tr>
+            <td><input type="hidden" value="<?=$_SESSION['userConnecte']['idUtilisateur']?>" name="refUtilisateur"></td>
+        </tr>
+        <tr>
+            <td><label for="dateSeance">Date de la seance : </label></td>
+            <td> <?= $resultat["date"]?></td>
+        </tr>
+        <tr>
+            <td><label for='nbPlaceReserver'>Nombre de place reservé : </label></td>
+            <td><?=$resultat["nb_place_reserver"]?></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" name="supprimerReservation" value="Supprimer ">
+                </div>
+            </td>
+</body>
+</html>

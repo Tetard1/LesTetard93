@@ -3,7 +3,6 @@ class Reservation
 {
     private $idReservation;
     private $nbPlaceReserver;
-    private $date_reservation;
     private $refSeance;
     private $refUtilisateur;
 
