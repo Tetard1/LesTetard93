@@ -8,6 +8,7 @@ if (isset($_POST["nbPlaceReserver"])) {
         "idReservation" => $_POST["idReservation"],
         'nbPlaceReserver' => $_POST["nbPlaceReserver"],
         'refSeance' => $_POST["refSeance"],
+        'refUtilisateur' => $_POST["refUtilisateur"],
     ]);
     $reservationRepo = new ReservationRepo();
     $resultat = $reservationRepo->modifierReservation($reservation);
