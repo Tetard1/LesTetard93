@@ -75,8 +75,6 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -97,15 +95,7 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Inscription/Connexion
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
-            </ul>
-        </li>
+
     </menu>
     <hr>
 </header>
