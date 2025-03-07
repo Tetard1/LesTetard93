@@ -142,7 +142,7 @@ require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
 $reservation = new Reservation([
-    "idUtilisateur" => $_SESSION["idUtilisateur"]["IdUtilisateur"],
+    "refUtilisateur" => $_SESSION["userConnecte"]["IdUtilisateur"],
     ]);
 $reservationRepo=new ReservationRepo();
 $resultat=$reservationRepo->afficherReservationsPasse($reservation);
@@ -187,10 +187,12 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
             </button>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon compte
+            </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="../vue/ModificationUtilisateur.php">Mon profil </a></li>
-                <li><a class="dropdown-item" href="../vue/reservationClient.php">Mes reservation </a></li>
+                <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
+                <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
