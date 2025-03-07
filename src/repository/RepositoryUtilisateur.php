@@ -13,11 +13,14 @@ class repositoryUtilisateur
         $req2 = $this->bdd->getBdd()->prepare('SELECT * FROM utilisateur WHERE email = :email');
         $req2->execute(array(
             'email' => $user->getEmail(),
-
         ));
         $donne = $req2->fetch();
         if ($donne == NULL) {
+<<<<<<< HEAD
 
+=======
+            var_dump($donne);
+>>>>>>> cdbaf6ce4188411d7846d410439f7a132aa7362d
             $sql = 'INSERT INTO utilisateur(nom,prenom,email,mdp) 
                 Values (:nom,:prenom,:email,:mdp)';
             $req = $this->bdd->getBdd()->prepare($sql);
@@ -27,17 +30,19 @@ class repositoryUtilisateur
                 'email' => $user->getEmail(),
                 'mdp' => $user->getMdp(),
             ));
+            var_dump($res);
+
             if ($res) {
                 return true;
+                echo "Votre profil a été créé ! ";
+                header('Location:../../vue/Connexion.html');
             } else {
                 return false;
             }
-            echo "Votre profil a été créé ! ";
-            header('Location:../../vue/Connexion.html');
             exit();
         } else {
             echo "Vous avez déjà un compte, veuillez vous connecter ! ";
-            header('Location: ../../vue/Connexion.html');
+            header('Location: ../../accueil.php');
             exit();
         }
     }

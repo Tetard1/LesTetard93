@@ -2,14 +2,12 @@
 include "../repository/RepositoryUtilisateur.php";
 require_once "../bdd/BDD.php";
 require_once "../modele/Utilisateur.php";
-var_dump($_POST);
 if (empty($_POST["email"]) ||
     empty($_POST["mdp"]) )
 {
     echo "C'est pas bien tetard";
-    header("Location: ../../index.php");
+    header("Location: ../../accueil.php");
 } else {
-
     $user = new Utilisateur(array(
         'email' => $_POST['email'],
         'mdp' => $_POST['mdp'],
