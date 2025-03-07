@@ -21,7 +21,7 @@ class ReservationRepo {
         }
     }
     public function afficherReservationsPasse($reservation){
-        $afficherReservations="SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,date FROM reservation
+        $afficherReservations="SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,date,(prix*nb_place_reserver) as prix_complet FROM reservation
     LEFT JOIN seance on id_seance=ref_seance
     LEFT JOIN films on id_films=ref_films WHERE ref_utilisateur=:refUtilisateur   ";
         $reservations = $this->bdd->getBdd()->prepare($afficherReservations);
@@ -80,7 +80,7 @@ nb_place_reserver=:nbPlaceReserver WHERE id_reservation=:idReservation AND ref_u
         return $films->fetch();
     }
     public function afficherLaReservation($id){
-        $show="SELECT *,titre,id_films,DATE_FORMAT(heure,'%H:%i') as heure_complete,date FROM reservation
+        $show="SELECT *,titre,id_films,DATE_FORMAT(heure,'%H:%i') as heure_complete,date,(prix*nb_place_reserver) as prix_complet FROM reservation
 LEFT JOIN seance on id_seance=ref_seance
     LEFT JOIN films on id_films=ref_films
      WHERE id_reservation=:idReservation";
