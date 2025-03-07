@@ -168,7 +168,7 @@ $resultat = $reservationRepo->afficherReservations();
                 <td><?= $reservation['date'] ?></td>
                 <td><?= $reservation['heure_complete'] ?></td>
                 <td><?= $reservation['nb_place_reserver'] ?></td>
-                <td><?= $reservation['prix'] ?></td>
+                <td><?= $reservation['prix_complet'] ?></td>
                 <td>
                     <a href='modifReservation.php?id=<?= $reservation["id_reservation"] ?>'>
                         <button type='button' class='btn btn-warning'>Modifier</button>
