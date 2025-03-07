@@ -26,7 +26,7 @@ if(empty($_POST["nom"]) ||
     if($resultat == true){
         header("Location: ../../vue/Connexion.html");
     }else{
-        header("Location: ../../vue/Connexion.html");
+        header("Location: ../../accueil.php");
     }
 
 }

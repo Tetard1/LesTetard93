@@ -15,13 +15,13 @@ $salles = $seanceRepo->getSalle();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+
     <title>Ajouter une Séance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 20px;
+            background-color: #f4f4f4;
         }
         .container {
             max-width: 800px;
@@ -30,6 +30,23 @@ $salles = $seanceRepo->getSalle();
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .top-section h2 {
+            text-align: center;
+            width: 100%;
+        }
+        .top-section button {
+            margin: 3px;
+            padding: 5px 10px;
+            font-size: 14px;
+            width: 110px;
         }
         button {
             cursor: pointer;
@@ -37,10 +54,33 @@ $salles = $seanceRepo->getSalle();
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px;
         }
         button:hover {
             background-color: #0056b3;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        td img {
+            max-width: 100px;
+            display: block;
         }
     </style>
 </head>

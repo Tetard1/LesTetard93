@@ -39,11 +39,10 @@ class ReservationRepo {
         return $reservations->fetchAll();
     }
     public function supprimerReservation(Reservation $reservation){
-        $sql= "DELETE FROM reservation WHERE id_reservation=:idReservation AND ref_utilisateur=:refUtilisateur";
+        $sql= "DELETE FROM reservation WHERE id_reservation=:idReservation";
         $req=$this->bdd->getBdd()->prepare($sql);
         $res=$req->execute(array(
             'idReservation'=>$reservation->getIdReservation(),
-            'refUtilisateur' =>$reservation->getRefUtilisateur(),
         ));
         if($res){
             return true;
