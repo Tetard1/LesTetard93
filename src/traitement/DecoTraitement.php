@@ -1,4 +1,13 @@
 <?php
-session_start();
-session_destroy();
-header('Location: ../../index.php');
+include "../repository/RepositoryUtilisateur.php";
+require_once "../bdd/BDD.php";
+require_once "../modele/Utilisateur.php";
+
+
+
+if(isset($_POST["deconnexion"])){
+    $utilisateurRepo = new RepositoryUtilisateur();
+    $utilisateurRepo->deconnect();
+    header('Location: ../../accueil.php');
+
+}

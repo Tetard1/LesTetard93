@@ -172,6 +172,9 @@ $result=$repository->afficherUtilisateur($user);
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
+    <form action="../src/traitement/DecoTraitement.php" method="post">
+        <input type="submit" class="btn btn-primary" value="Deconnexion" name="deconnexion">
+    </form>
   <h1 class="mt-5">Supprimer un Utilisateur</h1>
   <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
     <input type="hidden" name="action" value="suppression">

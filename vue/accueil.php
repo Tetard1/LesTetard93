@@ -4,10 +4,8 @@ require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
-if($_SESSION ==null){
-    session_destroy();
-}
-var_dump($_SESSION);
+
+var_dump($_SESSION["userConnecte"]);
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 ?>
@@ -161,15 +159,7 @@ $listeFilm = $listeFilm->filmAffiche();
                 <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
             </ul>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Connexion
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
-            </ul>
-        </li>
+
     </menu>
     <hr>
 </header>

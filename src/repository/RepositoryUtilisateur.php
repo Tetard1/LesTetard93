@@ -56,6 +56,7 @@ class repositoryUtilisateur
             $user->setPrenom($donne['prenom']);
             $user->setEmail($donne['email']);
             $user->setMdp($donne['mdp']);
+            $user->setRole($donne['role']);
             $user->setIdUtilisateur($donne['id_utilisateur']);
 
             return $user;
@@ -70,7 +71,6 @@ class repositoryUtilisateur
     {
         //var_dump($_POST);
         $sqlmodification = "UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp WHERE id_utilisateur = :id_utilisateur";
-        $sqlmodification = "UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role =:role WHERE id_utilisateur = :id_utilisateur";
         $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
         $resmodification = $reqmodification->execute(array(
             'nom' => $user->getNom(),
@@ -101,6 +101,10 @@ class repositoryUtilisateur
         $req->execute(array(
             'idUtilisateur' => $user->getIdUtilisateur()));
         return $req->fetch();
+    }
+    public function deconnect()
+    {
+        session_destroy();
     }
 }
 
