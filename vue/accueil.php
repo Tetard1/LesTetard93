@@ -5,6 +5,8 @@ require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
 
+var_dump($_SESSION["userConnecte"]);
+$userPrenom = $_SESSION["userConnecte"]["userPrenom"] ?? "Invité";
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 ?>
@@ -176,7 +178,7 @@ $listeFilm = $listeFilm->filmAffiche();
 
 <!-- Bannière principale -->
 <section class="banner">
-    <h1>Hey l'ami</h1>
+    <h1>Hey <?= urlencode($userPrenom) ?> !</h1>
     <p>Bienvenue dans ton cinéma préféré Plus 2</p>
     <p>Découvrez les meilleurs films du moment.</p>
 </section>

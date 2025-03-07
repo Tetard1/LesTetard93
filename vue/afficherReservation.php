@@ -162,9 +162,8 @@ $resultat=$reservationRepo->afficherReservations();
 </header>
 <div class="container">
     <div class="top-section">
-        <h2>Liste des Films</h2>
+        <h2>Liste des Reservation</h2>
     </div>
-<h2>Afficher Les Reservation</h2>
 <input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une reservation...">
 <table class="table">
     <thead>

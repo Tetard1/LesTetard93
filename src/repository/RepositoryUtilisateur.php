@@ -102,6 +102,16 @@ class repositoryUtilisateur
             'idUtilisateur' => $user->getIdUtilisateur()));
         return $req->fetch();
     }
+
+    public function nomUtilisateur(Utilisateur $user)
+    {
+        $affiche = "SELECT * FROM utilisateur WHERE prenom=:prenom";
+        $req = $this->bdd->getBdd()->prepare($affiche);
+        $req->execute(array(
+            'prenomUtilisateur' => $user->getPrenom(),));
+        return $req->fetch();
+    }
+
     public function deconnect()
     {
         session_destroy();
