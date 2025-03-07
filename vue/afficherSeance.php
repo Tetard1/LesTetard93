@@ -38,6 +38,72 @@ $resultat=$seanceRepo->afficherSeances();
         });
     });
 </script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+    .top-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    .top-section h2 {
+        text-align: center;
+        width: 100%;
+    }
+    .top-section button {
+        margin: 3px;
+        padding: 5px 10px;
+        font-size: 14px;
+        width: 110px;
+    }
+    button {
+        cursor: pointer;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    .search-bar {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    td img {
+        max-width: 100px;
+        display: block;
+    }
+</style>
 <header>
     <hr>
     <menu class="nav">
@@ -96,6 +162,10 @@ $resultat=$seanceRepo->afficherSeances();
     </menu>
     <hr>
 </header>
+<div class="container">
+    <div class="top-section">
+        <h2>Liste des Séance</h2>
+    </div>
 <input type="text" id="search" class="search-bar" onkeyup="filterSeance()" placeholder="Rechercher un film...">
 <table class="table">
     <thead>
