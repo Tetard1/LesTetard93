@@ -10,7 +10,7 @@ if(empty($_POST["nom"]) ||
 ){
 
     echo "C'est pas bien tetard";
-    header("Location: ../vue/connexion.html");
+    header("Location: ../../vue/Connexion.html");
 }else{
 
     $user = new Utilisateur(array(
@@ -24,9 +24,9 @@ if(empty($_POST["nom"]) ||
     $resultat = $repository->inscription($user);
 
     if($resultat == true){
-        header("Location: ../../vue/connexion.html");
+        header("Location: ../../vue/Connexion.html");
     }else{
-        header("Location: ../vue/connexion.html");
+        header("Location: ../../vue/Connexion.html");
     }
 
 }
