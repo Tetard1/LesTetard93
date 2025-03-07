@@ -107,37 +107,65 @@ if(!isset($_SESSION["userConnecte"])){
                         Films
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                        <?php
+                        if($_SESSION["userConnecte"]["role"]=="admin"){
+                            ?>
+                            <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                            <?php
+                        }?>
                         <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Reservations
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
-                        <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                    </ul>
-                </li>
+
+
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Reservations
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                            <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }?>
+
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Seances
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                        <?php
+                        if($_SESSION["userConnecte"]["role"]=="admin"){
+                            ?>
+                            <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                            <?php
+                        }?>
                         <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Salles
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
-                        <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
-                    </ul>
-                </li>
+
+
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Salles
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                            <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }?>
+
 
             </menu>
             <hr>
