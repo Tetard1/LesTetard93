@@ -197,7 +197,7 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
 </header>
 <div class="container">
     <div class="top-section">
-        <h2>Mes reservations</h2>
+        <h2>Mon historique de Reservation</h2>
     </div>
 <input type="text" id="search" class="search-bar" onkeyup="filterReservation()" placeholder="Rechercher une reservation...">
 <table class="table">
@@ -220,9 +220,6 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
             <td><?= $resultat[$i]['heure_complete'] ?></td>
             <td><?= $resultat[$i]['nb_place_reserver'] ?></td>
             <td><?= $resultat[$i]['prix'] ?></td>
-            <td><a href='modifReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-            <td><a href='suppReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-
         </tr>
         <?php
     }

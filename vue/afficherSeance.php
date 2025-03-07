@@ -9,6 +9,7 @@ if (!isset($_SESSION["userConnecte"])) {
 }
 $seanceRepo = new SeanceRepo();
 $resultat = $seanceRepo->afficherSeances();
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -166,6 +167,7 @@ $resultat = $seanceRepo->afficherSeances();
         </thead>
         <tbody>
         <?php foreach ($resultat as $seance): ?>
+            <input type="hidden" name="id" value="<?=$seance["id_seance"]?>">
             <tr>
                 <td><?= htmlspecialchars($seance["nom_salle"]) ?></td>
                 <td><?= htmlspecialchars($seance["titre"]) ?></td>
@@ -189,7 +191,6 @@ $resultat = $seanceRepo->afficherSeances();
     </table>
 </div>
 
-<!-- Modale de confirmation Bootstrap -->
 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

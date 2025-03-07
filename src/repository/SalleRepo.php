@@ -34,17 +34,6 @@ class SalleRepo{
             return $resmodification ? "Modification réussie" : "Échec de la modification";
         }
 
-
-        public function suppressionSalle (Salle $salle)
-        {
-            $sqlsuppression = 'DELETE FROM salle WHERE id_salle = :idSalle';
-            $reqsuppression = $this->bdd->getBdd()->prepare($sqlsuppression);
-            $ressuppression = $reqsuppression->execute(array(
-                'idSalle' => $salle->getIdSalle()
-            ));
-
-            return $ressuppression ? "Suppression réussie" : "Échec de la suppression";
-        }
         public function afficherSalle(){
             $affiche="SELECT * FROM `salle` ORDER BY nom_salle ASC";
             $req=$this->bdd->getBdd()->prepare($affiche);
@@ -62,5 +51,16 @@ class SalleRepo{
         return $req->fetch();
         }
 
+    public function suppressionSalle (Salle $salle)
+    {
+        $supprimer = "DELETE FROM salle WHERE id_salle = :idSalle";
+        $sup = $this->bdd->getBdd()->prepare($supprimer);
+        $sup->execute(array('idSalle' => $salle->getIdSalle()));
+        if ($sup) {
+            return true;
 
+        } else {
+            return false;
+        }
+    }
 }

@@ -98,7 +98,7 @@ LEFT JOIN salle on id_salle=ref_salle";
     }
     public function supprimerSeance($seance)
     {
-        $supprimer = "DELETE FROM `seance` WHERE id_seance=:idSeance";
+        $supprimer = "DELETE FROM seance WHERE id_seance=:idSeance";
         $sup = $this->bdd->getBdd()->prepare($supprimer);
         $sup->execute(array('idSeance' => $seance->getIdSeance()));
         if ($sup) {

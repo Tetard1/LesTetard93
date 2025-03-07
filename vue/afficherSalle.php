@@ -7,8 +7,8 @@ if(!isset($_SESSION["userConnecte"])){
     header('Location:../accueil.php');
     session_destroy();
 }
-$salleRepo=new SalleRepo();
-$resultat=$salleRepo->afficherSalle();
+$salleRepo = new SalleRepo();
+$resultat = $salleRepo->afficherSalle();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,7 +16,7 @@ $resultat=$salleRepo->afficherSalle();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Plus 2</title>
+    <title>Liste des Salles</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,22 +42,6 @@ $resultat=$salleRepo->afficherSalle();
             text-align: center;
             width: 100%;
         }
-        .top-section button {
-            margin: 3px;
-            padding: 5px 10px;
-            font-size: 14px;
-            width: 110px;
-        }
-        button {
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
         .search-bar {
             width: 100%;
             padding: 8px;
@@ -78,16 +62,10 @@ $resultat=$salleRepo->afficherSalle();
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        td img {
-            max-width: 100px;
-            display: block;
-        }
     </style>
 </head>
 <body>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
     function filterSalle() {
         let input = document.getElementById("search").value.toLowerCase();
@@ -98,15 +76,14 @@ $resultat=$salleRepo->afficherSalle();
             row.style.display = title.includes(input) ? "" : "none";
         });
     }
+
+    function confirmDelete(id) {
+        document.getElementById("confirmDeleteForm").action = "../src/traitement/traitementSuppSalle.php?id=" + id;
+        var confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+        confirmModal.show();
+    }
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var dropdowns = document.querySelectorAll('.dropdown-toggle');
-        dropdowns.forEach(dropdown => {
-            new bootstrap.Dropdown(dropdown);
-        });
-    });
-</script>
+
 <header>
     <hr>
     <menu class="nav">
@@ -130,7 +107,12 @@ $resultat=$salleRepo->afficherSalle();
                 Films
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                    <?php
+                }?>
                 <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
             </ul>
         </li>
@@ -165,35 +147,55 @@ $resultat=$salleRepo->afficherSalle();
     </menu>
     <hr>
 </header>
+
 <div class="container">
     <div class="top-section">
         <h2>Liste des Salles</h2>
     </div>
 
+    <input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
 
-<input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
+    <table>
+        <thead>
+        <tr>
+            <th>Nom de la Salle</th>
+            <th>Place Disponibles</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($resultat as $salle): ?>
+            <tr>
+                <td><?= htmlspecialchars($salle['nom_salle']) ?></td>
+                <td><?= $salle["place_totale"] ?></td>
+                <td><a href='modifSalle.php?id=<?= $salle["id_salle"] ?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
+                <td><button type='button' class='btn btn-danger' onclick="confirmDelete(<?= $salle['id_salle'] ?>)">Supprimer</button></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-<table>
-    <thead>
-    <tr>
-        <th>Nom de la Salle</th>
-        <th>Place Disponibles</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php
-    for ($i = 0; $i < count($resultat); $i++) {
-    ?>
-    <tr>
-        <td><a><?= htmlspecialchars($resultat[$i]['nom_salle']) ?></a></td>
-        <td><?= $resultat[$i]["place_totale"] ?></td>
-        <td><a href='modifSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-        <td><a href='suppSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-    </tr>
-    <?php
-        }
-    ?>
-    </tbody>
-</table>
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette salle ? Cette action est irréversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form id="confirmDeleteForm" method="post">
+                    <button type="submit" class="btn btn-danger">Confirmer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

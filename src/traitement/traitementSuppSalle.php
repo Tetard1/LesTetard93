@@ -1,22 +1,21 @@
 <?php
-include "../repository/SalleRepo.php";
-require_once "../bdd/BDD.php";
+require_once "../bdd/Bdd.php";
 require_once "../modele/Salle.php";
-
-var_dump($_POST);
-if(empty($_POST["idSalle"]))
-{
-    var_dump($_POST);
-    echo "Erreur : ID utilisateur requis";
-    return;
-}
-
-$salle = new Salle(array(
-    'idSalle' => $_POST["idSalle"]
-
-));
-$repository = new SalleRepo();
-$resultat = $repository->suppressionSalle($salle);
-if($resultat){
-    header("Location: ../../vue/afficherSalle.php");
+require_once "../repository/SalleRepo.php";
+var_dump($_GET['id']);
+if(isset($_GET["id"])) {
+    $idSalle = $_GET["id"];
+    $salle = new Salle([
+        "idSalle" => $_GET["id"]
+    ]);
+    $SalleRepo = new SalleRepo();
+    $suppression = $SalleRepo->suppressionSalle($salle);
+    if ($suppression) {
+        header('Location:../../vue/accueil.php');
+    } else {
+        echo "erreur";
+    }
+}else{
+    header('location:traitementSuppressionSeance.php');
+    echo "Vous navez pas de salle a supprimer";
 }
