@@ -31,7 +31,7 @@ class ReservationRepo {
             return $reservations->fetchAll();
     }
     public function afficherReservations(){
-        $afficherReservations="SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,titre,date,(prix*nb_place_reserver) as prix FROM reservation
+        $afficherReservations="SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,titre,date,(prix*nb_place_reserver) as prix_complet FROM reservation
     LEFT JOIN seance on id_seance=ref_seance
     LEFT JOIN films on id_films=ref_films";
         $reservations = $this->bdd->getBdd()->query($afficherReservations);

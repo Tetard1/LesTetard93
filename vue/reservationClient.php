@@ -219,7 +219,7 @@ $resultat=$reservationRepo->afficherReservationsPasse($reservation);
             <td><?= $resultat[$i]['date'] ?></td>
             <td><?= $resultat[$i]['heure_complete'] ?></td>
             <td><?= $resultat[$i]['nb_place_reserver'] ?></td>
-            <td><?= $resultat[$i]['prix'] ?></td>
+            <td><?= $resultat[$i]['prix_complet'] ?></td>
             <td><a href='modifReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
             <td><a href='suppReservation.php?id=<?=$resultat[$i]["id_reservation"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
 
