@@ -5,10 +5,6 @@ require_once "../src/repository/repositoryFilm.php";
 $liste = new repositoryFilm();
 $film = $liste->detailFilm($_GET['id']);
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

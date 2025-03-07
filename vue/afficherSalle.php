@@ -15,6 +15,72 @@ $resultat=$salleRepo->afficherSalle();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Plus 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .top-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .top-section h2 {
+            text-align: center;
+            width: 100%;
+        }
+        .top-section button {
+            margin: 3px;
+            padding: 5px 10px;
+            font-size: 14px;
+            width: 110px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        td img {
+            max-width: 100px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <script
@@ -67,8 +133,6 @@ $resultat=$salleRepo->afficherSalle();
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -91,25 +155,29 @@ $resultat=$salleRepo->afficherSalle();
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Inscription/Connexion
+                Connexion
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
             </ul>
         </li>
     </menu>
     <hr>
 </header>
+<div class="container">
+    <div class="top-section">
+        <h2>Liste des Salles</h2>
+    </div>
+
+
 <input type="text" id="search" class="search-bar" onkeyup="filterSalle()" placeholder="Rechercher une salle">
 
-<table class="table">
+<table>
     <thead>
     <tr>
-        <th scope="col">Nom de la Salle</th>
-        <th scope="col">Place Disponibles</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th>Nom de la Salle</th>
+        <th>Place Disponibles</th>
     </tr>
     </thead>
     <tbody>
@@ -117,7 +185,7 @@ $resultat=$salleRepo->afficherSalle();
     for ($i = 0; $i < count($resultat); $i++) {
     ?>
     <tr>
-        <td><a href="filmDetail.php?id=<?= urlencode($resultat[$i]['id_salle']) ?>">
+        <td><a>
                 <?= htmlspecialchars($resultat[$i]['nom_salle']) ?></a></td>
         <td><?= $resultat[$i]["place_totale"] ?></td>
         <td><a href='modifSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
