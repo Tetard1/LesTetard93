@@ -6,7 +6,6 @@ var_dump($_POST);
 if (empty($_POST["email"]) ||
     empty($_POST["mdp"]) )
 {
-
     echo "C'est pas bien tetard";
     header("Location: ../../index.php");
 } else {
@@ -14,7 +13,6 @@ if (empty($_POST["email"]) ||
     $user = new Utilisateur(array(
         'email' => $_POST['email'],
         'mdp' => $_POST['mdp'],
-
     ));
     var_dump($user);
     $repository = new repositoryUtilisateur();
@@ -23,6 +21,7 @@ if (empty($_POST["email"]) ||
     if ($resultat != null) {
         session_start();
         $_SESSION['userConnecte']=[
+            "userPrenom" => $resultat->getPrenom(),
             "idUtilisateur" => $resultat->getIdUtilisateur(),
             "role" => $resultat->getRole()
         ];
