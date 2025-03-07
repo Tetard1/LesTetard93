@@ -4,134 +4,146 @@ require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
 
-$seanceRepo=new SeanceRepo();
-$films=$seanceRepo->getFilm();
-$salles=$seanceRepo->getSalle();
+$seanceRepo = new SeanceRepo();
+$films = $seanceRepo->getFilm();
+$salles = $seanceRepo->getSalle();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <title>Plus 2</title>
-    </head>
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <header>
-            <hr>
-            <menu class="nav">
-                <li>
-                    <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Mon compte
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
-                        <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Films
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
-                        <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Reservations
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
-                        <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Seances
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
-                        <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Salles
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
-                        <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
-                    </ul>
-                </li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ajouter une Séance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<header>
+    <hr>
+    <menu class="nav">
+        <li>
+            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon compte
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
+                <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Films
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Reservations
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Seances
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Salles
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+            </ul>
+        </li>
 
-            </menu>
-            <hr>
-        </header>
-        <form action="../src/traitement/traitementAjoutSeance.php" method="post">
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label for='date'>Saisir une Date : </label></td>
-                        <td><input type='date' name='date' id='date'></td>
-                    </tr>
-                    <tr>
-                        <td><label for='heure'>Saisir une heure : </label></td>
-                        <td><input type='time' name='heure' id='heure'></td>
-                    </tr>
-                    <tr>
-                        <td><label for="titreFilm">Veuillez choisir le film : </label>
-                            <td><select name="refFilm" id="titreFilm">
-                                <?php
-                                foreach ($films as $film){
-                                    echo"<option value='".$film["id_films"]."'>".$film["titre"]."</option>
-                                    ";
-                                }
-                                ?>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td><label for="nomSalle">Veuillez choisir la salle : </label></td>
-                        <td><select name="refSalle" id="nomSalle">
-                                <?php
-                                foreach ($salles as $salle){
-                                    echo"<option value='".$salle["id_salle"]."'>".$salle["nom_salle"]."</option>
-                                    ";
-                                }
-                                ?>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for='nbdispo'>Place disponible : </label></td>
-                        <td><select name="nbPlcDispo" id="nbdispo">
-                                <?php
-                                foreach ($salles as $salle){
-                                    echo"<option value='".$salle["place_totale"]."'>".$salle["nom_salle"]." : ".$salle["place_totale"]." place"."</option>
-                                    ";
-                                }
-                                ?>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td><label for="prix">Saisir le prix de la seance : </label></td>
-                        <td><input type="number" name="prixPlc" id="prix">€</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="col-12">
-                                <input class="btn btn-primary" type="submit" value="Ajouter ">
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+    </menu>
+    <hr>
+</header>
+<body>
+<div class="container mt-4">
+    <h1>Ajouter une Nouvelle Séance</h1>
+    <form action="../src/traitement/traitementAjoutSeance.php" method="post">
+        <div class="mb-3">
+            <label for="date" class="form-label">Date de la séance :</label>
+            <input type="date" class="form-control" id="date" name="date">
+        </div>
+        <div class="mb-3">
+            <label for="heure" class="form-label">Heure de la séance :</label>
+            <input type="time" class="form-control" id="heure" name="heure">
+        </div>
+        <div class="mb-3">
+            <label for="titreFilm" class="form-label">Choisissez le film :</label>
+            <select class="form-control" id="titreFilm" name="refFilm">
+                <?php foreach ($films as $film) {
+                    echo "<option value='" . $film["id_films"] . "'>" . $film["titre"] . "</option>";
+                } ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="nomSalle" class="form-label">Choisissez la salle :</label>
+            <select class="form-control" id="nomSalle" name="refSalle">
+                <?php foreach ($salles as $salle) {
+                    echo "<option value='" . $salle["id_salle"] . "'>" . $salle["nom_salle"] . "</option>";
+                } ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="nbdispo" class="form-label">Places disponibles :</label>
+            <select class="form-control" id="nbdispo" name="nbPlcDispo">
+                <?php foreach ($salles as $salle) {
+                    echo "<option value='" . $salle["place_totale"] . "'>" . $salle["nom_salle"] . " : " . $salle["place_totale"] . " places</option>";
+                } ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="prix" class="form-label">Prix de la séance (€) :</label>
+            <input type="number" class="form-control" id="prix" name="prixPlc">
+        </div>
+        <a href="accueil.php" class="btn btn-primary">Retour</a>
+        <input type="submit" value="Ajouter" class="btn btn-warning">
+        <input type="reset" value="Réinitialiser" class="btn btn-danger">
+    </form>
+</div>
+</body>
+</html>

@@ -8,7 +8,8 @@ if(empty($_POST["nom"]) ||
     empty($_POST["email"]) ||
     empty($_POST["mdp"]))
     {
-    echo "Erreur : Tous les champs doivent être remplis";
+        echo "<p style='color: red; font-weight: bold;'>Erreur : Tous les champs doivent être remplis.</p>";
+        echo "<button onclick='history.back()' style='padding: 10px; font-size: 16px; cursor: pointer;'>Retour à la modification</button>";
     return;
     }
 
@@ -23,4 +24,5 @@ $user = new Utilisateur(array(
 //var_dump($user);
 $repository = new repositoryUtilisateur();
 $resultat = $repository->modification($user);
+header("Location:../../vue/accueil.php");
 

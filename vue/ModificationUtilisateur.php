@@ -146,7 +146,7 @@ $result=$repository->afficherUtilisateur($user);
     <hr>
 </header>
 <div class="container">
-  <h1>Modifier un Utilisateur</h1>
+  <h1>Modification du compte</h1>
   <form action="../src/traitement/TraitementModifUtilisateur.php" method="post">
     <input type="hidden" name="action" value="modification">
     <div class="mb-3">
@@ -170,10 +170,11 @@ $result=$repository->afficherUtilisateur($user);
     </div>
     <input type="submit" class="btn btn-warning" value="Modifier">
   </form>
+    <h1 class="mt-5">Deconnexion du compte</h1>
     <form action="../src/traitement/DecoTraitement.php" method="post">
         <input type="submit" class="btn btn-primary" value="Deconnexion" name="deconnexion">
     </form>
-  <h1 class="mt-5">Supprimer un Utilisateur</h1>
+  <h1 class="mt-5">Suppression du compte</h1>
   <form action="../src/traitement/TraitementSuppressionUtilisateur.php" method="post">
     <input type="hidden" name="action" value="suppression">
     <div class="mb-3">
