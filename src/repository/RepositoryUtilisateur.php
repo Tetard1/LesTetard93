@@ -68,8 +68,12 @@ class repositoryUtilisateur
 
     public function modification(Utilisateur $user)
     {
+<<<<<<< HEAD
         //var_dump($_POST);
         $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp WHERE id_utilisateur = :id_utilisateur';
+=======
+        $sqlmodification = 'UPDATE utilisateur SET nom = :nom, prenom = :prenom, email = :email, mdp = :mdp, role =:role WHERE id_utilisateur = :id_utilisateur';
+>>>>>>> ec86a2cb43f2308f5c6d450f69a7487d56fa6bc8
         $reqmodification = $this->bdd->getBdd()->prepare($sqlmodification);
         $resmodification = $reqmodification->execute(array(
             'nom' => $user->getNom(),

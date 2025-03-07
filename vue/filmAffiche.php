@@ -1,5 +1,4 @@
 <?php
-
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
@@ -114,12 +113,8 @@ $listeFilm = $listeFilm->filmAffiche();
                 <span class="navbar-toggler-icon"></span>
             </button>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="../vue/ModificationUtilisateur.php">Mon profil </a></li>
-                <li><a class="dropdown-item" href="../vue/reservationClient.php">Mes reservation </a></li>
-            </ul>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -137,8 +132,6 @@ $listeFilm = $listeFilm->filmAffiche();
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Supprimer Des Reservations</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
@@ -161,11 +154,11 @@ $listeFilm = $listeFilm->filmAffiche();
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Inscription/Connexion
+                Connexion
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
             </ul>
         </li>
     </menu>
@@ -190,13 +183,12 @@ $listeFilm = $listeFilm->filmAffiche();
         </tr>
         </thead>
         <tbody>
-
         <?php
         for ($i = 0; $i < count($listeFilm); $i++) {
             ?>
             <tr>
                 <td><a href="filmDetail.php?id=<?= urlencode($listeFilm[$i]['id_films']) ?>">
-                        <?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
+                <?= htmlspecialchars($listeFilm[$i]['titre']) ?></a></td>
                 <td><?= $listeFilm[$i]['description'] ?></td>
                 <td><?= $listeFilm[$i]['genre'] ?></td>
                 <td><?= $listeFilm[$i]['durée'] ?></td>
@@ -205,7 +197,6 @@ $listeFilm = $listeFilm->filmAffiche();
             <?php
         }
         ?>
-
         </tbody>
     </table>
 </div>
