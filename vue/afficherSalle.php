@@ -185,8 +185,12 @@ $resultat=$salleRepo->afficherSalle();
     for ($i = 0; $i < count($resultat); $i++) {
     ?>
     <tr>
+<<<<<<< HEAD
         <td><a>
                 <?= htmlspecialchars($resultat[$i]['nom_salle']) ?></a></td>
+=======
+        <td><?= htmlspecialchars($resultat[$i]['nom_salle']) ?></a></td>
+>>>>>>> 4089bf26c970186f03541fadb189280b16cc033f
         <td><?= $resultat[$i]["place_totale"] ?></td>
         <td><a href='modifSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
         <td><a href='suppSalle.php?id=<?=$resultat[$i]["id_salle"]?>'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>

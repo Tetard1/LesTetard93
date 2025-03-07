@@ -20,17 +20,23 @@ class ReservationRepo {
             return false;
         }
     }
-    public function afficherReservationsPasse(){
+    public function afficherReservationsPasse($reservation){
         $afficherReservations="SELECT * FROM reservation
     LEFT JOIN seance on id_seance=ref_seance
     LEFT JOIN films on id_films=ref_films WHERE ref_utilisateur=:refUtilisateur   ";
-        $reservations = $this->bdd->getBdd()->query($afficherReservations);
+        $reservations = $this->bdd->getBdd()->prepare($afficherReservations);
         $reservations->execute(array(
-            'refUtilisateur' =>$_SESSION['userConnecte']
+            'refUtilisateur' =>$reservation->getRefUtilisateur(),
         ));
             return $reservations->fetchAll();
-
-
+    }
+    public function afficherReservations(){
+        $afficherReservations="SELECT *,DATE_FORMAT(heure,'%H:%i') as heure_complete,titre,date,(prix*nb_place_reserver) as prix FROM reservation
+    LEFT JOIN seance on id_seance=ref_seance
+    LEFT JOIN films on id_films=ref_films";
+        $reservations = $this->bdd->getBdd()->query($afficherReservations);
+        $reservations->execute();
+        return $reservations->fetchAll();
     }
     public function supprimerReservation(Reservation $reservation){
         $sql= "DELETE FROM reservation WHERE id_reservation=:idReservation";

@@ -1,13 +1,19 @@
 <?php
-require_once '../src/bdd/Bdd.php';
-require_once '../src/modele/Seance.php';
-require_once '../src/repository/SeanceRepo.php';
+require_once '../src/modele/Reservation.php';
+require_once '../src/repository/ReservationRepo.php';
 session_start();
-$_SESSION["id"]=1;
-$_SESSION["role"]="admin";
-$seanceRepo=new SeanceRepo();
-$resultat=$seanceRepo->afficherSeances();
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
 
+} else{
+    $id=null;
+    header("Location:afficherReservation.php");
+}
+$reservation=new Seance([
+    'idReservation'=>$id]);
+$reservationRepo=new ReservationRepo();
+$resultat=$reservationRepo->afficherLaSeance($reservation);
+$filmSalle=$seanceRepo->getSalleFilm();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,25 +24,8 @@ $resultat=$seanceRepo->afficherSeances();
     <title>Plus 2</title>
 </head>
 <body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-    function filterSeance() {
-        let input = document.getElementById("search").value.toLowerCase();
-        let rows = document.querySelectorAll("tbody tr");
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
 
-        rows.forEach(row => {
-            let title = row.cells[0].innerText.toLowerCase();
-            row.style.display = title.includes(input) ? "" : "none";
-        });
-    }
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var dropdowns = document.querySelectorAll('.dropdown-toggle');
-        dropdowns.forEach(dropdown => {
-            new bootstrap.Dropdown(dropdown);
-        });
-    });
 </script>
 <header>
     <hr>
@@ -47,8 +36,12 @@ $resultat=$seanceRepo->afficherSeances();
                 <span class="navbar-toggler-icon"></span>
             </button>
         </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../vue/ModificationUtilisateur.php">Mon compte</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../vue/ModificationUtilisateur.php">Mon profil </a></li>
+                <li><a class="dropdown-item" href="../vue/reservationClient.php">Mes reservation </a></li>
+            </ul>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,11 +59,7 @@ $resultat=$seanceRepo->afficherSeances();
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
                 <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
-<<<<<<< HEAD
             </ul>
-=======
-                </ul>
->>>>>>> 4089bf26c970186f03541fadb189280b16cc033f
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -92,55 +81,17 @@ $resultat=$seanceRepo->afficherSeances();
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Connexion
+                Inscription/Connexion
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
-                <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
+                <li><a class="dropdown-item" href="Inscription.html">Crée votre compte </a></li>
             </ul>
         </li>
     </menu>
     <hr>
 </header>
-<input type="text" id="search" class="search-bar" onkeyup="filterSeance()" placeholder="Rechercher un film...">
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Nom de la Salle</th>
-        <th scope="col">Titre du Film</th>
-        <th scope="col">Date de la seance</th>
-        <th scope="col">Heure de la seance </th>
-        <th scope="col">Place reserver</th>
-        <th scope="col">Prix payer</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach ($resultat as $seance) {
-        echo "<tr>
-        <td>" . $seance["nom_salle"] . "</td>
-        <td>" . $seance["titre"] . "</td>
-        <td>" . $seance['date'] . "</td>
-        <td>" .$seance['heure_complete']. "</td>
-        <td>";
+<h2>Modifier une Reservation</h2>
 
-        // Corrected PHP logic to check 'nb_plc_dispo'
-        if ($seance['nb_plc_dispo'] == null) {
-            echo $seance['nb_place_dispo'];
-        } else {
-            echo $seance['nb_plc_dispo'];
-        }
-
-        echo "</td>
-        <td>" . $seance['prix'] . "</td>
-        <td><a href='modifierSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-warning'>Modifier</button></a></td>
-        <td><a href='supprimerSeance.php?id=" . $seance["id_seance"] . "'><button type='button' class='btn btn-danger'>Suppprimer</button></a></td>
-    </tr>";
-    }
-    ?>
-    </tbody>
-</table>
 </body>
 </html>
