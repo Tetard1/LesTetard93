@@ -4,7 +4,7 @@ require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
 if(!isset($_SESSION["userConnecte"])){
-    header('Location:../accueil.php');
+    header('Location:../index.php');
     session_destroy();
 }
 $reservation = new Reservation([

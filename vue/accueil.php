@@ -6,7 +6,7 @@ require_once "../src/Bdd/BDD.php";
 session_start();
 if($_SESSION==NULL){
     session_destroy();
-    header('Location:../accueil.php');
+    header('Location:../index.php');
 }
 
 $userPrenom = $_SESSION["userConnecte"]["userPrenom"] ?? "Invité";

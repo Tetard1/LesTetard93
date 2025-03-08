@@ -37,7 +37,7 @@ class repositoryUtilisateur
             exit();
         } else {
             echo "Vous avez déjà un compte, veuillez vous connecter ! ";
-            header('Location: ../../accueil.php');
+            header('Location: ../../index.php');
             exit();
         }
     }

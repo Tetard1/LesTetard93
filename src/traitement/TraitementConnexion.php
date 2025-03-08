@@ -6,7 +6,7 @@ if (empty($_POST["email"]) ||
     empty($_POST["mdp"]) )
 {
     echo "C'est pas bien tetard";
-    header("Location: ../../accueil.php");
+    header("Location: ../../index.php");
 } else {
     $user = new Utilisateur(array(
         'email' => $_POST['email'],
@@ -23,9 +23,9 @@ if (empty($_POST["email"]) ||
             "idUtilisateur" => $resultat->getIdUtilisateur(),
             "role" => $resultat->getRole()
         ];
-        header("Location: ../../vue/accueil.php");
+        header("Location: ../../vue/index.php");
     } else {
-       header("Location: ../../accueil.php");
+       header("Location: ../../index.php");
     }
 
 }

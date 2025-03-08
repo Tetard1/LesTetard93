@@ -27,7 +27,7 @@ var_dump($resultat);
     if($resultat == true){
         header("Location: ../../vue/Connexion.html");
     }else{
-        header("Location: ../../accueil.php");
+        header("Location: ../../index.php");
     }
 
 }

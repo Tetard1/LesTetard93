@@ -5,7 +5,7 @@ require_once "../src/Bdd/BDD.php";
 session_start();
 if($_SESSION==null){
     session_destroy();
-    header('Location:../accueil.php');
+    header('Location:../index.php');
 }
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();

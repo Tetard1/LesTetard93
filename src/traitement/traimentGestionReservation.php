@@ -18,9 +18,9 @@ require_once '../Repository/ReservationRepo.php';
 
         if ($resultat) {
 
-            header("Location: ../../vue/accueil.php");
+            header("Location: ../../vue/index.php");
         } else {
-            header("Location: ../../vue/accueil.php");
+            header("Location: ../../vue/index.php");
         }
     }
 

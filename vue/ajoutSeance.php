@@ -5,7 +5,7 @@ require_once '../src/repository/SeanceRepo.php';
 session_start();
 if($_SESSION==null){
     session_destroy();
-    header('Location:../accueil.php');
+    header('Location:../index.php');
 }
 
 $seanceRepo = new SeanceRepo();

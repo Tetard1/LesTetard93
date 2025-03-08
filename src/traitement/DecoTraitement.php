@@ -8,6 +8,6 @@ require_once "../modele/Utilisateur.php";
 if(isset($_POST["deconnexion"])){
     $utilisateurRepo = new RepositoryUtilisateur();
     $utilisateurRepo->deconnect();
-    header('Location: ../../accueil.php');
+    header('Location: ../../index.php');
 
 }

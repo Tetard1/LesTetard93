@@ -30,7 +30,7 @@
         </div>
         <button type="submit" class="btn btn-primary w-100">Confirmer</button><br><br>
     </form>
-    <a href="../accueil.php"><button type="submit" class="btn btn-primary w-100">Acceuil</button></a><br><br>
+    <a href="../index.php"><button type="submit" class="btn btn-primary w-100">Acceuil</button></a><br><br>
 
 </div>
 </body>

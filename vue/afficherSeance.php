@@ -4,7 +4,7 @@ require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
 if (!isset($_SESSION["userConnecte"])) {
-    header('Location:../accueil.php');
+    header('Location:../index.php');
     session_destroy();
 }
 $seanceRepo = new SeanceRepo();
