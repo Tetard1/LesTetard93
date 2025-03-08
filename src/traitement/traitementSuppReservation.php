@@ -11,7 +11,7 @@ $reservation = new reservation([
     $resultat = $reservationRepo->supprimerReservation($reservation);
 if ($resultat) {
     var_dump($resultat);
-    header('Location:../../vue/index.php');
+    header('Location:../../vue/accueil.php');
 }
 else {
     echo "erreur";

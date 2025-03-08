@@ -3,10 +3,7 @@ require_once "../src/bdd/BDD.php";
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 session_start();
-if(!isset($_SESSION["userConnecte"])){
-    header('Location:../index.php');
-    session_destroy();
-}
+
 $liste = new repositoryFilm();
 $film = $liste->detailFilm($_GET['id']);
 ?>
@@ -75,7 +72,6 @@ $film = $liste->detailFilm($_GET['id']);
                 <button type='button' class='btn btn-danger' data-bs-toggle="modal" data-bs-target="#confirmModal">
                     Supprimer
                 </button>
-
                 <a href="ajoutReservation.php?id=<?=$film->getId()?>" class="btn btn-dark">Réserver</a>
             </div>
         </div>

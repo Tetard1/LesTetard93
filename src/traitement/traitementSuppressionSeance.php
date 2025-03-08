@@ -11,7 +11,7 @@ if(isset($_GET["id"])) {
 $seanceRepo = new SeanceRepo();
 $suppression = $seanceRepo->supprimerSeance($seance);
 if ($suppression) {
-    header('Location:../../vue/index.php');
+    header('Location:../../vue/accueil.php');
 } else {
     echo "erreur";
 }

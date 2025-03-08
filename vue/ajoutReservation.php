@@ -3,7 +3,10 @@ require_once "../src/bdd/BDD.php";
 require_once "../src/repository/ReservationRepo.php";
 require_once "../src/modele/Reservation.php";
 session_start();
-if(!isset($_GET["id"])){
+if(!isset($_SESSION["userConnecte"])){
+    header('Location:../index.php');
+    session_destroy();
+}if(!isset($_GET["id"])){
     header("Location: filmAffiche.php");
 }
     $id=$_GET["id"];

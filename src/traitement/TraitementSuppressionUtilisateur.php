@@ -17,4 +17,4 @@ $user = new Utilisateur(array(
 ));
 $repository = new repositoryUtilisateur();
 $resultat = $repository->suppression($user);
-header("Location:../../vue/Connexion.html");
+header("Location:../../index.php");

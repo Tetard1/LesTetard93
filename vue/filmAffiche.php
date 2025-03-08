@@ -3,7 +3,7 @@ require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
-if($_SESSION==null){
+if(!$_SESSION["userConnecte"]){
     session_destroy();
     header('Location:../index.php');
 }

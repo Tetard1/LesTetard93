@@ -11,7 +11,7 @@ if(isset($_GET["id"])) {
     $SalleRepo = new SalleRepo();
     $suppression = $SalleRepo->suppressionSalle($salle);
     if ($suppression) {
-        header('Location:../../vue/index.php');
+        header('Location:../../vue/accueil.php');
     } else {
         echo "erreur";
     }
