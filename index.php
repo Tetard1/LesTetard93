@@ -121,7 +121,6 @@ $listeFilm = $listeFilm->filmAffiche();
                 <li><a class="dropdown-item" href="vue/Inscription.html">Inscription</a></li>
             </ul>
         </li>
-        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films

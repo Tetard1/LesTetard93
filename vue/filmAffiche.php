@@ -3,10 +3,10 @@ require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
-if(!$_SESSION["userConnecte"]){
-    session_destroy();
-    header('Location:../index.php');
+if (!isset($_SESSION["userConnecte"])) {
+    $_SESSION["userConnecte"] = ["role" => "visiteur"];
 }
+$role = $_SESSION["userConnecte"]["role"];
 $listeFilm = new RepositoryFilm();
 $listeFilm = $listeFilm->filmAffiche();
 ?>
@@ -94,8 +94,8 @@ $listeFilm = $listeFilm->filmAffiche();
             rows.forEach(row => {
                 let title = row.cells[0].innerText.toLowerCase();
                 row.style.display = title.includes(input) ? "" : "none";
-                });
-            }
+            });
+        }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -113,27 +113,52 @@ $listeFilm = $listeFilm->filmAffiche();
     <hr>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
+            <a class="navbar-brand" href="
+            <?php if($role=="visiteur"){
+                echo"../index.php";
+            }else{
+                echo"accueil.php";
+            }?>">
+                <img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Mon compte
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
-                <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
-            </ul>
-        </li>
+        <?php
+        if($role!="visiteur"){
+         ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Mon compte
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
+                    <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
+                </ul>
+            </li>
+        <?php
+        }else {
+            ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Connexion
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="Connexion.html">Connexion</a></li>
+                    <li><a class="dropdown-item" href="Inscription.html">Inscription</a></li>
+                </ul>
+            </li>
+        <?php
+        }
+        ?>
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Films
             </a>
             <ul class="dropdown-menu">
                 <?php
-                if($_SESSION["userConnecte"]["role"]=="admin"){
+                if($role=="admin"){
                     ?>
                     <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
                     <?php
@@ -144,7 +169,7 @@ $listeFilm = $listeFilm->filmAffiche();
 
 
         <?php
-        if($_SESSION["userConnecte"]["role"]=="admin"){
+        if($role=="admin"){
             ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -166,7 +191,7 @@ $listeFilm = $listeFilm->filmAffiche();
             </a>
             <ul class="dropdown-menu">
                 <?php
-                if($_SESSION["userConnecte"]["role"]=="admin"){
+                if($role=="admin"){
                     ?>
                     <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
                     <?php
@@ -177,7 +202,7 @@ $listeFilm = $listeFilm->filmAffiche();
 
 
         <?php
-        if($_SESSION["userConnecte"]["role"]=="admin"){
+        if($role=="admin"){
             ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

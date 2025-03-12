@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION["userConnecte"])) {
+header('Location:../index.php');
+}elseif ($_SESSION["userConnecte"]["role"]=="admin") {
+    $role = $_SESSION["userConnecte"]["role"];
+}elseif($_SESSION["userConnecte"]["role"]==" " || $_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

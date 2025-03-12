@@ -3,7 +3,11 @@ require_once "../src/bdd/BDD.php";
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 session_start();
+if (!isset($_SESSION["userConnecte"])) {
+    $_SESSION["userConnecte"] = ["role" => "visiteur"];
+}
 
+$role = $_SESSION["userConnecte"]["role"];
 $liste = new repositoryFilm();
 $film = $liste->detailFilm($_GET['id']);
 ?>
@@ -65,20 +69,62 @@ $film = $liste->detailFilm($_GET['id']);
 
             <!-- Boutons Modifier et Supprimer -->
             <div class="btn-container">
-                <a href="accueil.php" class="btn btn-primary">Retour</a>
+                <a href="<?php
+                if($role!="visiteur"){
+                    echo"vue/accueil.php";
+                }else{
+                    echo"../index.php";
+                }
+                ?>" class="btn btn-primary">Retour</a>
+                <?php
+                if($role=="admin"){
+                    ?>
                 <a href="modifFilm.php?id=<?=$film->getId()?>" class="btn btn-warning">Modifier</a>
-
                 <!-- Bouton pour ouvrir la modale de confirmation -->
                 <button type='button' class='btn btn-danger' data-bs-toggle="modal" data-bs-target="#confirmModal">
                     Supprimer
                 </button>
-                <a href="ajoutReservation.php?id=<?=$film->getId()?>" class="btn btn-dark">Réserver</a>
+                <?php
+                }
+                if($role!="visiteur"){
+                    ?>
+                    <a href="ajoutReservation.php?id=<?=$film->getId()?>" class="btn btn-dark">Réserver</a>
+                <?php
+                }
+                else{
+                ?>
+                    <button type='button' class='btn btn-dark' data-bs-toggle="modal" data-bs-target="#confirmModale">
+                        Reserver
+                    </button>
+                <?php
+                }?>
+
             </div>
         </div>
 
         <!-- Colonne de droite (Affiche) -->
         <div class="col-md-5">
             <img src="<?=$film->getImage() ?>" alt="Affiche du film" class="film-image">
+        </div>
+    </div>
+</div>
+<!-- Pop up pour la reservation si on est pas connecter -->
+<div class="modal fade" id="confirmModale" tabindex="-1" aria-labelledby="confirmModaleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModaleLabel">Inscription/connexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Il semblerai que vous n'etes pas connecté ou n'avez pas de compte :(
+                Veuillez vous connecter ou vous inscrire pour pouvoir poursuivre.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <a class="btn btn-primary" href="Connexion.html" role="button">Se Connecter</a>
+                <a class="btn btn-primary" href="Inscription.html" role="button">S'inscrire</a>
+            </div>
         </div>
     </div>
 </div>
