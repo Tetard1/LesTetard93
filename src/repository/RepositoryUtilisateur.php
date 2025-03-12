@@ -115,12 +115,12 @@ class repositoryUtilisateur
     {
         session_destroy();
     }
-    public function rechercheUtilisateurParMail(Utilisateur $user)
+    public function rechercheUtilisateurParMail($email)
     {
         $recherche = "SELECT * FROM utilisateur WHERE email = :email";
         $req = $this->bdd->getBdd()->prepare($recherche);
         $req->execute(array(
-            'email' => $user->getEmail()
+            'email' => $email
         ));
         return $req->fetch();
     }
@@ -130,9 +130,9 @@ class repositoryUtilisateur
                 WHERE email=:email";
         $req = $this->bdd->getBdd()->prepare($add);
         $req->execute(array(
+            "email" => $email,
             'token' => $token,
-            'dateFin' => $dateFin,
-            'email' => $email
+            'dateFin' => $dateFin
         ));
         if($req){
             return true;
