@@ -3,9 +3,8 @@ require_once "../src/bdd/BDD.php";
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
-if(!isset($_SESSION["userConnecte"])){
-    header('Location:../index.php');
-    session_destroy();
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
 }
 if(isset($_GET['id'])){
     $id=$_GET['id'];

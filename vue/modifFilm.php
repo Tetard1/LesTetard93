@@ -3,9 +3,9 @@ require_once "../src/bdd/BDD.php";
 require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 session_start();
-if(!isset($_SESSION["userConnecte"])){
-    header('Location:../index.php');
-    session_destroy();
+session_start();
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
 }
 $filmRepository = new repositoryFilm();
 $film = $filmRepository->detailFilm($_GET["id"]);

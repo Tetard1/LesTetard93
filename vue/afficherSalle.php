@@ -3,9 +3,8 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Salle.php';
 require_once '../src/repository/SalleRepo.php';
 session_start();
-if(!isset($_SESSION["userConnecte"])){
-    header('Location:../index.php');
-    session_destroy();
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
 }
 $salleRepo = new SalleRepo();
 $resultat = $salleRepo->afficherSalle();

@@ -14,7 +14,6 @@ if(isset($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["gen
         'image' => $_POST['affiche'],
     ));
 
-    var_dump($film);
 
     $repositoryFilm = new RepositoryFilm();
     $resultat = $repositoryFilm->ajoutFilm($film);

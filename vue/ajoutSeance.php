@@ -3,11 +3,9 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Seance.php';
 require_once '../src/repository/SeanceRepo.php';
 session_start();
-if($_SESSION==null){
-    session_destroy();
-    header('Location:../index.php');
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
 }
-
 $seanceRepo = new SeanceRepo();
 $films = $seanceRepo->getFilm();
 $salles = $seanceRepo->getSalle();

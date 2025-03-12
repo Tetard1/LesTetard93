@@ -113,12 +113,17 @@ $listeFilm = $listeFilm->filmAffiche();
     <hr>
     <menu class="nav">
         <li>
-            <a class="navbar-brand" href="
             <?php if($role=="visiteur"){
-                echo"../index.php";
-            }else{
-                echo"accueil.php";
-            }?>">
+
+            ?>
+                <a class="navbar-brand" href="../index.php">
+                    <?php
+
+                    }else{
+                    ?>
+
+                    <a class="navbar-brand" href="accueil.php">                      <?php
+            }?>
                 <img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

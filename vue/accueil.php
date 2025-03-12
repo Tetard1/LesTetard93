@@ -4,8 +4,7 @@ require_once "../src/modele/film.php";
 require_once "../src/repository/repositoryFilm.php";
 require_once "../src/Bdd/BDD.php";
 session_start();
-if($_SESSION==NULL){
-    session_destroy();
+if($_SESSION["userConnecte"]["role"]=="visiteur"){
     header('Location:../index.php');
 }
 

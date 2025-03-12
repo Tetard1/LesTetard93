@@ -3,6 +3,9 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/accueil.php');
+}
 $reservationRepo = new ReservationRepo();
 $resultat = $reservationRepo->afficherReservations();
 ?>

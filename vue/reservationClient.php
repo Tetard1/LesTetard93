@@ -3,9 +3,8 @@ require_once '../src/bdd/Bdd.php';
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();
-if(!isset($_SESSION["userConnecte"])){
-    header('Location:../index.php');
-    session_destroy();
+if($_SESSION["userConnecte"]["role"]=="user"){
+    header('Location:../vue/acceuil.php');
 }
 $reservation = new Reservation([
     "refUtilisateur" => $_SESSION["userConnecte"]["idUtilisateur"]
