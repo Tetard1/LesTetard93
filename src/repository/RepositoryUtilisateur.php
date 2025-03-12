@@ -126,13 +126,14 @@ class repositoryUtilisateur
     }
     public function addTokens($token,$dateFin,$email)
     {
-        $add="update utilisateur SET reset_token=:token, reset_expires=:dateFin)
+        $add="update utilisateur SET reset_token=:token, reset_expires=:dateFin
                 WHERE email=:email";
         $req = $this->bdd->getBdd()->prepare($add);
         $req->execute(array(
-            "email" => $email,
             'token' => $token,
-            'dateFin' => $dateFin
+            'dateFin' => $dateFin,
+            "email" => $email
+
         ));
         if($req){
             return true;

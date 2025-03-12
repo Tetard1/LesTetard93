@@ -27,7 +27,7 @@ $repo=new RepositoryUtilisateur();
     }else{
         $ajout=$repo->addTokens($token,$dateFin,$compte['email']);
         if($ajout){
-            $lien="http://localhost/SLAM/PHP/Projets%20PHP/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
+            $lien="http://localhost/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
             try {
                 $mail->setFrom('Testcinema@outlook.fr', 'Testcinema');
                 $mail->addAddress($email);
