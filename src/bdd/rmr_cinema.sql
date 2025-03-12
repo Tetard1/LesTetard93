@@ -163,6 +163,9 @@ ALTER TABLE `seance`
 --
 -- Index pour la table `utilisateur`
 --
+ALTER TABLE utilisateur
+    ADD reset_token VARCHAR(255) NULL,
+ADD reset_expires DATETIME NULL;
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id_utilisateur`);
 
