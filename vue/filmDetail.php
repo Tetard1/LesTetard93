@@ -71,7 +71,7 @@ $film = $liste->detailFilm($_GET['id']);
             <div class="btn-container">
                 <a href="<?php
                 if($role!="visiteur"){
-                    echo"vue/accueil.php";
+                    echo"accueil.php";
                 }else{
                     echo"../index.php";
                 }

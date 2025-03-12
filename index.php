@@ -177,7 +177,7 @@ $listeFilm = $stmt->fetchAll();
     <div class="film-grid">
         <?php foreach ($listeFilm as $film) : ?>
             <div class="film-card">
-                <a href="filmDetail.php?id=<?= urlencode($film['id_films']) ?>">
+                <a href="vue/filmDetail.php?id=<?= urlencode($film['id_films']) ?>">
                     <img src="<?= htmlspecialchars($film['affiche']); ?>" alt="<?= htmlspecialchars($film['titre']); ?>">
                     <h3><?= htmlspecialchars($film['titre']); ?></h3>
                 </a>
