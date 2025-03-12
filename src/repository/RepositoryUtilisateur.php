@@ -126,7 +126,7 @@ class repositoryUtilisateur
     }
     public function addTokens($token,$dateFin,$email)
     {
-        $add="INSERT INTO utilisateur( reset_token, reset_expires) VALUES (:token,:dateFin)
+        $add="update utilisateur SET reset_token=:token, reset_expires=:dateFin)
                 WHERE email=:email";
         $req = $this->bdd->getBdd()->prepare($add);
         $req->execute(array(
