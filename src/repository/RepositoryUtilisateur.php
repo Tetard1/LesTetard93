@@ -115,5 +115,57 @@ class repositoryUtilisateur
     {
         session_destroy();
     }
+    public function rechercheUtilisateurParMail(Utilisateur $user)
+    {
+        $recherche = "SELECT * FROM utilisateur WHERE email = :email";
+        $req = $this->bdd->getBdd()->prepare($recherche);
+        $req->execute(array(
+            'email' => $user->getEmail()
+        ));
+        return $req->fetch();
+    }
+    public function addTokens($token,$dateFin,$email)
+    {
+        $add="INSERT INTO utilisateur( reset_token, reset_expires) VALUES (:token,:dateFin)
+                WHERE email=:email";
+        $req = $this->bdd->getBdd()->prepare($add);
+        $req->execute(array(
+            'token' => $token,
+            'dateFin' => $dateFin,
+            'email' => $email
+        ));
+        if($req){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public function verifierToken($token)
+    {
+        $verif="SELECT email FROM utilisateur WHERE reset_token=:token";
+        $req = $this->bdd->getBdd()->prepare($verif);
+        $req->execute(array(
+            'token' => $token
+        ));
+        return $req->fetch();
+    }
+    public function changerMdp($mdp,$email)
+    {
+        $update = "UPDATE utilisateur SET mdp=:mdp,reset_token=:token,reset_expires=:expiration WHERE email=:email";
+        $req = $this->bdd->getBdd()->prepare($update);
+        $req->execute(array(
+            'mdp' => $mdp,
+            'token'=>null,
+            'expiration'=>null,
+            'email' => $email
+        ));
+        if ($req) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
