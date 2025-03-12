@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,22 +25,16 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-center">Connexion</h2>
-    <form method="POST" action="../src/traitement/TraitementConnexion.php">
+    <h2 class="text-center">Changement de Mot de passe</h2>
+    //mettre le chemin d'accèes pour le Form
+    <form method="POST" action="../src/traitement/traitementChangementMdp.php">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="...@..." required>
         </div>
-        <div class="mb-3">
-            <label for="mdp" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="mdp" name="mdp" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Se connecter</button><br><br>
+        <button type="submit" class="btn btn-primary w-100">Confirmer</button><br><br>
     </form>
-    <a href="Inscription.html"><button type="submit" class="btn btn-primary w-100">Inscription</button></a><br><br>
-    <a href="accueil.php"><button type="submit" class="btn btn-primary w-100">Acceuil</button></a><br><br>
-    <a href="mdpOublie.php"><button type="submit" class="btn btn-primary w-100">Mot de passe oublier</button></a><br><br>
-
+    <a href="../vue/accueil.php"><button type="submit" class="btn btn-primary w-100">Acceuil</button></a><br><br>
 
 </div>
 </body>
