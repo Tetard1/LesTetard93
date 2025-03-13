@@ -38,7 +38,8 @@ $repo=new RepositoryUtilisateur();
                 $mail->Subject = "Reinitialisation de votre mot de passe";
                 $mail->Body = "<p>Bonjour,</p>
                 <p>Cliquez sur le lien pour reinitialiser votre mot de passe :</p> 
-                <p><a href='$lien'>$lien</a></p>";
+                <p><a href='$lien'>$lien</a></p>
+                                <p>Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.</p>";
                 $mail->AltBody = "Bonjour,\n\nCliquez sur le lien suivant pour réinitialiser votre mot de passe : $lien\n\n
                 Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.";
                 if($mail->send()){
