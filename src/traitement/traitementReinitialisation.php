@@ -1,5 +1,6 @@
 <?php
-if(isset($_POST['token'])&&isset($_POST['mdp'])&&isset($_POST['confirmation'])){
+require_once "../modele/Utilisateur.php";
+require_once "../repository/RepositoryUtilisateur.php";if(isset($_POST['token'])&&isset($_POST['mdp'])&&isset($_POST['confirmation'])){
     if($_POST['mdp']==$_POST['confirmation']) {
         $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
         $token = $_POST['token'];
