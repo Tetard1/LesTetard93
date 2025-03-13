@@ -1,20 +1,29 @@
 <?php
-//envoi d'email
-require_once "src/bdd/BDD.php";
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-require '../../vendor/autoload.php';
-$bdd = new BDD();
-if(isset($_POST['email'])) {
-    $email=$_POST['email'];
+require_once "../modele/Utilisateur.php";
+require_once "../repository/RepositoryUtilisateur.php";
+if(isset($_POST['token'])&&isset($_POST['mdpold'])&&isset($_POST['mdp'])&&isset($_POST['confirmation'])){
+    if($_POST['mdp']==$_POST['confirmation']) {
+        $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+        $token = $_POST['token'];
+        $repo = new repositoryUtilisateur();
+        $verif = $repo->verifierToken($token);
+        if ($verif) {
+            if(password_verify($_POST['mdpold'], $verif["mdp"])) {
+                $email = $verif["email"];
+                $repo->changerMdp($email, $mdp);
+                echo "mdp mis a jour";
+                header("Location:../../vue/connexion.html");
+            }else{
+                echo "Mdp incorrecte";
+                header("Location:../../vue/changeMdp.html");
+            }
+        }
+    }else{
+        echo"La confirmation du  mot de passe est differente du mot de passe";
+        header("Location:../../vue/connexion.html");
+    }
 
-    $mail = new PHPMailer();
-    $mail->isSMTP();
-    $mail->Host = 'smtp.office365.com';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'Testcinema@outlook.fr'; // Remplace par ton email Outlook
-    $mail->Password = 'phptest1234';  // Mot de passe ou mot de passe d'application
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-
+}else {
+    echo"veuillez remplir tous les champs";
+    header("Location:../../vue/changeMdp.html");
 }

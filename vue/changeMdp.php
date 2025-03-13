@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+if(!isset($_GET["token"])){
+    die("Token non valide !");
+}
+$token = $_GET["token"];
 ?>
 <!DOCTYPE html>
 <html lang="fr">

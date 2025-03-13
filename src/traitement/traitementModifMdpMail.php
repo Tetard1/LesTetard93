@@ -8,8 +8,8 @@ require_once '../modele/Utilisateur.php';
 require_once '../repository/RepositoryUtilisateur.php';
 require_once '../../vendor/autoload.php';
 if(isset($_POST['email'])) {
-$email=$_POST['email'];
-$repo=new RepositoryUtilisateur();
+    $email=$_POST['email'];
+    $repo=new RepositoryUtilisateur();
 
     $token = bin2hex(random_bytes(32));
     setlocale(LC_ALL, 'fr_FR.UTF-8');
@@ -21,7 +21,7 @@ $repo=new RepositoryUtilisateur();
     }else{
         $ajout=$repo->addTokens($token,$dateFin,$compte['email']);
         if($ajout){
-            $lien="http://localhost/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
+            $lien="http://localhost/LesTetard93/vue/changeMdp.php?token=".$token;
             try {
                 $mail = new PHPMailer();
                 $mail->isSMTP();
@@ -35,11 +35,12 @@ $repo=new RepositoryUtilisateur();
                 $mail->addAddress($compte['email'],$compte["prenom"]);
                 $mail->addreplyTo("testcinema92@gmail.com", 'Support');
                 $mail->isHTML();
-                $mail->Subject = "Reinitialisation de votre mot de passe";
+                $mail->Subject = "Modification de votre mot de passe";
                 $mail->Body = "<p>Bonjour,</p>
-                <p>Cliquez sur le lien pour reinitialiser votre mot de passe :</p> 
-                <p><a href='$lien'>$lien</a></p>";
-                $mail->AltBody = "Bonjour,\n\nCliquez sur le lien suivant pour réinitialiser votre mot de passe : $lien\n\n
+                <p>Cliquez sur le lien pour modifier votre mot de passe :</p> 
+                <p><a href='$lien'>$lien</a></p>
+                <p>Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.</p>";
+                $mail->AltBody = "Bonjour,\n\nCliquez sur le lien suivant pour modifier votre mot de passe : $lien\n\n
                 Si vous n'avez pas demandé cette réinitialisation, ignorez cet email.";
                 if($mail->send()){
                     echo 'to:'.$mail->getToAddresses()[0][0];
@@ -48,7 +49,7 @@ $repo=new RepositoryUtilisateur();
                     echo"le message n'a pas pu etre envoyer(".$mail->ErrorInfo.")";
 
                 }
-                }catch (Exception $e){
+            }catch (Exception $e){
                 echo"Erreur lors de l'envoi de votre mail : (".$mail->ErrorInfo.")";
 
             }

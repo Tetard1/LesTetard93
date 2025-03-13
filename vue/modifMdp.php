@@ -27,7 +27,7 @@ session_start();
 <div class="container">
     <h2 class="text-center">Changement de Mot de passe</h2>
     //mettre le chemin d'accèes pour le Form
-    <form method="POST" action="../src/traitement/traitementChangementMdp.php">
+    <form method="POST" action="../src/traitement/traitementModifMdpMail.php">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="...@..." required>
