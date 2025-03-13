@@ -24,7 +24,6 @@
 <body>
 <div class="container">
     <h2 class="text-center">Mot de passe oublié</h2>
-    //mettre le chemin d'accèes pour le Form
     <form method="POST" action="../src/traitement/traitementEnvoiMail.php">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
