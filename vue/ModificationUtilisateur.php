@@ -89,6 +89,92 @@ $result=$repository->afficherUtilisateur($user);
     </style>
 </head>
 <body>
+<header>
+    <hr>
+    <menu class="nav">
+        <li>
+            <a class="navbar-brand" href="accueil.php"><img src="../assets/img/logoV2.jpg" style="height: 60px; margin-left: 20px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mon compte
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="ModificationUtilisateur.php">Mon profil </a></li>
+                <li><a class="dropdown-item" href="reservationClient.php">Mes reservation</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Films
+            </a>
+            <ul class="dropdown-menu">
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li><a class="dropdown-item" href="Film.php">Ajout de Films </a></li>
+                    <?php
+                }?>
+                <li><a class="dropdown-item" href="filmAffiche.php">Liste des Films</a></li>
+            </ul>
+        </li>
+
+
+        <?php
+        if($_SESSION["userConnecte"]["role"]=="admin"){
+            ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Reservations
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="ajoutReservation.php">Ajouter des Reservations</a></li>
+                    <li><a class="dropdown-item" href="afficherReservation.php">Liste des Reservations</a></li>
+                </ul>
+            </li>
+            <?php
+        }?>
+
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Seances
+            </a>
+            <ul class="dropdown-menu">
+                <?php
+                if($_SESSION["userConnecte"]["role"]=="admin"){
+                    ?>
+                    <li><a class="dropdown-item" href="ajoutSeance.php">Ajouter des Seances</a></li>
+                    <?php
+                }?>
+                <li><a class="dropdown-item" href="afficherSeance.php">Liste des Seances</a></li>
+            </ul>
+        </li>
+
+
+        <?php
+        if($_SESSION["userConnecte"]["role"]=="admin"){
+            ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Salles
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="ajoutSalle.php">Ajouter des Salles</a></li>
+                    <li><a class="dropdown-item" href="afficherSalle.php">Liste des Salles</a></li>
+                </ul>
+            </li>
+            <?php
+        }?>
+
+
+    </menu>
+    <hr>
+</header>
 <div class="container">
     <h1>Modification du compte</h1>
     <form action="../src/traitement/TraitementModifUtilisateur.php" method="post">
@@ -118,7 +204,6 @@ $result=$repository->afficherUtilisateur($user);
     <h1 class="mt-5">Deconnexion du compte</h1>
     <form action="../src/traitement/DecoTraitement.php" method="post">
         <input type="submit" class="btn btn-primary" value="Deconnexion" name="deconnexion">
-        <?php session_destroy()?>
     </form>
 
 

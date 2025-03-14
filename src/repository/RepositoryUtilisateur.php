@@ -112,7 +112,10 @@ class repositoryUtilisateur
 
     public function deconnect()
     {
+        session_start();
+        session_unset();
         session_destroy();
+        header("Location: ../../index.php");
     }
     public function rechercheUtilisateurParMail($email)
     {
@@ -144,7 +147,7 @@ class repositoryUtilisateur
     }
     public function verifierToken($token)
     {
-        $verif="SELECT email FROM utilisateur WHERE reset_token=:token";
+        $verif="SELECT email,mdp FROM utilisateur WHERE reset_token=:token";
         $req = $this->bdd->getBdd()->prepare($verif);
         $req->execute(array(
             'token' => $token
@@ -153,19 +156,12 @@ class repositoryUtilisateur
     }
     public function changerMdp($mdp,$email)
     {
-        $update = "UPDATE utilisateur SET mdp=:mdp,reset_token=:token,reset_expires=:expiration WHERE email=:email";
+        $update = "UPDATE utilisateur SET mdp=:mdp,reset_token=null,reset_expires=null WHERE email=:email";
         $req = $this->bdd->getBdd()->prepare($update);
         $req->execute(array(
             'mdp' => $mdp,
-            'token'=>null,
-            'expiration'=>null,
             'email' => $email
         ));
-        if ($req) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
 
