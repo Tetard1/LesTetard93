@@ -11,7 +11,11 @@ if(isset($_POST['email'])) {
 $email=$_POST['email'];
 $repo=new RepositoryUtilisateur();
 
-    $token = bin2hex(random_bytes(32));
+    try {
+        $token = bin2hex(random_bytes(32));
+    } catch (\Random\RandomException $e) {
+
+    }
     setlocale(LC_ALL, 'fr_FR.UTF-8');
     $dateFin=date('Y-m-d H:i', strtotime('+1 hour'));
     $compte=$repo->rechercheUtilisateurParMail($email);
@@ -21,7 +25,9 @@ $repo=new RepositoryUtilisateur();
     }else{
         $ajout=$repo->addTokens($token,$dateFin,$compte['email']);
         if($ajout){
-            $lien="http://localhost/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
+            $lien="http://localhost/SLAM/PHP/Projets%20PHP/LesTetard93/vue/reinitialiserMdp.php?token=".$token;//pour mon projet
+            //jsp c'est lequel pour Thomas
+            //pour Ethan $lien="http://localhost/SLAM/PHP/Projets%20PHP/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
             try {
                 $mail = new PHPMailer();
                 $mail->isSMTP();

@@ -11,7 +11,7 @@ if(isset($_POST['token'])&&isset($_POST['mdpold'])&&isset($_POST['mdp'])&&isset(
         if ($verif) {
             if(password_verify($_POST['mdpold'], $verif["mdp"])) {
                 $email = $verif["email"];
-                $repo->changerMdp($email, $mdp);
+                $repo->changerMdp($mdp, $email);
                 echo "mdp mis a jour";
                 header("Location:../../vue/connexion.html");
             }else{

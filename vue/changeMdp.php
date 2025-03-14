@@ -29,7 +29,6 @@ $token = $_GET["token"];
 <body>
 <div class="container">
     <h2 class="text-center">Changement de Mot de passe</h2>
-    //mettre le chemin d'accèes pour le Form
     <form method="POST" action="../src/traitement/traitementChangementMdp.php">
         <div class="mb-3">
             <label for="mdpold" class="form-label">Saisir l'ancien mot de passe</label>

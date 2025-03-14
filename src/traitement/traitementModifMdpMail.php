@@ -21,7 +21,9 @@ if(isset($_POST['email'])) {
     }else{
         $ajout=$repo->addTokens($token,$dateFin,$compte['email']);
         if($ajout){
-            $lien="http://localhost/LesTetard93/vue/changeMdp.php?token=".$token;
+            $lien="http://localhost/SLAM/PHP/Projets%20PHP/LesTetard93/vue/reinitialiserMdp.php?token=".$token;//pour mon projet
+            //jsp c'est lequel pour Thomas
+            //pour Ethan $lien="http://localhost/SLAM/PHP/Projets%20PHP/LesTetard93/vue/reinitialiserMdp.php?token=".$token;
             try {
                 $mail = new PHPMailer();
                 $mail->isSMTP();
