@@ -117,7 +117,7 @@ $film = $liste->detailFilm($_GET['id']);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Il semblerai que vous n'etes pas connecté ou n'avez pas de compte :(
+                Il semblerai que vous n'etes pas connecté ou n'avez pas de compte 😭
                 Veuillez vous connecter ou vous inscrire pour pouvoir poursuivre.
             </div>
             <div class="modal-footer">

@@ -1,5 +1,5 @@
 <?php
-require_once '../bdd/Bdd.php';
+require_once "../bdd/BDD.php";
 require_once '../modele/Reservation.php';
 require_once '../Repository/ReservationRepo.php';
 
@@ -18,7 +18,7 @@ require_once '../Repository/ReservationRepo.php';
 
         if ($resultat) {
 
-            header("Location: ../../vue/index.php");
+            header("Location: ../../vue/accueil.php");
         } else {
             header("Location: ../../vue/index.php");
         }

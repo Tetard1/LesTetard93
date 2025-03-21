@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Bdd/BDD.php";
+require_once "../bdd/BDD.php";
 require_once "../modele/film.php";
 require_once "../repository/repositoryFilm.php";
 

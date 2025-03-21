@@ -2,7 +2,7 @@
 
 require_once "../modele/film.php";
 require_once "../repository/repositoryFilm.php";
-require_once "../Bdd/BDD.php";
+require_once "../bdd/BDD.php";
 
 if(isset($_POST["titre"]) && !empty($_POST["description"]) && !empty($_POST["genre"]) && !empty($_POST["duree"]) && !empty($_POST["affiche"])) {
 

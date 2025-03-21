@@ -1,5 +1,5 @@
 <?php
-require_once '../src/bdd/Bdd.php';
+require_once "../src/bdd/BDD.php";
 require_once '../src/modele/Reservation.php';
 require_once '../src/repository/ReservationRepo.php';
 session_start();

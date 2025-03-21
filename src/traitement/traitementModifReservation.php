@@ -1,5 +1,5 @@
 <?php
-require_once '../bdd/Bdd.php';
+require_once "../bdd/BDD.php";
 require_once '../modele/Reservation.php';
 require_once '../Repository/ReservationRepo.php';
 if (isset($_POST["nbPlaceReserver"])) {

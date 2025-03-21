@@ -1,5 +1,5 @@
 <?php
-require_once '../bdd/Bdd.php';
+require_once "../bdd/BDD.php";
 require_once '../modele/Salle.php';
 require_once '../Repository/SalleRepo.php';
 
